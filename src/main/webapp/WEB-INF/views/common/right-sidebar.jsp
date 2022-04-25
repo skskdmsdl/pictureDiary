@@ -10,8 +10,8 @@
         <nav class="menu">
             <div class="menu-list">
                 <ul>
-                    <li><a href="main.html">Diary</a></li>
-                    <li><a href="contact.html">Write</a></li>
+                    <li><a href="/">Diary</a></li>
+                    <li><a href="../write/write.jsp">Write</a></li>
                     <li><a href="about.html">Search</a></li>
                 </ul>
             </div>

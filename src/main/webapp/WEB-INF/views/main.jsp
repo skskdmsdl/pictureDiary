@@ -145,48 +145,4 @@
     </ul>
 </div>
 
-<div class="footer margin-top">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2 col-sm-4 col-xs-12">
-                <div class="footer-inner">
-                    <div class="footer-content">
-                        <h4>A PICTURE DIARY</h4>
-                        <p>
-                            Draw it
-                            <br> Write it
-                            <br> Your day
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-2 col-md-push-8 col-sm-4 col-xs-12">
-                <div class="footer-inner">
-                    <div class="footer-content">
-                        <h4>SKILL</h4>
-                        <p>
-                            JAVA, Spring
-                            <br> JPA-Hibernate
-                            <br> Apache Solr
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-sm-4 col-xs-12">
-                <div class="footer-inner">
-                    <div class="footer-content">
-                        <ul class="social-media">
-                            <li><a href="#"><i class="iconmoon-github"></i></a></li>
-                            <li><a href="#"><i class="iconmoon-blogger"></i></a></li>
-                        </ul>
-                        <span class="copyright-mark">&copy; 2022 JEI, ALL RIGHTS RESERVED</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <jsp:include page="common/footer.jsp"></jsp:include>
