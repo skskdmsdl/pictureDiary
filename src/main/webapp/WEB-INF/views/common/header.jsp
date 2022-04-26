@@ -14,43 +14,43 @@
     <link href='http://fonts.googleapis.com/css?family=Lekton:400,700,400italic' rel='stylesheet' type='text/css'>
 
     <!--  Bootstrap 3-->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 
     <!-- OWL Carousel -->
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/owl.theme.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.carousel.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/owl.theme.css">
 
     <!--  Slider -->
-    <link rel="stylesheet" href="css/jquery.kenburnsy.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/jquery.kenburnsy.css">
 
     <!-- Animate -->
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css">
 
     <!-- Web Icons Font -->
-    <link rel="stylesheet" href="css/pe-icon-7-stroke.css">
-    <link rel="stylesheet" href="css/iconmoon.css">
-    <link rel="stylesheet" href="css/et-line.css">
-    <link rel="stylesheet" href="css/ionicons.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/iconmoon.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/et-line.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ionicons.css">
 
     <!-- Magnific PopUp -->
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/magnific-popup.css">
 
     <!-- Tabs -->
-    <link rel="stylesheet" type="text/css" href="css/tabs.css" />
-    <link rel="stylesheet" type="text/css" href="css/tabstyles.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/tabstyles.css" />
 
     <!-- Loader Style -->
-    <link rel="stylesheet" href="css/loader-1.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/loader-1.css">
 
     <!-- Costum Styles -->
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/responsive.css">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/ico" href="favicon.ico">
+    <link rel="icon" type="${pageContext.request.contextPath}/image/ico" href="favicon.ico">
 
     <!-- Modernizer & Respond js -->
-    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
     <!-- Filepond stylesheet -->
     <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet"/>
@@ -64,3 +64,25 @@
     <script src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.js"></script>
     <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+
+
+	<!-- Preloader -->
+	<div class="cover"></div>
+
+	<div class="header">
+	    <div class="container">
+	        <div class="logo">
+	            <a href="index.html">
+	                <img src="${pageContext.request.contextPath}/images/logo.png" alt="Logo">
+	            </a>
+	        </div>
+
+	        <!-- Menu Hamburger (Default) -->
+	        <button class="main-menu-indicator" id="open-button">
+	            <span class="line"></span>
+	        </button>
+	        <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/right-sidebar.jsp"></jsp:include>
+	        <!-- End of Menu Hamburger (Default) -->
+
+	    </div>
+	</div>

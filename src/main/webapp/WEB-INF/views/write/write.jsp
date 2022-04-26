@@ -1,28 +1,5 @@
 <jsp:include page="../common/header.jsp"></jsp:include>
 
-<!-- Preloader -->
-<div class="cover"></div>
-
-<div class="header">
-    <div class="container">
-        <div class="logo">
-            <a href="index.html">
-                <img src="img/logo.png" alt="Logo">
-            </a>
-        </div>
-
-        <!-- Menu Hamburger (Default) -->
-        <button class="main-menu-indicator" id="open-button">
-            <span class="line"></span>
-        </button>
-        <jsp:include page="../common/right-sidebar.jsp"></jsp:include>
-        <!-- End of Menu Hamburger (Default) -->
-
-    </div>
-</div>
-
-
-
 <div class="container">
     <div class="contact-map" id="map">
 
@@ -89,32 +66,20 @@
     </div>
 </div>
 
-
 <style>
     .filepond--credits{ display: none; }
-    .filepond--panel-center .filepond--panel-root{ transform: none; }
+    .filepond--item{ height: 389px !important; }
+
 </style>
 <script>
+
+    // initialize the plugins
     FilePond.registerPlugin(
-
-        FilePondPluginImagePreview,
-        FilePondPluginImageResize,
-        FilePondPluginImageTransform
-
+        FilePondPluginImagePreview
     );
 
     const inputElement = document.querySelector("input[type='file']");
-
-    const pond = FilePond.create(inputElement, {
-
-        //imageResizeTargetWidth: 256,
-
-        // callback when the image is added
-        onaddfile:(err, fileItem)=>{
-            console.log(err, fileItem.getMetadata('resize'));
-        }
-
-    });
+    const pond = FilePond.create(inputElement);
 
 </script>
 

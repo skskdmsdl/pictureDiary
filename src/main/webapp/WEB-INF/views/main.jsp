@@ -1,25 +1,5 @@
 <jsp:include page="common/header.jsp"></jsp:include>
 
-<!-- Preloader -->
-<div class="cover"></div>
-
-<div class="header">
-    <div class="container">
-        <div class="logo">
-            <a href="index.html">
-                <img src="images/logo.png" alt="Logo">
-            </a>
-        </div>
-
-        <!-- Menu Hamburger (Default) -->
-        <button class="main-menu-indicator" id="open-button">
-            <span class="line"></span>
-        </button>
-        <jsp:include page="common/right-sidebar.jsp"></jsp:include>
-        <!-- End of Menu Hamburger (Default) -->
-    </div>
-</div>
-
 <div class="container">
     <div class="header-page ef-parallax-bg" style="background-image:url(images/blog-header.jpg)">
         <div class="col-md-6 col-md-offset-6">

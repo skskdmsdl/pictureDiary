@@ -1,4 +1,4 @@
-<div class="menu-wrap" style="background-image: url(images/nav_bg.jpg)">
+<div class="menu-wrap" style="background-image: url(${pageContext.request.contextPath}/images/nav_bg.jpg)">
     <div class="menu-content">
         <div class="navigation">
             <span class="pe-7s-close close-menu" id="close-button"></span>
@@ -11,7 +11,7 @@
             <div class="menu-list">
                 <ul>
                     <li><a href="/">Diary</a></li>
-                    <li><a href="../write/write.jsp">Write</a></li>
+                    <li><a href="/write/write.do">Write</a></li>
                     <li><a href="about.html">Search</a></li>
                 </ul>
             </div>

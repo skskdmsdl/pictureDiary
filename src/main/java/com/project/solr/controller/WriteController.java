@@ -4,11 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class HelloController {
+@RequestMapping("/write")
+public class WriteController {
 
-	@RequestMapping("/")
-	public String hello() {
-		return "main";
+	@RequestMapping("/write.do")
+	public String Write() throws Exception {
+		return "write/write";
 	}
 
 }
