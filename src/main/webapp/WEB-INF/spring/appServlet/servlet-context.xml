@@ -21,7 +21,6 @@
 	<resources mapping="/images/**" location="/images/" />
 	<resources mapping="/fonts/**" location="/fonts/" />
 
-
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
@@ -29,7 +28,6 @@
 	</beans:bean>
 
 	<context:component-scan base-package="com.project.solr" />
-
 
 
 </beans:beans>

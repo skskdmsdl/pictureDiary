@@ -14,7 +14,7 @@
     /* =Preloader
     /* =Header
     /* =Full Width Slider
-    /* =Architecure Slider 
+    /* =Architecure Slider
     /* =Menu right
     /* =Home Content
     /* =Architecture Content
@@ -91,7 +91,7 @@ body {
 }
 :-moz-placeholder {
     /* Firefox 18- */
-    
+
     color: #787878;
     font-size: 14px;
     letter-spacing: 1pt;
@@ -99,7 +99,7 @@ body {
 }
 ::-moz-placeholder {
     /* Firefox 19+ */
-    
+
     color: #787878;
     font-size: 14px;
     letter-spacing: 1pt;
@@ -456,6 +456,7 @@ ul.sublist {
 .logo {
     float: left;
     line-height: 100px;
+    margin-top: 35px;
 }
 
 a>span.site-name{
@@ -858,7 +859,7 @@ span.border-text {
     font-weight: 400;
 }
 
-/* =Architecure Slider 
+/* =Architecure Slider
 -------------------------------------------------------------- */
 .arch-slider {
     position: relative;
@@ -1027,7 +1028,7 @@ span.border-text {
     transition-delay: 0.15s;
 }
 .search-wrap.open input:focus {
-    border:0; 
+    border:0;
 }
 .search-wrap.open ::-webkit-input-placeholder {
     font-size: 12px;
@@ -1419,7 +1420,7 @@ ul.sub-menu li a {
 
 .menu-wrap-2 ul{
     padding:0;
-    margin-bottom:0; 
+    margin-bottom:0;
 }
 
 .menu-wrap-2 ul li{
@@ -2469,7 +2470,7 @@ ul.social-buttons li {
 }
 
 /*Play Button*/
-.playBut { 
+.playBut {
     display: inline-block;
     -webkit-transition: all 0.5s ease;
     background-color: rgba(255, 255, 255, 0.79);
@@ -2727,11 +2728,12 @@ ul.social-buttons li {
 }
 /* =Contact
 -------------------------------------------------------------- */
-.contact-map {
+.diary-image {
     position: relative;
     height: 450px;
+    border: 1px solid #e6e6e6;
 }
-.inner-map {
+.inner-diary {
     position: absolute;
     z-index: 1;
     padding: 25px;
@@ -2742,22 +2744,19 @@ ul.social-buttons li {
     width: calc(100% - 40px);
     margin-top: 20px;
     margin-left: 20px;
+    border: 1px solid #e6e6e6;
 }
-.inner-map .inner-map-content {
+}
+.inner-diary .inner-diary-content {
     display: table-cell;
-    vertical-align: middle;
 }
-.inner-map .inner-map-content h1 {
+.inner-diary .inner-diary-content h1 {
     text-align: center;
     font-size: 60px;
     font-family: 'azedobold', sans-serif;
 }
-.inner-map .inner-map-content hr {
+.inner-diary .inner-diary-content hr {
     float: none;
-}
-.inner-map .inner-map-content p {
-    text-align: center;
-    font-size: 18px;
 }
 .contact-wrapper {
     clear: both;
@@ -2771,9 +2770,10 @@ ul.social-buttons li {
     float: left;
 }
 
-#map{
+#diary-image{
     width: 100%;
     height: 410px;
+    margin-top: 50px;
 }
 
 .icon-info {
@@ -2793,7 +2793,7 @@ ul.social-buttons li {
 .description-info {
     font-weight: 100;
 }
-.contact-form {} .contact-form input[type="submit"] {
+.diary-content-form {} .diary-content-form input[type="submit"] {
     width: 100%;
     height: 48px;
     outline: 0;
@@ -2804,9 +2804,12 @@ ul.social-buttons li {
     font-weight: 500;
     letter-spacing: 2pt;
 }
-.contact-form input,
-.contact-form textarea {
+.diary-content-form input,
+.diary-content-form textarea {
     margin-bottom: 30px;
+}
+.diary-content-form textarea {
+	min-height: 170px;
 }
 input {
     outline: 0;

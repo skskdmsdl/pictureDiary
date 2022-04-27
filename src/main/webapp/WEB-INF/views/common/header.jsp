@@ -47,14 +47,20 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/responsive.css">
 
     <!-- Favicon -->
-    <link rel="icon" type="${pageContext.request.contextPath}/image/ico" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico">
 
     <!-- Modernizer & Respond js -->
     <script src="${pageContext.request.contextPath}/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
+    <!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <!-- Filepond stylesheet -->
     <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet"/>
     <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet"/>
+
+	<!-- toast UI -->
+	<link rel="stylesheet" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" />
 
 </head>
 
@@ -65,6 +71,8 @@
     <script src="https://unpkg.com/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.js"></script>
     <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 
+    <!-- toast UI -->
+	<script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.js"></script>
 
 	<!-- Preloader -->
 	<div class="cover"></div>
@@ -72,7 +80,7 @@
 	<div class="header">
 	    <div class="container">
 	        <div class="logo">
-	            <a href="index.html">
+	            <a href="/">
 	                <img src="${pageContext.request.contextPath}/images/logo.png" alt="Logo">
 	            </a>
 	        </div>
