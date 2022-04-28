@@ -61,6 +61,7 @@
     <script src="${pageContext.request.contextPath}/js/vendor/wow.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/main.js"></script>
     <script src="${pageContext.request.contextPath}/js/ajax.js"></script>
+    <script src="${pageContext.request.contextPath}/js/the-carbon-components.min.js"></script>
 </body>
 
 </html>

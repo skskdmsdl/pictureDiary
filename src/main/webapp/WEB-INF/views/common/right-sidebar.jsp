@@ -12,7 +12,7 @@
                 <ul>
                     <li><a href="/">Diary</a></li>
                     <li><a href="/write/write.do">Write</a></li>
-                    <li><a href="about.html">Search</a></li>
+                    <li><a href="/search/searchList.do">Search</a></li>
                 </ul>
             </div>
         </nav>
