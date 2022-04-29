@@ -45,7 +45,7 @@
                             </div>
                             <span class="btnBefore"></span>
                             <span class="btnAfter"></span>
-                            <a class="main-portfolio-link" href="single-project.html"></a>
+                            <a class="main-portfolio-link" href="/diary/detail.do"></a>
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                             </div>
                             <span class="btnBefore"></span>
                             <span class="btnAfter"></span>
-                            <a class="main-portfolio-link" href="single-project.html"></a>
+                            <a class="main-portfolio-link" href="/diary/detail.do"></a>
                         </div>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                             </div>
                             <span class="btnBefore"></span>
                             <span class="btnAfter"></span>
-                            <a class="main-portfolio-link" href="single-project.html"></a>
+                            <a class="main-portfolio-link" href="/diary/detail.do"></a>
                         </div>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                             </div>
                             <span class="btnBefore"></span>
                             <span class="btnAfter"></span>
-                            <a class="main-portfolio-link" href="single-project.html"></a>
+                            <a class="main-portfolio-link" href="/diary/detail.do"></a>
                         </div>
                     </div>
                 </div>
