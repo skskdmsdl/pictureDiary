@@ -2320,7 +2320,7 @@ span.press {
     color: #7beec7;
 }
 .single-portfolio-wrapper {
-    margin-top: 50px
+    margin: 50px;
 }
 .single-portfolio-wrapper span.info {
     font-size: 14px;

@@ -28,17 +28,8 @@
                     <div class="cbp_tmlabel wow animated fadeInUp" data-wow-delay="0.10s">
                         <div class="blog-v2-image">
                             <img src="images/blog/img_4.jpg" alt="Blog Post">
-                            <div class="icon-video-blogv2">
-                                <a href="https://vimeo.com/29993935" class="popup-video playBut">
-                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="69px" height="69px" viewBox="0 0 213.7 213.7" enable-background="new 0 0 213.7 213.7" xml:space="preserve">
-                                        <polygon class="triangle" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-                                73.5,62.5 148.5,105.8 73.5,149.1 " />
-                                        <circle class="circle" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="106.8" cy="106.8" r="103.3" />
-                                    </svg>
-                                </a>
-                            </div>
                         </div>
-                        <a href="single-blog.html">
+                        <a href="diary/detail.do">
                             <h1>Kosovo the young europeans</h1>
                         </a>
                         <p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean black-eyed pea maize eggplant. Cabbage lentil cucumber chickpea sorrel gram garbanzo plantain lotus root bok choy squash cress potato summer purslane salsify fennel horseradish dulse. Winter purslane garbanzo artichoke broccoli lentil corn okra silver beet celery quandong.</p>
@@ -52,26 +43,13 @@
                     <div class="cbp_tmlabel wow animated fadeInUp" data-wow-delay="0.10s">
                         <div class="blog-v2-image">
                             <img src="images/blog/img_3.jpg" alt="Blog Post">
-
-                            <div class="icon-video-blogv2">
-                                <a href="https://www.youtube.com/watch?v=n2vy7qRm5s0" class="popup-video playBut">
-                                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="69px" height="69px" viewBox="0 0 213.7 213.7" enable-background="new 0 0 213.7 213.7" xml:space="preserve">
-                                        <polygon class="triangle" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-                                    73.5,62.5 148.5,105.8 73.5,149.1 " />
-                                        <circle class="circle" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="106.8" cy="106.8" r="103.3" />
-                                    </svg>
-                                </a>
-                            </div>
-
-
                         </div>
-                        <a href="single-blog.html">
+                        <a href="/diary/detail.do">
                             <h1>Denouncing pleasure clean and praising pain was born</h1>
                         </a>
                         <p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean black-eyed pea maize eggplant. Cabbage lentil cucumber chickpea sorrel gram garbanzo plantain lotus root bok choy squash cress potato summer purslane salsify fennel horseradish dulse. Winter purslane garbanzo artichoke broccoli lentil corn okra silver beet celery quandong.</p>
                     </div>
                 </li>
-
 
                 <li>
                     <div class="cbp_tmtime">
@@ -79,7 +57,7 @@
                     </div>
                     <div class="cbp_tmicon icon-calendar"></div>
                     <div class="cbp_tmlabel wow animated fadeInUp" data-wow-delay="0.10s">
-                        <a href="single-blog.html">
+                        <a href="/diary/detail.do">
                             <h1>Denouncing pleasure clean and praising pain was born</h1>
                         </a>
                         <p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean black-eyed pea maize eggplant. Cabbage lentil cucumber chickpea sorrel gram garbanzo plantain lotus root bok choy squash cress potato summer purslane salsify fennel horseradish dulse. Winter purslane garbanzo artichoke broccoli lentil corn okra silver beet celery quandong.</p>
@@ -95,7 +73,7 @@
                         <div class="blog-v2-image">
                             <img src="images/blog/img_1.jpg" alt="Blog Post">
                         </div>
-                        <a href="single-blog.html">
+                        <a href="/diary/detail.do">
                             <h1>Denouncing pleasure clean and praising pain was born</h1>
                         </a>
                         <p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean black-eyed pea maize eggplant. Cabbage lentil cucumber chickpea sorrel gram garbanzo plantain lotus root bok choy squash cress potato summer purslane salsify fennel horseradish dulse. Winter purslane garbanzo artichoke broccoli lentil corn okra silver beet celery quandong.</p>

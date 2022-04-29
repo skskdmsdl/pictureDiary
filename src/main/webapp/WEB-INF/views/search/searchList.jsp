@@ -32,7 +32,7 @@
                 <!-- Begin of Thumbs Portfolio -->
                 <div class="col-md-6 col-sm-6 col-xs-12 mix branding">
                     <div class="img home-portfolio-image">
-                        <img src="${pageContext.request.contextPath}/images/diaryImage/img_1.jpg" alt="Portfolio Item">
+                        <img src="${pageContext.request.contextPath}/images/diary/img_1.jpg" alt="Portfolio Item">
                         <div class="overlay-thumb">
                             <a href="javascript:void(0)" class="like-product">
                                 <i class="ion-ios-heart-outline"></i>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-12 mix web">
                     <div class="img home-portfolio-image">
-                        <img src="${pageContext.request.contextPath}/images/diaryImage/img_2.jpg" alt="Portfolio Item">
+                        <img src="${pageContext.request.contextPath}/images/diary/img_2.jpg" alt="Portfolio Item">
                         <div class="overlay-thumb">
                             <a href="javascript:void(0)" class="like-product">
                                 <i class="ion-ios-heart-outline"></i>
@@ -70,7 +70,7 @@
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-12 mix branding">
                     <div class="img home-portfolio-image">
-                        <img src="${pageContext.request.contextPath}/images/diaryImage/img_1.jpg" alt="Portfolio Item">
+                        <img src="${pageContext.request.contextPath}/images/diary/img_1.jpg" alt="Portfolio Item">
                         <div class="overlay-thumb">
                             <a href="javascript:void(0)" class="like-product">
                                 <i class="ion-ios-heart-outline"></i>
@@ -89,7 +89,7 @@
                 </div>
                 <div class="col-md-6 col-sm-6 col-xs-12 mix web">
                     <div class="img home-portfolio-image">
-                        <img src="${pageContext.request.contextPath}/images/diaryImage/img_2.jpg" alt="Portfolio Item">
+                        <img src="${pageContext.request.contextPath}/images/diary/img_2.jpg" alt="Portfolio Item">
                         <div class="overlay-thumb">
                             <a href="javascript:void(0)" class="like-product">
                                 <i class="ion-ios-heart-outline"></i>
