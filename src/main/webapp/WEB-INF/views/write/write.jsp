@@ -9,23 +9,13 @@
         <div class="row">
             <div class="inner-diary">
                 <div class="inner-diary-content">
-<<<<<<< HEAD
                     <span class="tui-datepicker-input tui-datetime-input tui-has-focus">
 				        <input type="text" id="datepicker-input" aria-label="Date-Time">
-				        <input type="text" id="title-info" value="" placeholder="Title">
+				        <input type="text" id="title-info" value="" placeholder="TITLE">
 				        <span class="tui-ico-date"></span>
 				    </span>
 					<div id="tui-datepicker" style="margin-top: -1px;"></div>
 					<br />
-=======
-                   	<span class="tui-datepicker-input tui-datetime-input tui-has-focus">
-							        <input type="text" id="datepicker-input" aria-label="Date-Time">
-							        <input type="text" id="title-info" value="" placeholder="Title">
-				        			<span class="tui-ico-date"></span>
-				    				</span>
-						    <div id="tui-datepicker" style="margin-top: -1px;"></div>
-								<br />
->>>>>>> c17ac0b2ce7b31c4200207c809ebd54593817841
                     <form method="GET">
 		                <div class="diary-content-form">
 		                    <textarea placeholder="CONTENT"></textarea>
