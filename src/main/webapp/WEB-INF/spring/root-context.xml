@@ -13,7 +13,7 @@
 	<context:annotation-config></context:annotation-config>
 	<context:component-scan base-package="com.project.solr" />
 
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+<!-- 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations" value="classpath:mapper/*-mapper.xml" />
 	</bean>
@@ -31,7 +31,7 @@
 	    </property>
 	    <property name="jpaProperties">
 	        <props>
-	            <!-- <prop key="hibernate.hbm2ddl.auto">create-drop</prop> -->
+	            <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
 	           <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
 	            <prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
 	            <prop key="spring.jpa.show-sql">true</prop>
@@ -50,5 +50,5 @@
 		<property name="dataSource" ref="dataSource" />
 	   	<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager" />
+	<tx:annotation-driven transaction-manager="transactionManager" /> -->
 </beans>

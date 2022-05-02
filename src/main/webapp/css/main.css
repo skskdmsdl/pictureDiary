@@ -2816,7 +2816,6 @@ ul.social-buttons li {
 }
 .diary-content-form textarea {
 	min-height: 200px;
-	margin-top: 38px;
 }
 input {
     outline: 0;
@@ -2840,7 +2839,8 @@ textarea:focus,
 }
 #title-info{
 		margin: 15px 0;
-		width: 478px;
+		width: 100%;
+		height: 28px;
 }
 input[type="text"] {
     height: 50px;
