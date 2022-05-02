@@ -2742,11 +2742,11 @@ ul.social-buttons li {
 .inner-diary {
     position: absolute;
     z-index: 1;
-    padding: 25px;
-    top: -410px;
+    padding: 25px 25px 0 25px;
+    top: -430px;
     background: rgba(255, 255, 255, 0.8);
     display: table;
-    height: 370px;
+    height: 410px;
     width: calc(100% - 40px);
     margin-top: 20px;
     margin-left: 20px;
@@ -2777,7 +2777,7 @@ ul.social-buttons li {
 }
 
 #diary-image{
-    width: 100%;
+    width: 50%;
     height: 410px;
     margin-top: 50px;
 }
@@ -2812,10 +2812,11 @@ ul.social-buttons li {
 }
 .diary-content-form input,
 .diary-content-form textarea {
-    margin-bottom: 30px;
+    margin-bottom: 21px;
 }
 .diary-content-form textarea {
-	min-height: 170px;
+	min-height: 200px;
+	margin-top: 38px;
 }
 input {
     outline: 0;
@@ -2828,13 +2829,18 @@ textarea {
     resize: none;
 }
 input[type="text"],
-textarea {
+textarea, #title-info {
     border: 1px solid #e6e6e6;
     padding-left: 10px;
 }
 input[type="text"]:focus,
-textarea:focus {
+textarea:focus,
+#title-info:focus {
     border: 1px solid #111;
+}
+#title-info{
+		margin: 15px 0;
+		width: 478px;
 }
 input[type="text"] {
     height: 50px;

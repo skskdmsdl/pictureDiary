@@ -11,9 +11,10 @@
                 <div class="inner-diary-content">
                     <span class="tui-datepicker-input tui-datetime-input tui-has-focus">
 				        <input type="text" id="datepicker-input" aria-label="Date-Time">
+				        <input type="text" id="title-info" value="" placeholder="Title">
 				        <span class="tui-ico-date"></span>
 				    </span>
-				    <div id="tui-datepicker" style="margin-top: -1px;"></div>
+					<div id="tui-datepicker" style="margin-top: -1px;"></div>
 					<br />
                     <form method="GET">
 		                <div class="diary-content-form">
