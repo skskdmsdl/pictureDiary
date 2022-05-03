@@ -65,7 +65,6 @@
 	<!-- the-carbon-components -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/the-carbon-components.css">
 
-
 </head>
 
 <body>
@@ -89,6 +88,7 @@
 	            </a>
 	        </div>
 
+	    	<a href="javascript:openPop()" style="">로그인/회원가입</a>
 	        <!-- Menu Hamburger (Default) -->
 	        <button class="main-menu-indicator" id="open-button">
 	            <span class="line"></span>
@@ -98,3 +98,28 @@
 
 	    </div>
 	</div>
+
+	<div class="popup_layer" id="popup_layer" style="display: none;">
+	  <div class="popup_box">
+	      <div style="height: 10px; float: top;">
+	        <a href="javascript:closePop();"><img src="${pageContext.request.contextPath}/images/close.svg" class="m_header-banner-close" width="60px" height="60px" style="float: right;"></a>
+	      </div>
+	      <!--팝업 컨텐츠 영역-->
+	      <div class="popup_cont">
+	          <%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/user/join.jsp"></jsp:include> --%>
+	          <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/user/login.jsp"></jsp:include>
+	      </div>
+	  </div>
+	</div>
+
+	<script>
+	//팝업 띄우기
+	function openPop() {
+	    document.getElementById("popup_layer").style.display = "block";
+	}
+
+	//팝업 닫기
+	function closePop() {
+	    document.getElementById("popup_layer").style.display = "none";
+	}
+	</script>

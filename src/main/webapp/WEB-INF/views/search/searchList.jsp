@@ -1,4 +1,5 @@
-<jsp:include page="../common/header.jsp"></jsp:include>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 <div class="container" id="container" style="background-image: url(${pageContext.request.contextPath}/images/searchBanner.jpg);">
 	<div data-search role="search" class="bx--search bx--search--xl">
