@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt"    uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn"     uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -106,7 +110,7 @@
 	      </div>
 	      <!--팝업 컨텐츠 영역-->
 	      <div class="popup_cont">
-	          <%-- <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/user/join.jsp"></jsp:include> --%>
+	          <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/user/join.jsp"></jsp:include>
 	          <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/user/login.jsp"></jsp:include>
 	      </div>
 	  </div>
@@ -116,10 +120,23 @@
 	//팝업 띄우기
 	function openPop() {
 	    document.getElementById("popup_layer").style.display = "block";
+	    $(".login").show();
+	    $(".wrap").hide();
 	}
 
 	//팝업 닫기
 	function closePop() {
 	    document.getElementById("popup_layer").style.display = "none";
 	}
+
+	function switchBtn() {
+		if($(".login").css("display") != "none"){
+			$(".login").hide();
+		    $(".wrap").show();
+		}else {
+			$(".login").show();
+		    $(".wrap").hide();
+		}
+	}
+
 	</script>

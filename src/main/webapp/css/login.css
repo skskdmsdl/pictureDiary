@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.login > hr{
+	width: 100%;
+	margin-bottom: 50px;
+}
 input[type="password"] {
     border: 1px solid #e6e6e6;
     padding-left: 10px;
@@ -9,14 +13,16 @@ input[type="password"] {
 }
 .login-form > .login-input {
 	margin-bottom: 20px;
-	height: 36px;
+	height: 50px;
 	width:100%
 }
 .login-form > button {
 	background-color: #7beec7;
     border-color: #7beec7;
     font-family: 'Lekton', sans-serif;
-    color: #111111;
+    color: #fff;
+    font-weight: bold;
+    height: 50px;
 }
 .login-form > button:focus, .login-form > button:hover {
 	background-color: #7beec7;
