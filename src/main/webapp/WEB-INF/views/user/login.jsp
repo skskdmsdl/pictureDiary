@@ -10,26 +10,22 @@
     <button tabindex="3">네이버</button>
     <a href="http://localhost:9090/auth/google/login"  tabindex="4">구글</a>
 		<span id="googleLoginBtn" style="cursor: pointer">
+			<a href="/login.do">
 				<img id="googleLoginImg" src="./images/google.png"  tabindex="5" style="width:40px">
+	    </a>
 		</span>
     <button type="submit" class="btn btn-primary btn-block btn-large" tabindex="6">로그인</button>
   </form>
   <div class="foot"><span>아직 회원이 아니신가요?</span><div class="link" tabindex="7" onclick="switchBtn()">회원가입</div></div>
 </div>
 <script>
-
-
-	const topLocate = Math.ceil(( window.screen.height - 600 )/2); 
-	const leftLocate = Math.ceil(( window.screen.width - 500 )/2);
-
-
- 	const onClickGoogleLogin = (e) => {
+ 	/* const onClickGoogleLogin = (e) => {
     	//구글 인증 서버로 인증코드 발급 요청
  		window.open("https://accounts.google.com/o/oauth2/v2/auth?client_id=396812205052-sgmtre571iqcko7ctv504bi625al27vc.apps.googleusercontent.com&redirect_uri=http://localhost:9090/auth/google/login&response_type=code&scope=email%20profile%20openid&access_type=offline", 
- 								"구글 로그인", "top=topLocate, left=leftLocate, width=500, height=600")
+ 								"구글 로그인", "width=500, height=600")
  	};
 	
 	const googleLoginBtn = document.getElementById("googleLoginBtn");
-	googleLoginBtn.addEventListener("click", onClickGoogleLogin);
+	googleLoginBtn.addEventListener("click", onClickGoogleLogin); */
     
 </script>

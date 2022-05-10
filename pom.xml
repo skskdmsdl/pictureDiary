@@ -103,6 +103,14 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		
+		<!-- LomBok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.16.10</version>
+			<scope>provided</scope>
+		</dependency>
 
 		<!-- Test -->
 		<dependency>
@@ -110,6 +118,12 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+		  <groupId>org.apache.commons</groupId>
+		  <artifactId>commons-lang3</artifactId>
+		  <version>3.8.1</version>
 		</dependency>
 
 		<!--  Spring ORM -->
@@ -183,7 +197,19 @@
 		    <version>8.4.1</version>
 		</dependency>
 		
-		<!-- 구글 소셜 로그인 구현 -->
+	  <!-- oauth2 login -->
+   	<dependency>
+      <groupId>com.github.scribejava</groupId>
+      <artifactId>scribejava-apis</artifactId>
+      <version>5.6.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.scribejava</groupId>
+      <artifactId>scribejava-core</artifactId>
+      <version>5.6.0</version>
+    </dependency>
+
 		<dependency>
 		  <groupId>org.springframework.social</groupId>
 		  <artifactId>spring-social-google</artifactId>
@@ -195,7 +221,7 @@
 		  <artifactId>httpclient</artifactId>
 		  <version>4.5.3</version>
 		</dependency>
-		<!-- 구글 소셜 로그인 구현 -->
+		<!-- oauth2 login -->
 
 	</dependencies>
 
