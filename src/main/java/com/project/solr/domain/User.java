@@ -2,8 +2,11 @@ package com.project.solr.domain;
 
 import java.util.Date;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class User {
 	private String uid;
 	private String upw;

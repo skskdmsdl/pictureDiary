@@ -34,8 +34,7 @@
 		<beans:constructor-arg ref="googleRedirectUrl" />
 	</beans:bean>
 	
-	<beans:bean id="googleConnectionFactory"
-	           class="org.springframework.social.google.connect.GoogleConnectionFactory">
+	<beans:bean id="googleConnectionFactory" class="org.springframework.social.google.connect.GoogleConnectionFactory">
 	   <beans:constructor-arg ref="googleClientID" />
 	   <beans:constructor-arg ref="googleClientSecret" />
   </beans:bean>
