@@ -17,7 +17,7 @@
     <beans:constructor-arg value="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" />
   </beans:bean> -->
 
-	<beans:bean id="googleClientID" class="java.lang.String">
+	<!-- <beans:bean id="googleClientID" class="java.lang.String">
 	  <beans:constructor-arg value="396812205052-sgmtre571iqcko7ctv504bi625al27vc.apps.googleusercontent.com" />
     </beans:bean>
 	<beans:bean id="googleClientSecret" class="java.lang.String">
@@ -42,10 +42,10 @@
 	<beans:bean id="googleOAuth2Parameters"
 		class="org.springframework.social.oauth2.OAuth2Parameters">
 		<beans:property name="scope" value="https://www.googleapis.com/auth/userinfo.email" />
-		<!-- <beans:property name="scope" value="https://www.googleapis.com/auth/plus.login" 
-			/> -->
+		<beans:property name="scope" value="https://www.googleapis.com/auth/plus.login" 
+			/>
 		<beans:property name="redirectUri" ref="googleRedirectUrl" />
-	</beans:bean>
+	</beans:bean> -->
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
