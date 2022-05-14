@@ -9,6 +9,7 @@
     <input type="password" class="login-input" name="password" placeholder="비밀번호를 입력하세요." tabindex="2" required="required" />
     <button tabindex="3">네이버</button>
     <a href="http://localhost:9090/auth/google/login"  tabindex="4">구글</a>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
 		<span id="googleLoginBtn" style="cursor: pointer">
 			<a href="/login.do">
 				<img id="googleLoginImg" src="./images/google.png"  tabindex="5" style="width:40px">
