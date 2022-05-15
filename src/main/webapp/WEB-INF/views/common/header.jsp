@@ -70,7 +70,6 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/the-carbon-components.css">
 
 	<!-- google login -->
-	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<meta name="google-signin-client_id" content="396812205052-sgmtre571iqcko7ctv504bi625al27vc.apps.googleusercontent.com">
 	
 </head>
