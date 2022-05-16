@@ -23,11 +23,36 @@ input[type="password"] {
     color: #fff;
     font-weight: bold;
     height: 50px;
+    margin-top: 50px;
 }
 .login-form > button:focus, .login-form > button:hover {
 	background-color: #7beec7;
     border-color: #7beec7;
     font-family: 'Lekton', sans-serif;
+}
+.parent{
+    width: 90%;
+    margin: 10px auto;
+}
+
+.naverLogin {
+    border: 1px solid red;
+    float: left;
+    width:30%;
+    box-sizing: border-box;
+}
+
+.googleLogin{
+    float: left;
+    margin-left: 5%;
+    box-sizing: border-box;
+}
+
+.kakaoLogin{
+    border: 1px solid blue;
+    float: right;
+    width:30%;
+    box-sizing: border-box;
 }
 .foot {
 	text-align: right;

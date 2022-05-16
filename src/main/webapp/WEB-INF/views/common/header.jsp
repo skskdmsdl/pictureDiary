@@ -68,13 +68,14 @@
 
 	<!-- the-carbon-components -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/the-carbon-components.css">
-
-	<!-- google login -->
-	<meta name="google-signin-client_id" content="396812205052-sgmtre571iqcko7ctv504bi625al27vc.apps.googleusercontent.com">
 	
 </head>
 
 <body>
+
+	<!-- google login -->
+	<script src="https://accounts.google.com/gsi/client" async defer></script>
+	
 	<!-- Filepond js -->
  	<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-resize/dist/filepond-plugin-image-resize.js"></script>
