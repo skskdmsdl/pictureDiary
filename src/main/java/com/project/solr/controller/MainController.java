@@ -1,24 +1,16 @@
 package com.project.solr.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.social.google.connect.GoogleConnectionFactory;
-import org.springframework.social.oauth2.GrantType;
-import org.springframework.social.oauth2.OAuth2Operations;
-import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MainController {
-
-	/*
-	 * @Autowired private GoogleConnectionFactory googleConnectionFactory;
-	 * 
-	 * @Autowired private OAuth2Parameters googleOAuth2Parameters;
-	 */
 
 	@RequestMapping("/")
 	public String Main(Model model, HttpSession session) throws Exception {

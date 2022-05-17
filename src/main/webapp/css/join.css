@@ -83,7 +83,6 @@ ul{list-style:none; }
 @media ( max-width: 1023px ) {
   .wrap{margin: 30px auto;}
   .wrap,.wrap.wd668.line{max-width:80vw;}
-  .wrap.wd668{width:90vw;}
   .join_form{max-width:90vw;}
   .join_form table th span{text-indent: 0;font-size:13px;}
   .join_form table{width:100%;}
