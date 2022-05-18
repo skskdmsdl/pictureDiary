@@ -13,7 +13,7 @@
 	<context:annotation-config />
 	<context:component-scan base-package="com.project.solr" />
 
-<!-- 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+ 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations" value="classpath:mapper/*-mapper.xml" />
 	</bean>
@@ -40,15 +40,15 @@
 	</bean>
 
 	<bean id="dataSource" destroy-method="close" class="org.apache.commons.dbcp2.BasicDataSource">
-		    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		    <property name="url" value="jdbc:mysql://localhost:3306/ss?useSSL=false" />
-		    <property name="username" value="root"/>
-		    <property name="password" value="0000"/>
+		    <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		    <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		    <property name="username" value="PICTURE_DIARY"/>
+		    <property name="password" value="PICTURE_DIARY"/>
 	</bean>
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	   	<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager" /> -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
 </beans>

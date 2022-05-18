@@ -15,10 +15,17 @@ import lombok.extern.slf4j.Slf4j;
 public class UserController {
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public void Login(@RequestParam Map<String, Object> map) throws Exception {
-		System.out.println((String)map.get("id")); //Object여서 형 변환
-        System.out.println((String)map.get("email"));
-        System.out.println((String)map.get("token"));
+	public void Login(@RequestParam Map<String, String> map) throws Exception {
+		System.out.println(map.get("id")); //Object여서 형 변환
+        System.out.println(map.get("email"));
+        
+        String id = map.get("id");
+        String email = map.get("email");
+        
+        
+        
+        
+        
 	}
 	
 	@RequestMapping("/join.do")

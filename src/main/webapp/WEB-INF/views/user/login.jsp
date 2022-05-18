@@ -64,8 +64,7 @@ function handleCredentialResponse(response) {
     // decodeJwtResponse() is a custom function defined by you
     // to decode the credential response.
     const responsePayload = parseJwt(response.credential);
-/*     const id_token = response.getAuthResponse().id_token;
- */    
+  
     console.log("ID: " + responsePayload.sub);
     console.log('Full Name: ' + responsePayload.name);
     console.log('Given Name: ' + responsePayload.given_name);
@@ -77,15 +76,14 @@ function handleCredentialResponse(response) {
     $.ajax({
    		type: "POST",
    		url: "${ pageContext.request.contextPath }/user/login.do",
-   		
    		dataType : "text",
    		data: {
-   		 	"token" : response.credential,
    			"id" : responsePayload.sub,
-   			"email" : responsePayload.email,
+   			"email" : responsePayload.email
    		},
    		success :function(data){
    			alert("성공");
+   			console.log(data);
    		},
    		error : function(xhr, status, err) {
 			console.log("처리실패", xhr, status, err);
