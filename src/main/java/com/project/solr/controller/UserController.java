@@ -2,6 +2,10 @@ package com.project.solr.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,16 +25,23 @@ public class UserController {
     private UserService userService;
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public String Login(@RequestParam Map<String, String> map) throws Exception {
+	public String Login(@RequestParam Map<String, String> map, HttpServletResponse response, HttpServletRequest request) throws Exception {
 		System.out.println(map.get("id")); //Object여서 형 변환
         System.out.println(map.get("email"));
         
-        String id = map.get("id");
+        String snsId = map.get("id");
         String email = map.get("email");
+        String snsType = map.get("snsType");
+        
+        int result = 0;
+        
+        result = userService.login(snsId, email, snsType);
         
         // 소셜
-        if(userService.login(id, email)) {
-        	return "login";
+        if(result > 0){
+			HttpSession session = request.getSession();
+			session.setAttribute("id", result);
+			return "login";
         }
         
         return "join";

@@ -8,11 +8,11 @@ COMMIT;
 CREATE TABLE USERS (
 	user_id				NUMBER 			NOT NULL,
 	email				VARCHAR2(100) 	NOT NULL,
-	password			VARCHAR2(50)	NOT NULL,
+	password			VARCHAR2(50),
 	nickname			VARCHAR2(50)	NOT NULL,
 	sns_type			VARCHAR2(10),
 	sns_id				VARCHAR2(255),
-	sns_connect_date	VARCHAR2(255),
+	sns_connect_date	DATE,
 	create_date			DATE	DEFAULT SYSDATE,
 	modify_date			DATE,
 	CONSTRAINT pk_users  PRIMARY KEY (user_id)

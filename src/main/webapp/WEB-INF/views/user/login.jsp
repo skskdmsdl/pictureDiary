@@ -79,7 +79,8 @@ function handleCredentialResponse(response) {
    		dataType : "text",
    		data: {
    			"id" : responsePayload.sub,
-   			"email" : responsePayload.email
+   			"email" : responsePayload.email,
+   			"snsType" : "google"
    		},
    		success :function(data){
    			alert("성공");
