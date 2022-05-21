@@ -76,7 +76,7 @@ function handleCredentialResponse(response) {
     $.ajax({
    		type: "POST",
    		url: "${ pageContext.request.contextPath }/user/login.do",
-   		dataType : "text",
+   		dataType : "json",
    		data: {
    			"id" : responsePayload.sub,
    			"email" : responsePayload.email,
