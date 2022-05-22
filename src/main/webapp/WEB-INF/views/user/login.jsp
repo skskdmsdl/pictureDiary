@@ -27,38 +27,6 @@
 </div>
 
 <script>
-//google signin API2
-/* function attachSignin(element) {
-    auth2.attachClickHandler(element, {},
-        function(googleUser) {
-    	var profile = googleUser.getBasicProfile();
-    	var id_token = googleUser.getAuthResponse().id_token;
-	  	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-	  	  console.log('ID토큰: ' + id_token);
-	  	  console.log('Name: ' + profile.getName());
-	  	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-			$(function() {
-				$.ajax({
-				    url: '/member/loginGoogle',
-				    type: 'post',
-				    data: {
-						"id" : <!-- 필요한 데이터 담기 -->,
-						"pw" : <!-- 필요한 데이터 담기 -->,
-				        "username": profile.getName(),
-						"email": profile.getEmail()
-					    },
-				    success: function (data) {
-				            alert("구글아이디로 로그인 되었습니다");
-				            location.href="/member/main";
-				        }
-				});
-			})
-        }, function(error) {
-          alert(JSON.stringify(error, undefined, 2));
-        });
-    console.log("구글API 끝");
-  } */
-
 function handleCredentialResponse(response) {
 
     // decodeJwtResponse() is a custom function defined by you
@@ -104,5 +72,5 @@ function parseJwt (token) {
 
 function onSignout() {
     google.accounts.id.disableAutoSelect();
-  }
+}
 </script>

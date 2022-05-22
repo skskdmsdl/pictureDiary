@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService{
 	UserRepository ur;
 
 	@Override
-	public int login(String snsId, String email, String snsType)  {
+	public int login(String snsId, String email, String snsType) {
 		// TODO Auto-generated method stub
 		return ur.findBySnsIdAndEmailAndSnsType(snsId, email, snsType).getUserId();
 	}
