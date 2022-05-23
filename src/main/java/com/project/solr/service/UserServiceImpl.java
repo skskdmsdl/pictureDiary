@@ -2,6 +2,7 @@ package com.project.solr.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 
 import com.project.solr.repository.UserRepository;
 
@@ -16,7 +17,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public int login(String snsId, String email, String snsType) {
-		// TODO Auto-generated method stub
+        // null 포인터 exception 처리 필요
 		return ur.findBySnsIdAndEmailAndSnsType(snsId, email, snsType).getUserId();
 	}
 	

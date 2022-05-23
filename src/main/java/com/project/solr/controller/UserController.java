@@ -35,6 +35,7 @@ public class UserController {
         
         int result = 0;
         
+        // null 포인터 exception 처리 필요
         result = userService.login(snsId, email, snsType);
         
         // 소셜
