@@ -3160,3 +3160,8 @@ a img.aligncenter {
 /*오버레이 뒷배경*/
 .popup_overlay{position:fixed;top:0px;right:0;left:0;bottom:0;z-index:1001;;background:rgba(0,0,0,0.5);}
 /*popup*/
+
+/*swal*/
+.swal2-container {
+  z-index: 10000;
+}

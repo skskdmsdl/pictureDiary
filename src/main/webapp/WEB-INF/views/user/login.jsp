@@ -4,12 +4,10 @@
 <div class="login">
   <h1>로그인</h1>
   <hr />
-  <form method="post" class="login-form">
-    <input type="text" class="login-input" name="eamil" placeholder="이메일을 입력하세요." tabindex="1" required="required" />
-    <input type="password" class="login-input" name="password" placeholder="비밀번호를 입력하세요." tabindex="2" required="required" />
+  <form method="post" action="${ pageContext.request.contextPath }/user/login.do" class="login-form">
+    <input type="text" class="login-input" name="email" id="loginEmail" placeholder="이메일을 입력하세요." tabindex="1" required="required" />
+    <input type="password" class="login-input" name="password" id="loginPw" placeholder="비밀번호를 입력하세요." tabindex="2" required="required" />
     <div class="parent">
-	    <div class="naverLogin">
-	    </div>
 	    <div class="googleLogin">
 			<div id="g_id_onload"
 		         data-client_id="396812205052-sgmtre571iqcko7ctv504bi625al27vc.apps.googleusercontent.com"
@@ -19,13 +17,13 @@
 		    </div>
 		    <div class="g_id_signin" data-type="icon" data-shape="circle" ></div>
 		</div>
-	    <div class="kakaoLogin">third</div>
+	   <!--  <div class="naverLogin"></div>
+	    <div class="kakaoLogin"></div> -->
     </div>
     <button type="submit" class="btn btn-primary btn-block btn-large" onclick="ajaxbtn()" tabindex="6">로그인</button>
   </form>
   <div class="foot"><span>아직 회원이 아니신가요?</span><div class="link" tabindex="7" onclick="switchBtn()">회원가입</div></div>
 </div>
-
 <script>
 function handleCredentialResponse(response) {
 
@@ -43,7 +41,7 @@ function handleCredentialResponse(response) {
 
     $.ajax({
    		type: "POST",
-   		url: "${ pageContext.request.contextPath }/user/login.do",
+   		url: "${ pageContext.request.contextPath }/user/snsLogin.do",
    		dataType : "json",
    		data: {
    			"id" : responsePayload.sub,
@@ -51,8 +49,44 @@ function handleCredentialResponse(response) {
    			"snsType" : "google"
    		},
    		success :function(data){
-   			alert("성공");
-   			console.log(data);
+   			
+   			console.log(data.msg);
+   			
+   			if(data.msg == '일반 로그인') {
+   				//confirm("소셜 계정이 연동이 안된 회원입니다. 연동하시겠습니까?");
+   				Swal.fire({
+   					text: '소셜 계정이 연동이 안된 회원입니다. 연동하시겠습니까?',
+   					icon: 'warning',	
+   					showCancelButton: true,
+   					confirmButtonColor: '#12B886',
+   				 	confirmButtonText: '확인',
+   				 	cancelButtonText: '취소'
+   				}).then((result) => {
+   				  if (result.value) {
+   		              // "확인" 버튼을 눌렀을 때 작업할 내용을 이곳에 넣어주기
+   		              //
+   		              
+   		              // 소셜 회원가입 연동
+   				  }
+   				});
+   			};
+   			if(data.msg == '회원가입'){
+   				Swal.fire({
+   					text: '회원이 아닙니다. 소셜 회원가입을 진행하시겠습니까?',
+   					icon: 'question',	
+   					showCancelButton: true,
+   					confirmButtonColor: '#12B886',
+   				 	confirmButtonText: '확인',
+   				 	cancelButtonText: '취소'
+   				}).then((result) => {
+   				  if (result.value) {
+   					  // ajax소셜 회원가입
+   				  }
+   				});
+   				
+   			}
+   			
+	   		
    		},
    		error : function(xhr, status, err) {
 			console.log("처리실패", xhr, status, err);

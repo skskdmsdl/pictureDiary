@@ -5,7 +5,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>A PICTURE DIARY</title>
@@ -84,6 +84,9 @@
 
     <!-- toast UI -->
 	<script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.js"></script>
+	
+	<!-- sweetAlert -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 	<!-- Preloader -->
 	<div class="cover"></div>
@@ -96,7 +99,7 @@
 	            </a>
 	        </div>
 
-	    	<a href="javascript:openPop()" style="">로그인/회원가입</a>
+	    	<a href="javascript:openPop()" style="">로그인/회원가입 </a>
 	        <!-- Menu Hamburger (Default) -->
 	        <button class="main-menu-indicator" id="open-button">
 	            <span class="line"></span>
@@ -121,6 +124,16 @@
 	</div>
 
 	<script>
+	// 로그인 메시지
+	<c:if test="${ not empty msg }">
+	   openPop();
+	   Swal.fire(
+			   '',
+			   '${msg}',
+			   'question'
+		);
+	</c:if>
+	
 	//팝업 띄우기
 	function openPop() {
 	    document.getElementById("popup_layer").style.display = "block";

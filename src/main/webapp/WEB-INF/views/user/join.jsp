@@ -14,8 +14,8 @@
             </colgroup>
             <tbody>
               <tr>
-                <th><span>아이디</span></th>
-                <td><input type="text" placeholder="ID 를 입력하세요."></td>
+                <th><span>이메일</span></th>
+                <td><input type="email" placeholder="이메일을 입력하세요."></td>
               </tr>
               <tr>
                 <th><span>닉네임</span></th>
@@ -23,17 +23,11 @@
               </tr>
               <tr>
                 <th><span>비밀번호</span></th>
-                <td><input type="text" placeholder="비밀번호를 입력해주세요."></td>
+                <td><input type="password" placeholder="비밀번호를 입력해주세요."></td>
               </tr>
               <tr>
                 <th><span>비밀번호 확인</span></th>
-                <td><input type="text" placeholder="비밀번호를 확인하세요"></td>
-              </tr>
-              <tr>
-                <th><span>이메일</span></th>
-                <td>
-                  <input type="text" placeholder="">
-                </td>
+                <td><input type="password" placeholder="비밀번호를 확인하세요"></td>
               </tr>
             </tbody>
           </table>
