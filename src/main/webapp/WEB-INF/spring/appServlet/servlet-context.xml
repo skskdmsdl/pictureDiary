@@ -9,43 +9,19 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	<!-- google Class Bean설정 추가 -->
-  <!-- 클라이언트ID와 보안비밀 세팅 -->
-<!--   <beans:bean id="googleConnectionFactory" class="org.springframework.social.google.connect.GoogleConnectionFactory">
-    <beans:constructor-arg value="396812205052-sgmtre571iqcko7ctv504bi625al27vc.apps.googleusercontent.com" />
-    <beans:constructor-arg value="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" />
-  </beans:bean> -->
-
-	<!-- <beans:bean id="googleClientID" class="java.lang.String">
-	  <beans:constructor-arg value="396812205052-sgmtre571iqcko7ctv504bi625al27vc.apps.googleusercontent.com" />
-    </beans:bean>
-	<beans:bean id="googleClientSecret" class="java.lang.String">
-		<beans:constructor-arg value="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" />
+	<!-- 인터셉터 객체 생성 -->
+	<beans:bean id="LoginInterceptor" class="com.project.solr.interceptor.LoginInterceptor">
 	</beans:bean>
-	<beans:bean id="googleRedirectUrl" class="java.lang.String">
-		<beans:constructor-arg value="http://localhost:9090/auth/google/login" />
-	</beans:bean>
-
-	<beans:bean id="googleSns" class="com.project.solr.auth.SnsValue">
-		<beans:constructor-arg value="google" />
-		<beans:constructor-arg ref="googleClientID" />
-		<beans:constructor-arg ref="googleClientSecret" />
-		<beans:constructor-arg ref="googleRedirectUrl" />
-	</beans:bean>
-	
-	<beans:bean id="googleConnectionFactory" class="org.springframework.social.google.connect.GoogleConnectionFactory">
-	   <beans:constructor-arg ref="googleClientID" />
-	   <beans:constructor-arg ref="googleClientSecret" />
-  </beans:bean>
-
-	<beans:bean id="googleOAuth2Parameters"
-		class="org.springframework.social.oauth2.OAuth2Parameters">
-		<beans:property name="scope" value="https://www.googleapis.com/auth/userinfo.email" />
-		<beans:property name="scope" value="https://www.googleapis.com/auth/plus.login" 
-			/>
-		<beans:property name="redirectUri" ref="googleRedirectUrl" />
-	</beans:bean> -->
+	<!-- Interceptor 설정 -->
+	<interceptors>
+	    <interceptor>
+	        <mapping path="/**/*.do"/>         
+	        <exclude-mapping path="/resources/**"/>
+	        <exclude-mapping path="user/logout.do"/>
+	        <beans:ref bean="LoginInterceptor"/>
+	    </interceptor>
+	</interceptors>
+		
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />

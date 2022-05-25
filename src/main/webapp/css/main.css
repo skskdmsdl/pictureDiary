@@ -1314,6 +1314,11 @@ ul.sub-menu li a {
     position: relative;
     margin: 17px 0 17px 0;
 }
+.nickname {
+	padding: 26px 40px 26px 0;
+	width: max-content;
+	font-weight: bold;
+}
 .main-menu-indicator:hover {
     border: 0;
     box-shadow: none;

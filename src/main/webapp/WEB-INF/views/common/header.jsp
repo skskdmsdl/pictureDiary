@@ -69,6 +69,8 @@
 	<!-- the-carbon-components -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/the-carbon-components.css">
 	
+	<!-- fontawesome -->
+	<script src="https://use.fontawesome.com/releases/v6.1.1/js/all.js"></script>
 </head>
 
 <body>
@@ -98,12 +100,22 @@
 	                <img src="${pageContext.request.contextPath}/images/logo.png" alt="Logo">
 	            </a>
 	        </div>
-
-	    	<a href="javascript:openPop()" style="">로그인/회원가입 </a>
+	        
 	        <!-- Menu Hamburger (Default) -->
 	        <button class="main-menu-indicator" id="open-button">
 	            <span class="line"></span>
 	        </button>
+	        
+	      	<c:choose>
+	        	<c:when test="${nickname eq null}">
+	        		<a class="main-menu-indicator nickname" href="javascript:openPop()" style="">로그인/회원가입 </a>
+	        	</c:when>
+	        	<c:otherwise>
+	        		<a class="main-menu-indicator nickname" href="/user/logout.do">
+	        			${nickname}님 <i class="fa-solid fa-right-from-bracket"></i>
+	        		</a>
+	        	</c:otherwise>
+	        </c:choose>
 	        <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common/right-sidebar.jsp"></jsp:include>
 	        <!-- End of Menu Hamburger (Default) -->
 
@@ -124,6 +136,10 @@
 	</div>
 
 	<script>
+	$( document ).ready(function() {
+		    $('#animated-container').remove();
+	});
+	
 	// 로그인 메시지
 	<c:if test="${ not empty msg }">
 	   openPop();
@@ -156,4 +172,20 @@
 		}
 	}
 
+/* 	function logoutBtn(nickname) {
+		$.ajax({
+			type: "POST",
+			url: "${ pageContext.request.contextPath }/user/logout.do",
+	   		dataType : "json",
+	   		data: {
+	   			"nickname" : nickname
+	   		},
+	   		success :function(data){
+	   			alert(로그아웃 완료);
+	   		},
+	   		error : function(xhr, status, err) {
+				console.log("처리실패", xhr, status, err);
+	   		}
+		 });
+	}*/
 	</script>

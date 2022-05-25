@@ -31,16 +31,17 @@ public class UserController {
     private UserService userService;
 
 	@PostMapping(value = "/login.do")
-	public String Login(LoginDto loginDto, RedirectAttributes redirectAttr) throws Exception {
+	public String Login(LoginDto loginDto, RedirectAttributes redirectAttr, HttpSession session ) throws Exception {
         String email = loginDto.getEmail();
         String password = loginDto.getPassword();
         
         // 계정 확인
-        UserEntity login = userService.login(email, password);
+        UserEntity user = userService.login(email, password);
         
         // 소셜 로그인 성공
-        if(login != null){
-			//map.put("email", login.getEmail());
+        if(user != null){
+        	session.setAttribute("nickname", user.getNickname());
+        	session.setAttribute("userId", user.getUserId());
 			return "redirect:/";
         }
         
@@ -50,10 +51,9 @@ public class UserController {
 	
 	@RequestMapping(value = "/snsLogin.do", method = RequestMethod.POST)
 	@ResponseBody
-	public HashMap<String, String> SnsLogin(@RequestParam Map<String, String> params, HttpServletResponse response, HttpServletRequest request) throws Exception {
-//		System.out.println(params.get("id")); //Object여서 형 변환
-//      System.out.println(params.get("email"));
+	public HashMap<String, String> SnsLogin(@RequestParam Map<String, String> params, HttpSession session) throws Exception {
 		HashMap<String, String> map = new HashMap<String, String>();
+	    
 		
 		String snsId = params.get("id");
 		String email = params.get("email");
@@ -64,8 +64,8 @@ public class UserController {
 		
 		// 소셜 로그인 성공
 		if(snsLogin != null){
-			HttpSession session = request.getSession();
-			session.setAttribute("id", snsLogin);
+			session.setAttribute("userId", snsLogin.getUserId());
+			session.setAttribute("nickname", snsLogin.getNickname());
 			map.put("email", snsLogin.getEmail());
 			map.put("msg", "소셜 로그인");
 			return map;
@@ -81,6 +81,15 @@ public class UserController {
 		}
 		
 		return map;
+	}
+	
+	
+	@RequestMapping(value = "/logout.do")
+	public String Logout(HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+	    session.invalidate();
+	        
+	    return "redirect:/";        
 	}
 	
 	@RequestMapping("/join.do")

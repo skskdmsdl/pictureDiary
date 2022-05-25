@@ -25,6 +25,8 @@
   <div class="foot"><span>아직 회원이 아니신가요?</span><div class="link" tabindex="7" onclick="switchBtn()">회원가입</div></div>
 </div>
 <script>
+
+
 function handleCredentialResponse(response) {
 
     // decodeJwtResponse() is a custom function defined by you
@@ -50,7 +52,9 @@ function handleCredentialResponse(response) {
    		},
    		success :function(data){
    			
-   			console.log(data.msg);
+   			if(data.msg == '소셜 로그인') {
+   				window.location.reload();
+   			};
    			
    			if(data.msg == '일반 로그인') {
    				//confirm("소셜 계정이 연동이 안된 회원입니다. 연동하시겠습니까?");
@@ -107,4 +111,8 @@ function parseJwt (token) {
 function onSignout() {
     google.accounts.id.disableAutoSelect();
 }
+
+$( document ).ready(function() {
+    $('#animated-container').remove();
+});
 </script>
