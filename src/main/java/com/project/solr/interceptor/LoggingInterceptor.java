@@ -9,13 +9,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-public class LoginInterceptor implements HandlerInterceptor {
+public class LoggingInterceptor implements HandlerInterceptor {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public boolean preHandle(
             HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        logger.info("[MYTEST] preHandle");
+        if(logger.isDebugEnabled()) {
+        	logger.debug("=========================================== START ==========================================");
+        	logger.debug(" Request URI \t: " + request.getRequestURI());
+        
+        }
         return true;
     }
 
@@ -26,13 +30,9 @@ public class LoginInterceptor implements HandlerInterceptor {
             Object handler,
             ModelAndView modelAndView
     ) throws Exception {
-        //logger.info("[MYTEST] postHandle");
+        if(logger.isDebugEnabled()) {
+        	logger.debug("=========================================== END ==========================================\n");
+        }
     }
 
-    @Override
-    public void afterCompletion(
-    		HttpServletRequest request, HttpServletResponse response, Object object, Exception ex
-    ) throws Exception {
-        //logger.info("[MYTEST] afterCompletion");
-    }
 }

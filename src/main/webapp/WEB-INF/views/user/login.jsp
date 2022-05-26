@@ -20,10 +20,11 @@
 	   <!--  <div class="naverLogin"></div> -->
 	   <!--  <div class="kakaoLogin"></div> -->
     </div>
-    <button type="submit" class="btn btn-primary btn-block btn-large" onclick="ajaxbtn()" tabindex="6">로그인</button>
+    <button type="submit" class="btn btn-primary btn-block btn-large" tabindex="6">로그인</button>
   </form>
   <div class="foot"><span>아직 회원이 아니신가요?</span><div class="link" tabindex="7" onclick="switchBtn()">회원가입</div></div>
 </div>
+
 <script>
 function loginPromise(id, email, nickname){
 	return new Promise(function(resolve, reject){
@@ -50,7 +51,7 @@ function loginPromise(id, email, nickname){
 function loginSuccess(msg, id, email, nickname){
 	return new Promise(function(resolve, reject){
 		if(msg == '소셜 로그인') {
-				window.location.reload();
+			window.location.reload();
 		};
 			
 		if(msg == '일반 로그인') {

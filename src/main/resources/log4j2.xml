@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<Configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appenders>
+		<!-- 콘솔에 출력할 패턴을 지정합니다. -->
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+		
+		<!-- 파일을 생성 할 수 있습니다. -->
+		<File name="LogToFile" fileName="logs/app.log">
+			<PatternLayout>
+				<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+			</PatternLayout>
+		</File>
+	</appenders>
+
+	<loggers>
+		<!-- avoid duplicated logs with additivity=false -->
+		<Logger name="com.project.solr" level="debug" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="org.springframework.beans" level="info"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="org.springframework.context" level="info"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="org.springframework.web" level="info"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="jdbc.sqlonly" level="info" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<Logger name="jdbc.resultsettable" level="info"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+
+		<root level="warn">
+			<appender-ref ref="Console" />
+		</root>
+	</loggers>
+	
+</Configuration>

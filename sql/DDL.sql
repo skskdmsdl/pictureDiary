@@ -8,7 +8,7 @@ COMMIT;
 CREATE TABLE USERS (
 	user_id				NUMBER 			NOT NULL,
 	email				VARCHAR2(100) 	NOT NULL,
-	password			VARCHAR2(50),
+	password			VARCHAR2(4000),
 	nickname			VARCHAR2(50)	NOT NULL,
 	sns_type			VARCHAR2(10),
 	sns_id				VARCHAR2(255),
@@ -58,3 +58,16 @@ CREATE TABLE LIKE_DIARY (
 );
 
 COMMIT;
+
+-- 시퀀스 생성
+CREATE SEQUENCE user_seq
+       INCREMENT BY 1
+       START WITH 1
+       MINVALUE 1
+       MAXVALUE 9999
+       NOCYCLE
+       NOCACHE
+       NOORDER;
+COMMIT;
+       
+--alter table users modify (password varchar2(4000)) ;

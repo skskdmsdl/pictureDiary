@@ -10,16 +10,22 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 인터셉터 객체 생성 -->
-	<beans:bean id="LoginInterceptor" class="com.project.solr.interceptor.LoginInterceptor">
-	</beans:bean>
+	<!-- <beans:bean id="LoginInterceptor" class="com.project.solr.interceptor.LoginInterceptor" /> -->
 	<!-- Interceptor 설정 -->
-	<interceptors>
+	<!-- <interceptors>
 	    <interceptor>
 	        <mapping path="/**/*.do"/>         
 	        <exclude-mapping path="/resources/**"/>
 	        <exclude-mapping path="user/logout.do"/>
 	        <beans:ref bean="LoginInterceptor"/>
 	    </interceptor>
+	</interceptors> -->
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/**"/>
+			<beans:bean class="com.project.solr.interceptor.LoggingInterceptor"/>
+		</interceptor>
 	</interceptors>
 		
 

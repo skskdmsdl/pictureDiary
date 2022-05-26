@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.solr.dto.LoginDto;
+import com.project.solr.encript.SHA256;
 import com.project.solr.entity.UserEntity;
 import com.project.solr.repository.UserRepository;
 import com.project.solr.service.UserService;
@@ -27,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequestMapping("/user")
 public class UserController {
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
     private UserService userService;
@@ -36,20 +40,24 @@ public class UserController {
 
 	@PostMapping(value = "/login.do")
 	public String Login(LoginDto loginDto, RedirectAttributes redirectAttr, HttpSession session ) throws Exception {
-        String email = loginDto.getEmail();
-        String password = loginDto.getPassword();
+		SHA256 sha256 = new SHA256();
+		
+		String email = loginDto.getEmail();
+        String password = sha256.encrypt(loginDto.getPassword());
         
         // 계정 확인
         UserEntity user = userService.login(email, password);
         
-        // 소셜 로그인 성공
+        // 로그인 성공
         if(user != null){
         	session.setAttribute("nickname", user.getNickname());
         	session.setAttribute("userId", user.getUserId());
+        	logger.info("Login User : {}", user);
 			return "redirect:/";
         }
         
         redirectAttr.addFlashAttribute("msg", "아이디 또는 비밀번호가 일치하지 않습니다.");
+
         return "redirect:/";
 	}
 	
@@ -71,6 +79,8 @@ public class UserController {
 			session.setAttribute("nickname", snsLogin.getNickname());
 			map.put("email", snsLogin.getEmail());
 			map.put("msg", "소셜 로그인");
+			logger.info("SNS Loign User : {}", snsLogin);
+
 			return map;
 		}
 		
@@ -80,6 +90,7 @@ public class UserController {
 		if(genenalLogin != null) {
 			map.put("email", genenalLogin.getEmail());
 			map.put("msg", "일반 로그인");
+			
 			return map;
 		}
 		
@@ -94,21 +105,41 @@ public class UserController {
 	    session.invalidate();
 	    
 	    String referer = request.getHeader("referer");
-	        
 	    return "redirect:" + referer;        
 	}
 	
-	@RequestMapping("/join.do")
-	public String Join() throws Exception {
-		return ""
-				+ "user/join";
+	@PostMapping(value = "/join.do")
+	@ResponseBody
+	public void Join(
+			@RequestParam Map<String, String> params, HttpServletRequest request) throws Exception {
+		
+		SHA256 sha256 = new SHA256();
+		
+		String email = params.get("email");
+		String nickname = params.get("nickname");
+		String password = sha256.encrypt(params.get("password"));
+		
+		// 오늘 날짜 받아오기
+		Date date = new Date();
+		java.sql.Date now = new java.sql.Date(date.getTime()); // java.util.Date를 java.sql.Date로 변경
+		
+		UserEntity insertUser = new UserEntity();
+		
+		insertUser.setEmail(email);
+		insertUser.setNickname(nickname);
+		insertUser.setPassword(password);
+		insertUser.setCreateDate(now);
+		
+		ur.save(insertUser);
+		
+		logger.info("Insert User : {}", insertUser);
+		
 	}
 	
 	@PostMapping(value = "/snsJoin.do")
 	@ResponseBody
 	public HashMap<String, String> SnsJoin(
 			@RequestParam Map<String, String> params, HttpServletRequest request) throws Exception {
-		
 		HashMap<String, String> map = new HashMap<String, String>();
 
 		String snsId = params.get("id");
@@ -134,6 +165,7 @@ public class UserController {
 			
 			ur.save(userCheck);
 			map.put("msg", "SNS 연동 완료. SNS로 다시 로그인 해주세요.");
+			logger.info("Update SNS User : {}", userCheck);
 			
 		} else {	// SNS 회원가입
 			UserEntity insertUser = new UserEntity();
@@ -147,6 +179,7 @@ public class UserController {
 			
 			ur.save(insertUser);
 			map.put("msg", "SNS 회원가입 완료. SNS 로그인을 해주세요.");
+			logger.info("Insert SNS User : {}", insertUser);
 		}
 		
 		return map;

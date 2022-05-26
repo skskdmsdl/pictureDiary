@@ -40,6 +40,7 @@ public class UserEntity {
 	Date createDate;
 	@Column(name="MODIFY_DATE")
 	Date modifyDate;
+	
 	public int getUserId() {
 		return userId;
 	}
@@ -95,5 +96,11 @@ public class UserEntity {
 		this.modifyDate = modifyDate;
 	}
 	
+	@Override
+	public String toString() {
+		return "UserEntity [userId=" + userId + ", email=" + email + ", password=" + password + ", nickname=" + nickname
+				+ ", snsType=" + snsType + ", snsId=" + snsId + ", snsConnectDate=" + snsConnectDate + ", createDate="
+				+ createDate + ", modifyDate=" + modifyDate + "]";
+	}
 
 }
