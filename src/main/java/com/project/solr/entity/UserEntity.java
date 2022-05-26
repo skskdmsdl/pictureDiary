@@ -4,14 +4,24 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="USERS")
+@SequenceGenerator(
+		name="USER_SEQ_GEN",
+		sequenceName="USER_SEQ",
+		initialValue=1,
+		allocationSize=1
+		)
 public class UserEntity {
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_SEQ_GEN")
 	@Column(name="USER_ID")
 	int userId;
 	@Column(name="EMAIL")
@@ -25,12 +35,11 @@ public class UserEntity {
 	@Column(name="SNS_ID")
 	String snsId;
 	@Column(name="SNS_CONNECT_DATE")
-	String snsConnectDate;
+	Date snsConnectDate;
 	@Column(name="CREATE_DATE")
 	Date createDate;
 	@Column(name="MODIFY_DATE")
 	Date modifyDate;
-	
 	public int getUserId() {
 		return userId;
 	}
@@ -67,10 +76,10 @@ public class UserEntity {
 	public void setSnsId(String snsId) {
 		this.snsId = snsId;
 	}
-	public String getSnsConnectDate() {
+	public Date getSnsConnectDate() {
 		return snsConnectDate;
 	}
-	public void setSnsConnectDate(String snsConnectDate) {
+	public void setSnsConnectDate(Date snsConnectDate) {
 		this.snsConnectDate = snsConnectDate;
 	}
 	public Date getCreateDate() {

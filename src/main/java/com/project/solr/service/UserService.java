@@ -10,6 +10,9 @@ public interface UserService {
 
 	UserEntity emailCheck(String email, String snsType);
 
+	void updateSnsUser(String snsId, String email, String snsType);
+
+
 	
 	
 

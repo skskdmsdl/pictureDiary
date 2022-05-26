@@ -107,12 +107,12 @@
 	        </button>
 	        
 	      	<c:choose>
-	        	<c:when test="${nickname eq null}">
+	        	<c:when test="${sessionScope.nickname eq null}">
 	        		<a class="main-menu-indicator nickname" href="javascript:openPop()" style="">로그인/회원가입 </a>
 	        	</c:when>
 	        	<c:otherwise>
 	        		<a class="main-menu-indicator nickname" href="/user/logout.do">
-	        			${nickname}님 <i class="fa-solid fa-right-from-bracket"></i>
+	        			${sessionScope.nickname}님 <i class="fa-solid fa-right-from-bracket"></i>
 	        		</a>
 	        	</c:otherwise>
 	        </c:choose>
@@ -136,10 +136,7 @@
 	</div>
 
 	<script>
-	$( document ).ready(function() {
-		    $('#animated-container').remove();
-	});
-	
+
 	// 로그인 메시지
 	<c:if test="${ not empty msg }">
 	   openPop();
@@ -171,21 +168,4 @@
 		    $(".wrap").hide();
 		}
 	}
-
-/* 	function logoutBtn(nickname) {
-		$.ajax({
-			type: "POST",
-			url: "${ pageContext.request.contextPath }/user/logout.do",
-	   		dataType : "json",
-	   		data: {
-	   			"nickname" : nickname
-	   		},
-	   		success :function(data){
-	   			alert(로그아웃 완료);
-	   		},
-	   		error : function(xhr, status, err) {
-				console.log("처리실패", xhr, status, err);
-	   		}
-		 });
-	}*/
 	</script>

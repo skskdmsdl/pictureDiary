@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UserServiceImpl implements UserService{
 	
 	@Autowired
-	UserRepository ur;
+	private UserRepository ur;
 
 	@Override
 	public UserEntity login(String email, String password) {
@@ -29,6 +29,12 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public UserEntity emailCheck(String email, String snsType) {
 		return ur.findByEmailAndSnsType(email, snsType);
+	}
+
+	@Override
+	public void updateSnsUser(String snsId, String email, String snsType) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	

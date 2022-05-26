@@ -1,10 +1,10 @@
 package com.project.solr.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.solr.dto.LoginDto;
 import com.project.solr.entity.UserEntity;
+import com.project.solr.repository.UserRepository;
 import com.project.solr.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,6 +30,9 @@ public class UserController {
 	
 	@Autowired
     private UserService userService;
+	
+	@Autowired
+	private UserRepository ur;
 
 	@PostMapping(value = "/login.do")
 	public String Login(LoginDto loginDto, RedirectAttributes redirectAttr, HttpSession session ) throws Exception {
@@ -54,7 +58,6 @@ public class UserController {
 	public HashMap<String, String> SnsLogin(@RequestParam Map<String, String> params, HttpSession session) throws Exception {
 		HashMap<String, String> map = new HashMap<String, String>();
 	    
-		
 		String snsId = params.get("id");
 		String email = params.get("email");
 		String snsType = params.get("snsType");
@@ -80,6 +83,7 @@ public class UserController {
 			return map;
 		}
 		
+		map.put("msg", "SNS 회원가입");
 		return map;
 	}
 	
@@ -88,13 +92,64 @@ public class UserController {
 	public String Logout(HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
 	    session.invalidate();
+	    
+	    String referer = request.getHeader("referer");
 	        
-	    return "redirect:/";        
+	    return "redirect:" + referer;        
 	}
 	
 	@RequestMapping("/join.do")
 	public String Join() throws Exception {
-		return "user/join";
+		return ""
+				+ "user/join";
+	}
+	
+	@PostMapping(value = "/snsJoin.do")
+	@ResponseBody
+	public HashMap<String, String> SnsJoin(
+			@RequestParam Map<String, String> params, HttpServletRequest request) throws Exception {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+
+		String snsId = params.get("id");
+		String email = params.get("email");
+		String snsType = params.get("snsType");
+		String nickname = params.get("nickname");
+		
+		// 오늘 날짜 받아오기
+		Date date = new Date();
+		java.sql.Date now = new java.sql.Date(date.getTime()); // java.util.Date를 java.sql.Date로 변경
+		
+		// nickname이 파라미터로 넘어오지 않은 경우 
+		// user update
+		if("".equals(nickname) || nickname == null) {
+			// 계정 확인
+			UserEntity userCheck = userService.emailCheck(email, null);
+			
+			userCheck.setPassword(null);
+			userCheck.setSnsType(snsType);
+			userCheck.setSnsId(snsId);
+			userCheck.setSnsConnectDate(now);
+			userCheck.setModifyDate(now);
+			
+			ur.save(userCheck);
+			map.put("msg", "SNS 연동 완료. SNS로 다시 로그인 해주세요.");
+			
+		} else {	// SNS 회원가입
+			UserEntity insertUser = new UserEntity();
+			
+			insertUser.setEmail(email);
+			insertUser.setNickname(nickname);
+			insertUser.setSnsType(snsType);
+			insertUser.setSnsId(snsId);
+			insertUser.setSnsConnectDate(now);
+			insertUser.setCreateDate(now);
+			
+			ur.save(insertUser);
+			map.put("msg", "SNS 회원가입 완료. SNS 로그인을 해주세요.");
+		}
+		
+		return map;
 	}
 
 }
