@@ -73,12 +73,20 @@ function joinBtn(){
    			"password" : password
    		},
    		success :function(data){
-   			Swal.fire({
-   				text: '회원가입이 완료되었습니다.',
-   				confirmButtonColor: '#12B886'
-   			}).then((result) => {
-	   			window.location.reload();
-   			});
+   			// 이메일 중복
+   			if(data.msg != null){
+   				Swal.fire({
+   					text: data.msg,
+   					confirmButtonColor: '#12B886'
+   				});
+   			} else {
+	   			Swal.fire({
+	   				text: '회원가입이 완료되었습니다.',
+	   				confirmButtonColor: '#12B886'
+	   			}).then((result) => {
+		   			window.location.reload();
+	   			});
+   			}
    		},
    		error : function(xhr, status, err) {
 			console.log("처리실패", xhr, status, err);

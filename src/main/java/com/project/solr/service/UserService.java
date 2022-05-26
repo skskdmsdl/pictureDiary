@@ -8,12 +8,8 @@ public interface UserService {
 	
 	UserEntity snsLogin(String snsId, String email, String snsType);
 
-	UserEntity emailCheck(String email, String snsType);
-
-	void updateSnsUser(String snsId, String email, String snsType);
-
-
+	UserEntity emailCheck(String email);
 	
-	
+	UserEntity genenalEmailCheck(String email, String snsType);
 
 }

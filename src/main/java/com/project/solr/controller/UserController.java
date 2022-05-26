@@ -70,31 +70,30 @@ public class UserController {
 		String email = params.get("email");
 		String snsType = params.get("snsType");
 		
-		// 소셜 로그인 회원 확인
+		// 계정 연동 로그인 회원 확인
 		UserEntity snsLogin = userService.snsLogin(snsId, email, snsType);
 		
-		// 소셜 로그인 성공
+		// 계정 연동 로그인 성공
 		if(snsLogin != null){
 			session.setAttribute("userId", snsLogin.getUserId());
 			session.setAttribute("nickname", snsLogin.getNickname());
 			map.put("email", snsLogin.getEmail());
-			map.put("msg", "소셜 로그인");
+			map.put("msg", "계정 연동 로그인");
 			logger.info("SNS Loign User : {}", snsLogin);
 
 			return map;
 		}
 		
 		// 로그인 아이디만 존재(일반 로그인 유저)
-		UserEntity genenalLogin = userService.emailCheck(email, null);
+		UserEntity genenalLogin = userService.genenalEmailCheck(email, null);
 		
 		if(genenalLogin != null) {
 			map.put("email", genenalLogin.getEmail());
 			map.put("msg", "일반 로그인");
-			
 			return map;
 		}
 		
-		map.put("msg", "SNS 회원가입");
+		map.put("msg", "계정 연동 회원가입");
 		return map;
 	}
 	
@@ -110,14 +109,21 @@ public class UserController {
 	
 	@PostMapping(value = "/join.do")
 	@ResponseBody
-	public void Join(
+	public HashMap<String, String> Join(
 			@RequestParam Map<String, String> params, HttpServletRequest request) throws Exception {
-		
+		HashMap<String, String> map = new HashMap<String, String>();
 		SHA256 sha256 = new SHA256();
 		
 		String email = params.get("email");
 		String nickname = params.get("nickname");
 		String password = sha256.encrypt(params.get("password"));
+		
+		// 계정 확인
+		UserEntity userCheck = userService.emailCheck(email);
+		if(userCheck != null) {
+			map.put("msg", "이미 가입되어 있는 이메일입니다.");
+			return map;
+		}
 		
 		// 오늘 날짜 받아오기
 		Date date = new Date();
@@ -131,9 +137,9 @@ public class UserController {
 		insertUser.setCreateDate(now);
 		
 		ur.save(insertUser);
-		
 		logger.info("Insert User : {}", insertUser);
 		
+		return map;
 	}
 	
 	@PostMapping(value = "/snsJoin.do")
@@ -155,7 +161,7 @@ public class UserController {
 		// user update
 		if("".equals(nickname) || nickname == null) {
 			// 계정 확인
-			UserEntity userCheck = userService.emailCheck(email, null);
+			UserEntity userCheck = userService.genenalEmailCheck(email, null);
 			
 			userCheck.setPassword(null);
 			userCheck.setSnsType(snsType);
@@ -164,10 +170,10 @@ public class UserController {
 			userCheck.setModifyDate(now);
 			
 			ur.save(userCheck);
-			map.put("msg", "SNS 연동 완료. SNS로 다시 로그인 해주세요.");
+			map.put("msg", "계정 연동 완료. 계정으로 다시 로그인 해주세요.");
 			logger.info("Update SNS User : {}", userCheck);
 			
-		} else {	// SNS 회원가입
+		} else {	// 계정 연동 회원가입
 			UserEntity insertUser = new UserEntity();
 			
 			insertUser.setEmail(email);
@@ -178,7 +184,7 @@ public class UserController {
 			insertUser.setCreateDate(now);
 			
 			ur.save(insertUser);
-			map.put("msg", "SNS 회원가입 완료. SNS 로그인을 해주세요.");
+			map.put("msg", "계정 연동 완료. 계정으로 로그인을 해주세요.");
 			logger.info("Insert SNS User : {}", insertUser);
 		}
 		

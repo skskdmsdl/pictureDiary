@@ -50,14 +50,13 @@ function loginPromise(id, email, nickname){
 
 function loginSuccess(msg, id, email, nickname){
 	return new Promise(function(resolve, reject){
-		if(msg == '소셜 로그인') {
+		if(msg == '계정 연동 로그인') {
 			window.location.reload();
 		};
 			
 		if(msg == '일반 로그인') {
-			//confirm("소셜 계정이 연동이 안된 회원입니다. 연동하시겠습니까?");
 			Swal.fire({
-				text: '소셜 계정이 연동이 안된 회원입니다. 연동하시겠습니까?',
+				text: '계정이 연동이 안된 회원입니다. 연동하시겠습니까?',
 				icon: 'warning',	
 				showCancelButton: true,
 				confirmButtonColor: '#12B886',
@@ -90,9 +89,9 @@ function loginSuccess(msg, id, email, nickname){
 			});
 		};
 		
-		if(msg == 'SNS 회원가입'){
+		if(msg == '계정 연동 회원가입'){
 			Swal.fire({
-				text: '회원이 아닙니다. SNS 회원가입을 진행하시겠습니까?',
+				text: '계정이 연동이 안된 회원입니다. 연동하시겠습니까?',
 				icon: 'question',	
 				showCancelButton: true,
 				confirmButtonColor: '#12B886',

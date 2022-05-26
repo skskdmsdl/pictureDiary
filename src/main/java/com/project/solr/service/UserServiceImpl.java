@@ -27,14 +27,13 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UserEntity emailCheck(String email, String snsType) {
-		return ur.findByEmailAndSnsType(email, snsType);
+	public UserEntity emailCheck(String email) {
+		return ur.findByEmail(email);
 	}
 
 	@Override
-	public void updateSnsUser(String snsId, String email, String snsType) {
-		// TODO Auto-generated method stub
-		
+	public UserEntity genenalEmailCheck(String email, String snsType) {
+		return ur.findByEmailAndSnsType(email, snsType);
 	}
 
 	
