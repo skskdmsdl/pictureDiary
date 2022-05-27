@@ -68,6 +68,24 @@ CREATE SEQUENCE user_seq
        NOCYCLE
        NOCACHE
        NOORDER;
-COMMIT;
        
+CREATE SEQUENCE diary_seq
+       INCREMENT BY 1
+       START WITH 1
+       MINVALUE 1
+       MAXVALUE 9999
+       NOCYCLE
+       NOCACHE
+       NOORDER;
+COMMIT;
+
+-- TRIGGER 생성
+CREATE OR REPLACE TRIGGER user_insert_trigger
+AFTER INSERT ON users 
+FOR EACH ROW
+BEGIN
+      INSERT INTO diary VALUES(diary_seq.NEXTVAL, :NEW.USER_ID, '환영합니다', '당신의 오늘을 기록해주세요', DEFAULT, SYSDATE ); 
+      INSERT INTO diary_image VALUES(diary_seq.CURRVAL, DEFAULT, NULL, '환영합니다.jpg', 'D:\pictureDiary' );
+END;
+
 --alter table users modify (password varchar2(4000)) ;

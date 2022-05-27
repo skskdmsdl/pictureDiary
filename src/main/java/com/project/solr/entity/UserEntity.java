@@ -10,6 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="USERS")
 @SequenceGenerator(
@@ -40,7 +46,6 @@ public class UserEntity {
 	Date createDate;
 	@Column(name="MODIFY_DATE")
 	Date modifyDate;
-	
 	public int getUserId() {
 		return userId;
 	}
@@ -95,12 +100,11 @@ public class UserEntity {
 	public void setModifyDate(Date modifyDate) {
 		this.modifyDate = modifyDate;
 	}
-	
 	@Override
 	public String toString() {
 		return "UserEntity [userId=" + userId + ", email=" + email + ", password=" + password + ", nickname=" + nickname
 				+ ", snsType=" + snsType + ", snsId=" + snsId + ", snsConnectDate=" + snsConnectDate + ", createDate="
 				+ createDate + ", modifyDate=" + modifyDate + "]";
 	}
-
+	
 }

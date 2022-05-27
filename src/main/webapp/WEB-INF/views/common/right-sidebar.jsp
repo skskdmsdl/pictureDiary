@@ -11,8 +11,8 @@
             <div class="menu-list">
                 <ul>
                     <li><a href="/">Diary</a></li>
-                    <li><a href="/write/write.do">Write</a></li>
-                    <li><a href="/search/searchList.do">Search</a></li>
+                    <li><a href="#" onclick="pageLinkBtn('write','${sessionScope.userId}')">Write</a></li>
+                    <li><a href="#" onclick="pageLinkBtn('search','${sessionScope.userId}')">Search</a></li>
                 </ul>
             </div>
         </nav>
@@ -27,3 +27,21 @@
         </div>
     </div>
 </div>
+
+<script>
+function pageLinkBtn(pageInfo, sessionCheck){
+	if(sessionCheck==""){
+		 document.getElementById("popup_layer").style.display = "block";
+		    $(".login").show();
+		    $(".wrap").hide();
+		    return false;
+	};
+	
+ 	if(pageInfo == 'write'){
+		location.href="/write/write.do"
+	};
+	if(pageInfo == 'search'){
+		location.href="/search/searchList.do"
+	};
+}
+</script>

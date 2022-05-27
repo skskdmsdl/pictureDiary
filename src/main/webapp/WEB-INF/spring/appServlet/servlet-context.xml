@@ -21,10 +21,11 @@
 	    </interceptor>
 	</interceptors> -->
 	
+	<beans:bean id="LoggingInterceptor" class="com.project.solr.interceptor.LoggingInterceptor" />
 	<interceptors>
 		<interceptor>
 			<mapping path="/**"/>
-			<beans:bean class="com.project.solr.interceptor.LoggingInterceptor"/>
+			<beans:ref bean="LoggingInterceptor"/>
 		</interceptor>
 	</interceptors>
 		
