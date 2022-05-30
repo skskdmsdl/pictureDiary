@@ -41,7 +41,7 @@
 		<Logger name="jdbc.sqlonly" level="info" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
-
+		<logger name="org.hibernate.type" level="trace" />
 		<Logger name="jdbc.resultsettable" level="info"
 			additivity="false">
 			<AppenderRef ref="Console" />

@@ -46,7 +46,7 @@ CREATE TABLE DIARY_IMAGE (
 	real_name	VARCHAR(255),
 	file_name	VARCHAR(255),
 	path		VARCHAR(255),
-	CONSTRAINT pk_diary_image PRIMARY KEY (diary_id, create_date),
+	CONSTRAINT pk_diary_image PRIMARY KEY (diary_id),
 	CONSTRAINT fk_diary_image FOREIGN KEY (diary_id) REFERENCES DIARY (diary_id)
 );
 
@@ -89,3 +89,6 @@ BEGIN
 END;
 
 --alter table users modify (password varchar2(4000)) ;
+--alter table diary_image drop primary key;
+--alter table diary_image add constraint pk_diary_image primary key(diary_id);
+--alter table diary drop column cteate_date;

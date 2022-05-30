@@ -38,7 +38,7 @@ public class DiaryEntity {
 	String title;
 	@Column(name="CONTENT")
 	String content;
-	@Column(name="CTEATE_DATE")
+	@Column(name="CREATE_DATE")
 	Date createDate;
 	@Column(name="DIARY_DATE")
 	Date diaryDate;
