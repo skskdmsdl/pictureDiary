@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.solr.entity.DiaryEntity;
 import com.project.solr.entity.DiaryImageEntity;
 import com.project.solr.repository.DiaryImageRepository;
 import com.project.solr.repository.DiaryRepository;
 import com.project.solr.service.DiaryService;
-import com.project.solr.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -48,68 +48,66 @@ public class WriteController {
 
 	@PostMapping(value = "/writeDiary.do")
 	public String WriteDiary(
-			@RequestParam String title,
-			@RequestParam String content,
-			@RequestParam String diaryDate,
-			@RequestParam(value ="file", required=false) MultipartFile diaryFile,
-			HttpServletRequest request) throws Exception {
+						@RequestParam String title,
+						@RequestParam String content,
+						@RequestParam String diaryDate,
+						@RequestParam(value ="file", required=false) MultipartFile diaryFile,
+						HttpServletRequest request,
+						RedirectAttributes redirectAttributes) throws Exception {
 		
 		HttpSession session = request.getSession();
 		int userId = (int)session.getAttribute("userId");
 		Date date = Date.valueOf(diaryDate);
 		System.out.println("userId"+userId);
 		
-		DiaryEntity diary = diaryService.findDiary(userId, diaryDate);
+		DiaryEntity diary = new DiaryEntity();
+//		DiaryEntity diary = diaryService.findDiary(userId, date);
 		
-		if(diary == null) {
+		diary.setUserId(userId);
+		diary.setTitle(title);
+		diary.setContent(content);
+		diary.setDiaryDate(date);
+		
+		int diaryId = dr.save(diary).getDiaryId();
+		
+		System.out.println("diaryId"+diaryId);
+		if(diaryFile.getSize() > 0) {
 			
-		} else {
+			DiaryImageEntity diaryImage = new DiaryImageEntity(); 
 			
-			diary.setUserId(userId);
-			diary.setTitle(title);
-			diary.setContent(content);
-			diary.setDiaryDate(date);
+			String path = request.getServletContext().getRealPath("/upload/diaryImage/");
+			System.out.println("path : " + path);
+			System.out.println("diaryFile : " + diaryFile);
 			
-			int diaryId = dr.save(diary).getDiaryId();
+			// 원본 파일명
+			String originalFileName = diaryFile.getOriginalFilename();
 			
-			System.out.println("diaryId"+diaryId);
-			if(diaryFile.getSize() > 0) {
+			// upload 파일명 설정
+			UUID uuid = UUID.randomUUID();
+			String uploadFileName = uuid.toString() +"_"+ originalFileName;
+			
+			// 파일 upload
+			File saveFile = new File(path, uploadFileName);
+			try {
+				diaryFile.transferTo(saveFile);
+				System.out.println("파일 업로드 성공");
 				
-				DiaryImageEntity diaryImage = new DiaryImageEntity(); 
 				
-				String path = request.getServletContext().getRealPath("/upload/diaryImage/");
-				System.out.println("path : " + path);
-				System.out.println("diaryFile : " + diaryFile);
+				diaryImage.setDiaryId(diaryId);
+				diaryImage.setRealName(originalFileName);
+				diaryImage.setFileName(uploadFileName);
+				diaryImage.setPath(path+uploadFileName);
 				
-				// 원본 파일명
-				String originalFileName = diaryFile.getOriginalFilename();
-				
-				// upload 파일명 설정
-				UUID uuid = UUID.randomUUID();
-				String uploadFileName = uuid.toString() +"_"+ originalFileName;
-				
-				// 파일 upload
-				File saveFile = new File(path, uploadFileName);
-				try {
-					diaryFile.transferTo(saveFile);
-					System.out.println("파일 업로드 성공");
-					
-					
-					diaryImage.setDiaryId(diaryId);
-					diaryImage.setRealName(originalFileName);
-					diaryImage.setFileName(uploadFileName);
-					diaryImage.setPath(path+uploadFileName);
-					
-					dir.save(diaryImage);
-				} catch (IllegalStateException | IOException e) {
-					System.out.println("파일 업로드 실패");
-					e.printStackTrace();
-				}
+				dir.save(diaryImage);
+			} catch (IllegalStateException | IOException e) {
+				System.out.println("파일 업로드 실패");
+				e.printStackTrace();
 			}
 		}
-			
+		
 		String referer = request.getHeader("referer");
-
-        return "redirect:" + referer;
+		redirectAttributes.addFlashAttribute("diaryMsg", "등록 되었습니다.");
+		System.out.println("referer"+referer);
+        return "redirect:/write/write.do";
 	}
 }

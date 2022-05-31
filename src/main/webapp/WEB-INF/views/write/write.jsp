@@ -57,6 +57,15 @@ $(document).ready(function () {
         }
     });
 });
+
+// controller 메시지
+const message = '${diaryMsg}';
+if(message != ""){
+	Swal.fire({
+		text: message,
+		confirmButtonColor: '#12B886'
+	});
+};
    
 </script>
 
