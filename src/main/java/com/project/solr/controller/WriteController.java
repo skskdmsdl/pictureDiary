@@ -59,55 +59,62 @@ public class WriteController {
 		int userId = (int)session.getAttribute("userId");
 		Date date = Date.valueOf(diaryDate);
 		System.out.println("userId"+userId);
+		String referer = request.getHeader("referer");
 		
-		DiaryEntity diary = new DiaryEntity();
-//		DiaryEntity diary = diaryService.findDiary(userId, date);
+		DiaryEntity findDiary = diaryService.findDiary(userId, date);
 		
-		diary.setUserId(userId);
-		diary.setTitle(title);
-		diary.setContent(content);
-		diary.setDiaryDate(date);
+		if(findDiary != null) {
+			redirectAttributes.addFlashAttribute("diaryMsg", "해당 날짜에 작성한 일기가 있습니다.");
+			System.out.println("referer"+referer);
+	        return "redirect:/write/write.do";
+		} else {
+			
+			DiaryEntity diary = new DiaryEntity();
 		
-		int diaryId = dr.save(diary).getDiaryId();
-		
-		System.out.println("diaryId"+diaryId);
-		if(diaryFile.getSize() > 0) {
+			diary.setUserId(userId);
+			diary.setTitle(title);
+			diary.setContent(content);
+			diary.setDiaryDate(date);
 			
-			DiaryImageEntity diaryImage = new DiaryImageEntity(); 
+			int diaryId = dr.save(diary).getDiaryId();
 			
-			String path = request.getServletContext().getRealPath("/upload/diaryImage/");
-			System.out.println("path : " + path);
-			System.out.println("diaryFile : " + diaryFile);
-			
-			// 원본 파일명
-			String originalFileName = diaryFile.getOriginalFilename();
-			
-			// upload 파일명 설정
-			UUID uuid = UUID.randomUUID();
-			String uploadFileName = uuid.toString() +"_"+ originalFileName;
-			
-			// 파일 upload
-			File saveFile = new File(path, uploadFileName);
-			try {
-				diaryFile.transferTo(saveFile);
-				System.out.println("파일 업로드 성공");
+			System.out.println("diaryId"+diaryId);
+			if(diaryFile.getSize() > 0) {
 				
+				DiaryImageEntity diaryImage = new DiaryImageEntity(); 
 				
-				diaryImage.setDiaryId(diaryId);
-				diaryImage.setRealName(originalFileName);
-				diaryImage.setFileName(uploadFileName);
-				diaryImage.setPath(path+uploadFileName);
+				String path = request.getServletContext().getRealPath("/upload/diaryImage/");
+				System.out.println("path : " + path);
+				System.out.println("diaryFile : " + diaryFile);
 				
-				dir.save(diaryImage);
-			} catch (IllegalStateException | IOException e) {
-				System.out.println("파일 업로드 실패");
-				e.printStackTrace();
+				// 원본 파일명
+				String originalFileName = diaryFile.getOriginalFilename();
+				
+				// upload 파일명 설정
+				UUID uuid = UUID.randomUUID();
+				String uploadFileName = uuid.toString() +"_"+ originalFileName;
+				
+				// 파일 upload
+				File saveFile = new File(path, uploadFileName);
+				try {
+					diaryFile.transferTo(saveFile);
+					System.out.println("파일 업로드 성공");
+					
+					
+					diaryImage.setDiaryId(diaryId);
+					diaryImage.setRealName(originalFileName);
+					diaryImage.setFileName(uploadFileName);
+					diaryImage.setPath(path+uploadFileName);
+					
+					dir.save(diaryImage);
+				} catch (IllegalStateException | IOException e) {
+					System.out.println("파일 업로드 실패");
+					e.printStackTrace();
+				}
 			}
 		}
 		
-		String referer = request.getHeader("referer");
 		redirectAttributes.addFlashAttribute("diaryMsg", "등록 되었습니다.");
-		System.out.println("referer"+referer);
         return "redirect:/write/write.do";
 	}
 }

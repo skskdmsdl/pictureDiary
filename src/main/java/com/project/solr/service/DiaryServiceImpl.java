@@ -24,6 +24,4 @@ public class DiaryServiceImpl implements DiaryService{
 	
 
 	
-	
-
 }
