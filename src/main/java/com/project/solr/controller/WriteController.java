@@ -58,15 +58,12 @@ public class WriteController {
 		HttpSession session = request.getSession();
 		int userId = (int)session.getAttribute("userId");
 		Date date = Date.valueOf(diaryDate);
-		System.out.println("userId"+userId);
-		String referer = request.getHeader("referer");
-		
 		DiaryEntity findDiary = diaryService.findDiary(userId, date);
 		
 		if(findDiary != null) {
 			redirectAttributes.addFlashAttribute("diaryMsg", "해당 날짜에 작성한 일기가 있습니다.");
-			System.out.println("referer"+referer);
-	        return "redirect:/write/write.do";
+
+			return "redirect:/write/write.do";
 		} else {
 			
 			DiaryEntity diary = new DiaryEntity();
@@ -78,14 +75,11 @@ public class WriteController {
 			
 			int diaryId = dr.save(diary).getDiaryId();
 			
-			System.out.println("diaryId"+diaryId);
 			if(diaryFile.getSize() > 0) {
 				
 				DiaryImageEntity diaryImage = new DiaryImageEntity(); 
 				
 				String path = request.getServletContext().getRealPath("/upload/diaryImage/");
-				System.out.println("path : " + path);
-				System.out.println("diaryFile : " + diaryFile);
 				
 				// 원본 파일명
 				String originalFileName = diaryFile.getOriginalFilename();
