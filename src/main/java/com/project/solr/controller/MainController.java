@@ -1,5 +1,7 @@
 package com.project.solr.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -27,9 +29,24 @@ public class MainController {
 	@RequestMapping("/")
 	public String Main(HttpServletRequest request, HttpSession session) throws Exception {
 		
-		//session = request.getSession();
+		session = request.getSession();
 
+		try {
+			
+			int userId = (int)session.getAttribute("userId");
+		}catch(Exception e){
+			return "/main";
+ 
+		}
+		int userId = (int)session.getAttribute("userId");
 		// diary 정보 전체 가져오기
+		
+		List<DiaryEntity> diaryList = diaryService.findAllByUserId(userId);
+		
+		System.out.println(session.getAttribute("userId"));
+		System.out.println(diaryList);
+		
+		
 		return "/main";
 	}
 
