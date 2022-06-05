@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.project.solr.entity.DiaryEntity;
 import com.project.solr.repository.DiaryImageRepository;
@@ -27,27 +28,30 @@ public class MainController {
     private DiaryService diaryService;
 	
 	@RequestMapping("/")
-	public String Main(HttpServletRequest request, HttpSession session) throws Exception {
+	public ModelAndView Main(ModelAndView mav, HttpServletRequest request, HttpSession session) throws Exception {
 		
 		session = request.getSession();
 
 		try {
-			
 			int userId = (int)session.getAttribute("userId");
 		}catch(Exception e){
-			return "/main";
- 
+
+			
+			mav.setViewName("/main");
+			return mav;
 		}
 		int userId = (int)session.getAttribute("userId");
-		// diary 정보 전체 가져오기
 		
+		// diary 정보 전체 가져오기
 		List<DiaryEntity> diaryList = diaryService.findAllByUserId(userId);
 		
+		// diaryImage 정보 전체 가져오기
 		System.out.println(session.getAttribute("userId"));
 		System.out.println(diaryList);
 		
-		
-		return "/main";
+		mav.addObject("diaryList", diaryList);
+		mav.setViewName("/main");
+		return mav;
 	}
 
 }

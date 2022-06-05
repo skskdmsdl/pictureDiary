@@ -21,9 +21,10 @@
     <div class="blog-wrapper">
         <div class="main">
             <ul class="cbp_tmtimeline">
+            <c:forEach items="${diaryList}" var="diary" varStatus="status">
                 <li>
                     <div class="cbp_tmtime">
-                        <span>1 OCT - 2015</span>
+                        <span>${ diary.diaryDate }</span>
                     </div>
                     <div class="cbp_tmicon icon-calendar"></div>
                     <div class="cbp_tmlabel wow animated fadeInUp" data-wow-delay="0.10s">
@@ -31,55 +32,16 @@
                             <img src="images/blog/img_4.jpg" alt="Blog Post">
                         </div>
                         <a href="diary/detail.do">
-                            <h1>Kosovo the young europeans</h1>
+                            <h1>${ diary.title }</h1>
                         </a>
-                        <p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean black-eyed pea maize eggplant. Cabbage lentil cucumber chickpea sorrel gram garbanzo plantain lotus root bok choy squash cress potato summer purslane salsify fennel horseradish dulse. Winter purslane garbanzo artichoke broccoli lentil corn okra silver beet celery quandong.</p>
+                        <p>${ diary.content }</p>
                     </div>
                 </li>
-                <li>
-                    <div class="cbp_tmtime">
-                        <span>3 OCT - 2015</span>
-                    </div>
-                    <div class="cbp_tmicon icon-calendar"></div>
-                    <div class="cbp_tmlabel wow animated fadeInUp" data-wow-delay="0.10s">
-                        <div class="blog-v2-image">
-                            <img src="images/blog/img_3.jpg" alt="Blog Post">
-                        </div>
-                        <a href="/diary/detail.do">
-                            <h1>Denouncing pleasure clean and praising pain was born</h1>
-                        </a>
-                        <p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean black-eyed pea maize eggplant. Cabbage lentil cucumber chickpea sorrel gram garbanzo plantain lotus root bok choy squash cress potato summer purslane salsify fennel horseradish dulse. Winter purslane garbanzo artichoke broccoli lentil corn okra silver beet celery quandong.</p>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="cbp_tmtime">
-                        <span>20 SEP 2015</span>
-                    </div>
-                    <div class="cbp_tmicon icon-calendar"></div>
-                    <div class="cbp_tmlabel wow animated fadeInUp" data-wow-delay="0.10s">
-                        <a href="/diary/detail.do">
-                            <h1>Denouncing pleasure clean and praising pain was born</h1>
-                        </a>
-                        <p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean black-eyed pea maize eggplant. Cabbage lentil cucumber chickpea sorrel gram garbanzo plantain lotus root bok choy squash cress potato summer purslane salsify fennel horseradish dulse. Winter purslane garbanzo artichoke broccoli lentil corn okra silver beet celery quandong.</p>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="cbp_tmtime">
-                        <span>16 SEP 2015</span>
-                    </div>
-                    <div class="cbp_tmicon icon-calendar"></div>
-                    <div class="cbp_tmlabel wow animated fadeInUp" data-wow-delay="0.10s">
-                        <div class="blog-v2-image">
-                            <img src="images/blog/img_1.jpg" alt="Blog Post">
-                        </div>
-                        <a href="/diary/detail.do">
-                            <h1>Denouncing pleasure clean and praising pain was born</h1>
-                        </a>
-                        <p>Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish bush tomato ricebean black-eyed pea maize eggplant. Cabbage lentil cucumber chickpea sorrel gram garbanzo plantain lotus root bok choy squash cress potato summer purslane salsify fennel horseradish dulse. Winter purslane garbanzo artichoke broccoli lentil corn okra silver beet celery quandong.</p>
-                    </div>
-                </li>
+                </c:forEach>
+                <%-- <c:forEach var="list1" items="${list1}" var="list2" items="${list2}">
+				    ${list1.name}
+				    ${list2.name}
+				</c:forEach> --%>
             </ul>
         </div>
     </div>
