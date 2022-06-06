@@ -58,53 +58,46 @@ public class WriteController {
 		HttpSession session = request.getSession();
 		int userId = (int)session.getAttribute("userId");
 		Date date = Date.valueOf(diaryDate);
-		DiaryEntity findDiary = diaryService.findDiary(userId, date);
+			
+		DiaryEntity diary = new DiaryEntity();
+	
+		diary.setUserId(userId);
+		diary.setTitle(title);
+		diary.setContent(content);
+		diary.setDiaryDate(date);
 		
-		if(findDiary != null) {
-			redirectAttributes.addFlashAttribute("diaryMsg", "해당 날짜에 작성한 일기가 있습니다.");
-
-			return "redirect:/write/write.do";
-		} else {
-			
-			DiaryEntity diary = new DiaryEntity();
+		int diaryId = dr.save(diary).getDiaryId();
 		
-			diary.setUserId(userId);
-			diary.setTitle(title);
-			diary.setContent(content);
-			diary.setDiaryDate(date);
+		if(diaryFile.getSize() > 0) {
 			
-			int diaryId = dr.save(diary).getDiaryId();
+			DiaryImageEntity diaryImage = new DiaryImageEntity(); 
 			
-			if(diaryFile.getSize() > 0) {
+			String path = request.getServletContext().getRealPath("/upload/diaryImage/");
+//			String path = "/upload/diaryImage/";
+			
+			// 원본 파일명
+			String originalFileName = diaryFile.getOriginalFilename();
+			
+			// upload 파일명 설정
+			UUID uuid = UUID.randomUUID();
+			String uploadFileName = uuid.toString() +"_"+ originalFileName;
+			
+			// 파일 upload
+			File saveFile = new File(path, uploadFileName);
+			try {
+				diaryFile.transferTo(saveFile);
+				System.out.println("파일 업로드 성공");
 				
-				DiaryImageEntity diaryImage = new DiaryImageEntity(); 
 				
-				String path = request.getServletContext().getRealPath("/upload/diaryImage/");
+				diaryImage.setDiaryId(diaryId);
+				diaryImage.setRealName(originalFileName);
+				diaryImage.setFileName(uploadFileName);
+				diaryImage.setPath("/upload/diaryImage/"+uploadFileName);
 				
-				// 원본 파일명
-				String originalFileName = diaryFile.getOriginalFilename();
-				
-				// upload 파일명 설정
-				UUID uuid = UUID.randomUUID();
-				String uploadFileName = uuid.toString() +"_"+ originalFileName;
-				
-				// 파일 upload
-				File saveFile = new File(path, uploadFileName);
-				try {
-					diaryFile.transferTo(saveFile);
-					System.out.println("파일 업로드 성공");
-					
-					
-					diaryImage.setDiaryId(diaryId);
-					diaryImage.setRealName(originalFileName);
-					diaryImage.setFileName(uploadFileName);
-					diaryImage.setPath(path+uploadFileName);
-					
-					dir.save(diaryImage);
-				} catch (IllegalStateException | IOException e) {
-					System.out.println("파일 업로드 실패");
-					e.printStackTrace();
-				}
+				dir.save(diaryImage);
+			} catch (IllegalStateException | IOException e) {
+				System.out.println("파일 업로드 실패");
+				e.printStackTrace();
 			}
 		}
 		
