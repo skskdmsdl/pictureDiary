@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.project.solr.entity.DiaryEntity;
@@ -25,7 +26,7 @@ public class DiaryServiceImpl implements DiaryService{
 
 	@Override
 	public List<DiaryEntity> findAllByUserId(int userId) {
-		return dr.findAllByUserId(userId);
+		return dr.findAllByUserId(userId, Sort.by(Sort.Direction.DESC, "diaryId"));
 	}
 	
 

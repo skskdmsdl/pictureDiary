@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -51,7 +52,7 @@ public class MainController {
 		
 		// diary 정보 전체 가져오기
 		List<DiaryEntity> diaryList = diaryService.findAllByUserId(userId);
-		diaryList = diaryList.stream().sorted(Comparator.comparing(DiaryEntity::getDiaryDate).reversed()).collect(Collectors.toList());
+		//diaryList = diaryList.stream().sorted(Comparator.comparing(DiaryEntity::getDiaryDate).reversed()).collect(Collectors.toList());
 		
 		// diaryImage 정보 전체 가져오기
 		List<DiaryImageEntity> diaryImageList = diaryImageService.findAll();
