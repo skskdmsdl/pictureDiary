@@ -25,7 +25,7 @@ public class DiaryImageEntity {
 	@Id
 	@Column(name="DIARY_ID")
 	int diaryId;
-	@Column(name="CTEATE_DATE")
+	@Column(name="CREATE_DATE")
 	Date createDate;
 	@Column(name="REAL_NAME")
 	String realName;

@@ -92,3 +92,5 @@ END;
 --alter table diary_image drop primary key;
 --alter table diary_image add constraint pk_diary_image primary key(diary_id);
 --alter table diary drop column cteate_date;
+--alter table diary_image drop column cteate_date;
+--alter table diary_image modify (create_date default sysdate);
