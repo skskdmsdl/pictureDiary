@@ -12,7 +12,5 @@ import com.project.solr.entity.DiaryEntity;
 @Repository
 public interface DiaryRepository extends JpaRepository<DiaryEntity, String>{
 
-	DiaryEntity findByUserIdAndDiaryDate(int userId, Date diaryDate);
-
 	List<DiaryEntity> findAllByUserId(int userId, Sort sort);
 }

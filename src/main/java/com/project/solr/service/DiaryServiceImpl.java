@@ -20,11 +20,6 @@ public class DiaryServiceImpl implements DiaryService{
 	private DiaryRepository dr;
 	
 	@Override
-	public DiaryEntity findDiary(int userId, Date diaryDate) {
-		return dr.findByUserIdAndDiaryDate(userId, diaryDate);
-	}
-
-	@Override
 	public List<DiaryEntity> findAllByUserId(int userId) {
 		return dr.findAllByUserId(userId, Sort.by(Sort.Direction.DESC, "diaryId"));
 	}

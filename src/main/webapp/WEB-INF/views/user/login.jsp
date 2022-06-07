@@ -7,6 +7,7 @@
   <form method="post" action="${ pageContext.request.contextPath }/user/login.do" class="login-form">
     <input type="text" class="login-input" name="email" id="loginEmail" placeholder="이메일을 입력하세요." tabindex="1" required="required" />
     <input type="password" class="login-input" name="password" id="loginPw" placeholder="비밀번호를 입력하세요." tabindex="2" required="required" />
+    <button type="submit" class="btn btn-primary btn-block btn-large" tabindex="6">로그인</button>
     <div class="parent">
 	    <div class="googleLogin">
 			<div id="g_id_onload"
@@ -20,7 +21,6 @@
 	   <!--  <div class="naverLogin"></div> -->
 	   <!--  <div class="kakaoLogin"></div> -->
     </div>
-    <button type="submit" class="btn btn-primary btn-block btn-large" tabindex="6">로그인</button>
   </form>
   <div class="foot"><span>아직 회원이 아니신가요?</span><div class="link" tabindex="7" onclick="switchBtn()">회원가입</div></div>
 </div>

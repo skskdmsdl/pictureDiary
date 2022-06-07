@@ -6,7 +6,7 @@
    		<c:when test="${ diaryList ne null }">
 	   		<c:forEach items="${ diaryImageList }" var="diaryImage" >
 				<c:if test="${diaryImage.diaryId eq diaryList[0].diaryId}" >
-		   			<div class="header-page ef-parallax-bg" style="background-image:url('${diaryImage.path}'), url(images/blog-header.jpg)">
+		   			<div class="header-page ef-parallax-bg" style="background-image:url('${diaryImage.path}'), url(images/blog-header.jpg); background-size: 100%;">
 				        <div class="col-md-6 col-md-offset-6">
 				            <div class="row">
 				                <div class="inner-content">
