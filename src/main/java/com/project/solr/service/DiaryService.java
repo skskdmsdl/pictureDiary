@@ -7,6 +7,6 @@ import com.project.solr.entity.DiaryEntity;
 
 public interface DiaryService {
 
-	List<DiaryEntity> findAllByUserId(int userId);
+//	List<DiaryEntity> findAllByUserId(int userId);
 
 }

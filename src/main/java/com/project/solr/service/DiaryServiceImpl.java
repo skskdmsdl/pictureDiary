@@ -19,10 +19,10 @@ public class DiaryServiceImpl implements DiaryService{
 	@Autowired
 	private DiaryRepository dr;
 	
-	@Override
-	public List<DiaryEntity> findAllByUserId(int userId) {
-		return dr.findAllByUserId(userId, Sort.by(Sort.Direction.DESC, "diaryId"));
-	}
+//	@Override
+//	public List<DiaryEntity> findAllByUserId(int userId) {
+//		return dr.findAllByUserId(userId, Sort.by(Sort.Direction.DESC, "diaryId"));
+//	}
 	
 
 	

@@ -6,7 +6,7 @@
    		<c:when test="${ diaryList ne null }">
 	   		<c:forEach items="${ diaryImageList }" var="diaryImage" >
 				<c:if test="${diaryImage.diaryId eq diaryList[0].diaryId}" >
-		   			<div class="header-page ef-parallax-bg" style="background-image:url('${diaryImage.path}'), url(images/blog-header.jpg); background-size: 100%;">
+		   			<div class="header-page ef-parallax-bg" style="background-image:url('${diaryImage.path}'), url(images/blog-header.jpg); ">
 				        <div class="col-md-6 col-md-offset-6">
 				            <div class="row">
 				                <div class="inner-content">
@@ -74,10 +74,6 @@
             	
             	</c:otherwise>
             </c:choose>
-                <%-- <c:forEach var="list1" items="${list1}" var="list2" items="${list2}">
-				    ${list1.name}
-				    ${list2.name}
-				</c:forEach> --%>
             </ul>
         </div>
     </div>
@@ -90,10 +86,11 @@
                 <i class="pe-7s-angle-left"></i>
             </a>
         </li>
-        <li class="current"><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">...</a></li>
-        <li><a href="#">8</a></li>
+        <li><a href="/main.do?page=1">1</a></li>
+        <li><a href="/main.do?page=2">2</a></li>
+        <li><a href="/main.do?page=3">3</a></li>
+        <li><a href="/main.do?page=4">4</a></li>
+        <li><a href="/main.do?page=5">5</a></li>
         <li>
             <a href="#">
                 <i class="pe-7s-angle-right"></i>
@@ -101,5 +98,16 @@
         </li>
     </ul>
 </div>
+
+<script>
+$(document).ready(function () {
+	const page = parseInt('${page}') + 1;
+	
+	if($('.pagination-ef').children('li:nth-child(n+'+page+'):nth-child(-n+'+page+')').text() == page-1){
+		$('.pagination-ef').children('li:nth-child(n+'+page+'):nth-child(-n+'+page+')').addClass('current');
+	}
+	
+});
+</script>
 
 <jsp:include page="common/footer.jsp"></jsp:include>
