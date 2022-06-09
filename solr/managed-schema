@@ -115,8 +115,8 @@
 
 <field name="diary_id" type="pint" indexed="true" stored="true" multiValued="true"/>
     <field name="user_id" type="pint" indexed="true" stored="true" multiValued="true"/>
-    <field name="title" type="string" indexed="true" stored="true" multiValued="true"/>
-    <field name="content" type="string" indexed="true" stored="true" multiValued="true"/>
+    <field name="title" type="text_ko" indexed="true" stored="true" multiValued="true"/>
+    <field name="content" type="text_ko" indexed="true" stored="true" multiValued="true"/>
     <field name="create_date" type="pdate" indexed="true" stored="true" multiValued="true"/>
     <field name="diary_date" type="pdate" indexed="true" stored="true" multiValued="true"/>
 			    <!-- 
@@ -282,7 +282,7 @@
                     <filter class="solr.LowerCaseFilterFactory"/>
                     <filter class="solr.ClassicFilterFactory"/>
                     <filter class="org.apache.lucene.analysis.ko.KoreanFilterFactory" hasOrigin="true" hasCNoun="true"  bigrammable="false" queryMode="false"/>
-                    <filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="false" />
+                    <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="false" />
                     <filter class="org.apache.lucene.analysis.ko.WordSegmentFilterFactory" hasOrijin="true"/>
                     <!--filter class="org.apache.lucene.analysis.ko.HanjaMappingFilterFactory"/>
                     <filter class="org.apache.lucene.analysis.ko.PunctuationDelimitFilterFactory"/-->
@@ -293,7 +293,7 @@
                     <filter class="solr.LowerCaseFilterFactory"/>
                     <filter class="solr.ClassicFilterFactory"/>
                     <filter class="org.apache.lucene.analysis.ko.KoreanFilterFactory" hasOrigin="true" hasCNoun="true" bigrammable="false" queryMode="false"/>
-                    <filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="false" />
+                    <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="false" />
                     <filter class="org.apache.lucene.analysis.ko.WordSegmentFilterFactory" hasOrijin="true"/>
                     <filter class="org.apache.lucene.analysis.ko.HanjaMappingFilterFactory"/>
                     <filter class="org.apache.lucene.analysis.ko.PunctuationDelimitFilterFactory"/>
@@ -306,6 +306,7 @@
     <fieldType name="text_ws" class="solr.TextField" positionIncrementGap="100">
       <analyzer>
         <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+        <filter class="solr.CJKBigramFilterFactory"/>
       </analyzer>
     </fieldType>
 

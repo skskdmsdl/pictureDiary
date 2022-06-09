@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.solr.entity.DiaryEntity;
@@ -56,6 +57,16 @@ public class WriteController {
 						RedirectAttributes redirectAttributes) throws Exception {
 		
 		HttpSession session = request.getSession();
+		
+		try {
+			
+			int userId = (int)session.getAttribute("userId");
+		}catch (Exception e){
+			redirectAttributes.addFlashAttribute("mainMsg", "로그인이 필요합니다.");
+			
+			return "redirect:/";
+		}
+		
 		int userId = (int)session.getAttribute("userId");
 		Date date = Date.valueOf(diaryDate);
 			

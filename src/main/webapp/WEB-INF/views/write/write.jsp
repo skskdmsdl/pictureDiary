@@ -19,7 +19,7 @@
 					    <input type="text" id="title-info" placeholder="TITLE" name="title">
 			                <div class="diary-content-form">
 			                    <textarea placeholder="CONTENT" name="content"></textarea>
- 			                    <input type="submit" value="SAVE"> 
+ 			                    <input type="submit" class='submit' value="SAVE"> 
 			                </div>
 	                </div>
 	            </div>
@@ -66,7 +66,20 @@ if(message != ""){
 		confirmButtonColor: '#12B886'
 	});
 };
-   
+
+// save 버튼 클릭 시
+$(".submit").click(function(e) {
+	e.preventDefault();
+	const title = $('[name=title]').val();
+	if(title == ''){
+		Swal.fire({
+			text: '제목을 입력해주세요.',
+			confirmButtonColor: '#12B886'
+		});
+		return;
+	}
+	$('.submit').submit();
+});
 </script>
 
 <jsp:include page="../common/footer.jsp"></jsp:include>

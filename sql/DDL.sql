@@ -88,7 +88,7 @@ BEGIN
       INSERT INTO diary_image VALUES(diary_seq.CURRVAL, DEFAULT, NULL, '환영합니다.jpg', 'D:\pictureDiary' );
 END;
 
---alter table users modify (password varchar2(4000)) ;
+--alter table users modify (password varchar2(2000)) ;
 --alter table diary_image drop primary key;
 --alter table diary_image add constraint pk_diary_image primary key(diary_id);
 --alter table diary drop column cteate_date;

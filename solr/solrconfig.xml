@@ -36,7 +36,7 @@
  <lib dir="${solr.install.dir:../../..}/dist/" regex="solr-dataimporthandler-.*\.jar" />
 
  <lib dir="${solr.install.dir:../../..}/dist/" regex="ojdbc7.jar" />
- 
+
  <lib dir="${solr.install.dir:../../..}/contrib/extraction/lib" regex=".*\.jar"/>
 
   <!-- <lib/> directives can be used to instruct Solr to load any Jars

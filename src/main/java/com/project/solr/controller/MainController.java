@@ -48,7 +48,6 @@ public class MainController {
 			int userId = (int)session.getAttribute("userId");
 		}catch(Exception e){
 
-			
 			mav.setViewName("/main");
 			return mav;
 		}

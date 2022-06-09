@@ -101,13 +101,28 @@
 
 <script>
 $(document).ready(function () {
-	const page = parseInt('${page}') + 1;
-	
-	if($('.pagination-ef').children('li:nth-child(n+'+page+'):nth-child(-n+'+page+')').text() == page-1){
-		$('.pagination-ef').children('li:nth-child(n+'+page+'):nth-child(-n+'+page+')').addClass('current');
+	if('${page}' != ''){
+		const page = parseInt('${page}') + 1;
+		
+		if($('.pagination-ef').children('li:nth-child(n+'+page+'):nth-child(-n+'+page+')').text() == page-1){
+			$('.pagination-ef').children('li:nth-child(n+'+page+'):nth-child(-n+'+page+')').addClass('current');
+		}
+	} else {
+		$('.pagination-ef').hide();
 	}
 	
 });
+
+//controller 메시지
+const message = '${mainMsg}';
+
+if(message != ""){
+	Swal.fire({
+		text: message,
+		confirmButtonColor: '#12B886'
+	});
+};
+   
 </script>
 
 <jsp:include page="common/footer.jsp"></jsp:include>
