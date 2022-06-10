@@ -31,6 +31,7 @@
         <div class="js-masonry">
             <div class="row" id="work-grid">
                 <!-- Begin of Thumbs Portfolio -->
+                <c:forEach items="${searchList}" var="search" varStatus="status">
                 <div class="col-md-6 col-sm-6 col-xs-12 mix branding">
                     <div class="img home-portfolio-image">
                         <img src="${pageContext.request.contextPath}/images/diary/img_1.jpg" alt="Portfolio Item">
@@ -41,8 +42,8 @@
                                 <span class="output">250</span>
                             </a>
                             <div class="details">
-                                <span class="title">STYLE FASHION</span>
-                                <span class="info">NEW BAG & STYLE FASHION</span>
+                                <span class="title">${ search.title }</span>
+                                <span class="info">${search.content }</span>
                             </div>
                             <span class="btnBefore"></span>
                             <span class="btnAfter"></span>
@@ -50,7 +51,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-6 col-xs-12 mix web">
+                </c:forEach>
+<%--                 <div class="col-md-6 col-sm-6 col-xs-12 mix web">
                     <div class="img home-portfolio-image">
                         <img src="${pageContext.request.contextPath}/images/diary/img_2.jpg" alt="Portfolio Item">
                         <div class="overlay-thumb">
@@ -106,7 +108,7 @@
                             <a class="main-portfolio-link" href="/diary/detail.do"></a>
                         </div>
                     </div>
-                </div>
+                </div> --%>
             </div>
         </div>
         <div class="load-more">
