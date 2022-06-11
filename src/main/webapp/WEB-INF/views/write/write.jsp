@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
 <div class="container">
-    <form method="post" enctype="multipart/form-data" action="/write/writeDiary.do">
+    <form id="writeForm" method="post" enctype="multipart/form-data" action="/write/writeDiary.do">
 	    <div class="diary-image" id="diary-image">
 	        <input type="file" name="file" />
 	    </div>
@@ -78,7 +78,7 @@ $(".submit").click(function(e) {
 		});
 		return;
 	}
-	$('.submit').submit();
+	$('#writeForm').submit();
 });
 </script>
 

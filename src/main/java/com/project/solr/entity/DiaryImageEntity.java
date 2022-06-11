@@ -11,6 +11,7 @@ import javax.persistence.IdClass;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
 
 import lombok.AllArgsConstructor;
@@ -26,6 +27,7 @@ public class DiaryImageEntity {
 	@Column(name="DIARY_ID")
 	int diaryId;
 	@Column(name="CREATE_DATE")
+	@CreationTimestamp
 	Date createDate;
 	@Column(name="REAL_NAME")
 	String realName;

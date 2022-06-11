@@ -119,6 +119,8 @@
     <field name="content" type="text_ko" indexed="true" stored="true" multiValued="true"/>
     <field name="create_date" type="pdate" indexed="true" stored="true" multiValued="true"/>
     <field name="diary_date" type="pdate" indexed="true" stored="true" multiValued="true"/>
+    <field name="path" type="string" indexed="true" stored="true" multiValued="true"/>
+
 			    <!-- 
 	<fields>
 	</fields>

@@ -1,6 +1,6 @@
 package com.project.solr.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -38,10 +43,12 @@ public class DiaryEntity {
 	String title;
 	@Column(name="CONTENT")
 	String content;
-	@Column(name="CREATE_DATE")
+	@Column(name="CREATE_DATE", nullable = false)
+	@CreationTimestamp
 	Date createDate;
 	@Column(name="DIARY_DATE")
 	Date diaryDate;
+	
 	public int getDiaryId() {
 		return diaryId;
 	}

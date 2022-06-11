@@ -4,9 +4,9 @@
 
 	<document>
         <entity name="diary" rootEntity="true" 
-                query="select * from diary"
-                deltaImportQuery="select * from diary where diary_id = '${dataimporter.delta.diary_id}'"
-                deltaQuery="select diary_id from diary where create_date &gt; '${dataimporter.last_index_time}'"
+                query="select * from diary join diary_image using (diary_id)"
+                deltaImportQuery="select * from diary join diary_image using (diary_id) where diary_id = '${dataimporter.delta.diary_id}'"
+                deltaQuery="select diary_id from diary join diary_image using (diary_id) where create_date &gt; '${dataimporter.last_index_time}'"
                 >
             <field column="diary_id" name="diaryId" />                
             <field column="user_id" name="userId" />                
@@ -14,6 +14,7 @@
             <field column="content" name="content" />
             <field column="create_date" name="createDate" />
             <field column="diary_date" name="diaryDate" />                
+            <field column="path" name="path" />                
         </entity>
     </document>
 </dataConfig>
