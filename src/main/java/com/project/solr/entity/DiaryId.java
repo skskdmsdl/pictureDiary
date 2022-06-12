@@ -20,6 +20,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DiaryId implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private int diaryId;
 	private int userId;
 	
@@ -27,6 +29,7 @@ public class DiaryId implements Serializable {
 	public int hashCode() {
 		return Objects.hash(diaryId, userId);
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

@@ -84,16 +84,22 @@ public class SearchEngine {
 			 		String diaryId = o.get("diary_id").toString();
 			 		String userId = o.get("user_id").toString();
 			 		String title = o.get("title").toString();
-			 		String content = o.get("content").toString();
 			 		String diaryDate = o.get("diary_date").toString();
-			 		String path = o.get("path").toString();
 			 		
 			 		o.put("diary_id", diaryId.substring(1, diaryId.length()-1));
 			 		o.put("user_id", userId.substring(1, userId.length()-1));
 			 		o.put("title", title.substring(1, title.length()-1));
-			 		o.put("content", content.substring(1, content.length()-1));
 			 		o.put("diary_date", diaryDate.substring(1, diaryDate.length()-1));
-			 		o.put("path", path.substring(1, path.length()-1));
+			 		
+			 		if(o.get("content") != null) {
+			 			String content = o.get("content").toString();
+			 			o.put("content", content.substring(1, content.length()-1));
+			 		};
+			 		
+			 		if(o.get("path") != null) {
+			 			String path = o.get("path").toString();
+			 			o.put("path", path.substring(1, path.length()-1));
+			 		};
 	        }
 		 
 		 return list;

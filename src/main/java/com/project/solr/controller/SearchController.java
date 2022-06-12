@@ -20,7 +20,7 @@ public class SearchController {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		
 		SearchEngine se = new SearchEngine();
-		String url = "http://localhost:8983/solr/solrProject/select?q=*:*";
+		String url = "http://localhost:8983/solr/solrProject/select?q=*:*&rows=30";
 		
 		Map<String, Object> map = se.process(url);
 		
