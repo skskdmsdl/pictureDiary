@@ -3,6 +3,7 @@ package com.project.solr.common;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -30,11 +31,10 @@ public class SearchEngine {
 			
 			//커넥션으로부터 결과를 inputstream으로 받아온다.
 			URLConnection connection = url.openConnection();
-			connection.setConnectTimeout(30000);	//커넥션 타임아웃 30초
-			connection.setReadTimeout(30000);		//리딩 타임아웃 30초
+			connection.setConnectTimeout(60000);	//커넥션 타임아웃 60초
+			connection.setReadTimeout(60000);		//리딩 타임아웃 60초
 
 			InputStream is = connection.getInputStream();
-			
 			JsonObject jsonObject = JsonParser.parseReader(new InputStreamReader(is, "UTF-8")).getAsJsonObject();
 
 			List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
