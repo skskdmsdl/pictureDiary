@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?> 
 <dataConfig>
-    <dataSource driver="oracle.jdbc.driver.OracleDriver" url="jdbc:oracle:thin:@localhost:1521:xe" user="PICTURE_DIARY" password="PICTURE_DIARY" readOnly="ture"/>
+    <dataSource driver="oracle.jdbc.driver.OracleDriver" url="jdbc:oracle:thin:@localhost:1521:xe" user="PICTURE_DIARY" password="PICTURE_DIARY" />
 
 	<document>
-        <entity name="diary" rootEntity="true" 
+        <entity name="diary" pk="diary_id" 
                 query="select * from diary left outer join diary_image using (diary_id)"
-                deltaImportQuery="select * from diary left outer join diary_image using (diary_id) where diary_id = '${dataimporter.delta.diary_id}'"
-                deltaQuery="select diary_id from diary left outer join diary_image using (diary_id) where create_date &gt; '${dataimporter.last_index_time}'"
+                deltaImportQuery="select * from diary left outer join diary_image using (diary_id) where diary_id = '${dih.delta.diary_id}'"
+                deltaQuery="select diary_id from diary where create_date >'${dih.last_index_time}'"
                 >
-            <field column="diary_id" name="diaryId" />                
-            <field column="user_id" name="userId" />                
+            <field column="diary_id" name="diary_id" />                
+            <field column="user_id" name="user_id" />                
             <field column="title" name="title" />
             <field column="content" name="content" />
-            <field column="create_date" name="createDate" />
-            <field column="diary_date" name="diaryDate" />                
+            <field column="create_date" name="create_date" />
+            <field column="diary_date" name="diary_date" />                
             <field column="path" name="path" />                
         </entity>
     </document>

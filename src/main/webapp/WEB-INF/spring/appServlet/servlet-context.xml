@@ -5,9 +5,16 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<task:annotation-driven />
+	<beans:bean id="solrScheduler" class="com.project.solr.common.SolrScheduler" />
+
+<!--     <task:scheduler id="gsScheduler" pool-size="10" />
+    <task:executor id="gsTaskExecutor" pool-size="10" />
+    <task:annotation-driven executor="gsTaskExecutor" scheduler="gsScheduler" /> -->
 
 	<!-- 인터셉터 객체 생성 -->
 	<!-- <beans:bean id="LoginInterceptor" class="com.project.solr.interceptor.LoginInterceptor" /> -->
