@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/common/header.jsp"%>
 
-<div class="container">
+<div class="container" id="bannerContainer">
 	<c:choose>
    		<c:when test="${ diaryList ne null }">
 	   		<c:forEach items="${ diaryImageList }" var="diaryImage" >
@@ -10,7 +10,7 @@
 				        <div class="col-md-6 col-md-offset-6">
 				            <div class="row">
 				                <div class="inner-content">
-				                    <div class="header-content">
+				                    <div id="header-content" class="header-content">
 				                        <h1>${ diaryList[0].title }</h1>
 				                        <hr>
 				                        <p>${ diaryList[0].content }</p>
@@ -27,7 +27,7 @@
 		        <div class="col-md-6 col-md-offset-6">
 		            <div class="row">
 		                <div class="inner-content">
-		                    <div class="header-content">
+		                    <div id="header-content" class="header-content">
 		                        <h1></h1>
 		                        <hr>
 		                        <p>로그인이 필요합니다.</p>
@@ -50,7 +50,7 @@
 		            <c:forEach items="${diaryList}" var="diary" varStatus="status">
 		                <li>
 		                    <div class="cbp_tmtime">
-		                        <span>${ diary.diaryDate }</span>
+		                        <span><fmt:formatDate value="${diary.diaryDate}" pattern="yyyy-MM-dd"/></span>
 		                    </div>
 		                    <div class="cbp_tmicon icon-calendar"></div>
 		                    <div class="cbp_tmlabel wow animated fadeInUp" data-wow-delay="0.10s">
@@ -122,6 +122,19 @@ if(message != ""){
 		confirmButtonColor: '#12B886'
 	});
 };
+
+// 배너 이미지 없는 경우 동적 html 추가
+if($('#header-content').hasClass('header-content') == ''){
+	const container = $('#bannerContainer');
+	$(container).prepend('<div class="header-page ef-parallax-bg" style="background-image:url(images/blog-header.jpg); ">'
+		+'<div class="col-md-6 col-md-offset-6">'
+		+'<div class="row">'
+		+'<div class="inner-content">'
+		+'<div id="header-content" class="header-content">'
+		+'<h1>${ diaryList[0].title }</h1><hr>'
+		+'<p>${ diaryList[0].content }</p>'
+		+'</div></div></div></div></div>');
+} 
    
 </script>
 

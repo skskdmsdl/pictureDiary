@@ -58,7 +58,6 @@ public class MainController {
 		List<DiaryEntity> diaryList = dr.findAllByUserId(userId, PageRequest.of(page-1, 5, Sort.by("diaryDate").descending().and(Sort.by("diaryId").descending())));
 		//diaryList = diaryList.stream().sorted(Comparator.comparing(DiaryEntity::getDiaryDate).reversed()).collect(Collectors.toList());
 		
-		System.out.println("결과 출력2"+diaryList);
 		// diaryImage 정보 전체 가져오기
 		List<DiaryImageEntity> diaryImageList = diaryImageService.findAll();
 		
