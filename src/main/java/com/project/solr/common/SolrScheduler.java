@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SolrScheduler {
 	
-	@Scheduled(fixedDelay = 60000)
+	//@Scheduled(fixedDelay = 60000)
 	public void importSchedule() {
 		System.out.println("========================-1분마다 실행====================");
 		try {
