@@ -3,12 +3,12 @@
     <dataSource driver="oracle.jdbc.driver.OracleDriver" url="jdbc:oracle:thin:@localhost:1521:xe" user="PICTURE_DIARY" password="PICTURE_DIARY" />
 
 	<document>
-        <entity name="diary" pk="diary_id" 
+        <entity name="diary" pk="ID" 
                 query="select * from diary left outer join diary_image using (diary_id)"
-                deltaImportQuery="select * from diary left outer join diary_image using (diary_id) where diary_id = '${dih.delta.diary_id}'"
-                deltaQuery="select diary_id from diary where create_date >'${dih.last_index_time}'"
+                deltaImportQuery="select * from diary left outer join diary_image using (diary_id) where diary_id = '${dataimporter.delta.ID}'"
+                deltaQuery="select diary_id as ID from diary where sys_extract_utc(to_timestamp (to_char(create_date, 'YYYY-MM-DD HH24:MI:SS'))) > '${dataimporter.last_index_time}'"
                 >
-            <field column="diary_id" name="diary_id" />                
+            <field column="diary_id" name="id" />                
             <field column="user_id" name="user_id" />                
             <field column="title" name="title" />
             <field column="content" name="content" />

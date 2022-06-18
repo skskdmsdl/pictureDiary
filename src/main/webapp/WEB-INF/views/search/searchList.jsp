@@ -34,14 +34,14 @@ const $j112 = jQuery.noConflict();
         </button>
         <div class="works-filter">
             <a href="javascript:void(0)" class="filter active" data-filter="mix">All</a>
-            <a href="javascript:void(0)" class="filter" data-filter="title">Title</a>
-            <a href="javascript:void(0)" class="filter" data-filter="content">Content</a>
+            <a href="javascript:void(0)" class="filter" data-filter="titleFilter">Title</a>
+            <a href="javascript:void(0)" class="filter" data-filter="contentFilter">Content</a>
         </div>
         <div class="js-masonry">
             <div class="row" id="work-grid">
                 <!-- Begin of Thumbs Portfolio -->
                 <c:forEach items="${searchList}" var="search" varStatus="status">
-                <div class="col-md-6 col-sm-6 col-xs-12 mix branding">
+                <div class="col-md-6 col-sm-6 col-xs-12 mix">
                     <div class="img home-portfolio-image">
                         <img src="${search.path}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/images/diary/img_1.jpg'" alt="Portfolio Item">
                         <div class="overlay-thumb">
@@ -52,7 +52,7 @@ const $j112 = jQuery.noConflict();
                             </a>
                             <div class="details">
                                 <span class="title">${ search.title }</span>
-                                <span class="info">${search.content }</span>
+                                <span class="info">${ search.content }</span>
                             </div>
                             <span class="btnBefore"></span>
                             <span class="btnAfter"></span>
@@ -60,6 +60,48 @@ const $j112 = jQuery.noConflict();
                         </div>
                     </div>
                 </div>
+                </c:forEach>
+                <c:forEach items="${titleSearchList}" var="search" varStatus="status">
+	                <div class="col-md-6 col-sm-6 col-xs-12 titleFilter">
+	                    <div class="img home-portfolio-image">
+	                        <img src="${search.path}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/images/diary/img_1.jpg'" alt="Portfolio Item">
+	                        <div class="overlay-thumb">
+	                            <a href="javascript:void(0)" class="like-product">
+	                                <i class="ion-ios-heart-outline"></i>
+	                                <span class="like-product">Liked</span>
+	                                <span class="output">250</span>
+	                            </a>
+	                            <div class="details">
+	                                <span class="title">${ search.title }</span>
+	                                <span class="info">${ search.content }</span>
+	                            </div>
+	                            <span class="btnBefore"></span>
+	                            <span class="btnAfter"></span>
+	                            <a class="main-portfolio-link" href="/diary/detail.do"></a>
+	                        </div>
+	                    </div>
+	                </div>
+                </c:forEach>
+                <c:forEach items="${contentSearchList}" var="search" varStatus="status">
+	                <div class="col-md-6 col-sm-6 col-xs-12 contentFilter">
+	                    <div class="img home-portfolio-image">
+	                        <img src="${search.path}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/images/diary/img_1.jpg'" alt="Portfolio Item">
+	                        <div class="overlay-thumb">
+	                            <a href="javascript:void(0)" class="like-product">
+	                                <i class="ion-ios-heart-outline"></i>
+	                                <span class="like-product">Liked</span>
+	                                <span class="output">250</span>
+	                            </a>
+	                            <div class="details">
+	                                <span class="title">${ search.title }</span>
+	                                <span class="info">${ search.content }</span>
+	                            </div>
+	                            <span class="btnBefore"></span>
+	                            <span class="btnAfter"></span>
+	                            <a class="main-portfolio-link" href="/diary/detail.do"></a>
+	                        </div>
+	                    </div>
+	                </div>
                 </c:forEach>
             </div>
         </div>
@@ -70,12 +112,25 @@ const $j112 = jQuery.noConflict();
 </div>
 
 <script>
+// 키워드 검색
 $("#search__input-1").on("keydown",function(key){         
 	if(key.keyCode==13) {            
 		const word = $('input[name=word]').val();   
-		$("#searchform").attr("action","/search/searchList.do").submit();
+		$("#searchform").attr("action","/search/searchList.do?word="+word).submit();
 	}     
 });
+
+// 검색 결과 내용 노출
+$(document).ready(function(){
+	$('.titleFilter').hide();
+	$('.contentFilter').hide();
+	$('.filter').click(function(){
+		$('.titleFilter').show();
+		$('.contentFilter').show();
+	});
+	
+});
+
 // 자동완성
 $j112(document).ready(function(){
 	// TODO [Step 2-1-3] 검색어에 대한 jquery ajax 자동완성 구현하기 
