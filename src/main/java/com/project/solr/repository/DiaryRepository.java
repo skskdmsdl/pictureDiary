@@ -17,4 +17,6 @@ public interface DiaryRepository extends JpaRepository<DiaryEntity, String>{
 //	List<DiaryEntity> findAllByUserId(int userId, Sort sort);
 
 	List<DiaryEntity> findAllByUserId(int userId, Pageable pageable);
+
+	List<DiaryEntity> findByUserIdAndTitleContainingOrUserIdAndContentContaining(int userId1, String title, int userId2, String content);
 }

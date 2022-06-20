@@ -18,6 +18,11 @@ public class DiaryServiceImpl implements DiaryService{
 
 	@Autowired
 	private DiaryRepository dr;
+
+	@Override
+	public List<DiaryEntity> autocomplete(int userId, String keyword) {
+		return dr.findByUserIdAndTitleContainingOrUserIdAndContentContaining(userId, keyword, userId, keyword);
+	}
 	
 //	@Override
 //	public List<DiaryEntity> findAllByUserId(int userId) {

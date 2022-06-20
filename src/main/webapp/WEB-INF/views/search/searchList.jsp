@@ -149,7 +149,7 @@ $j112(document).ready(function(){
     		  }
     	  }); 
       },
-      minLength : 1,
+      minLength : 2,
       select: function(event, ui){
     	    $j112("#search__input-1").val(this.value);
       }
