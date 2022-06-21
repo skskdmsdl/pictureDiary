@@ -52,9 +52,9 @@ public class SearchController {
 		
 		SearchEngine se = new SearchEngine();
 //		String url = "http://localhost:8983/solr/solrProject/select?fq=title:"+encodeResult+"&fq=content:"+encodeResult+"&q=user_id:"+userId+"&sort=diary_date%20desc,diary_id%20desc";	
-		String url = "http://localhost:8983/solr/solrProject/query?q=title:"+encodeResult+"%20content:"+encodeResult+"&q.op=OR&indent=true&sort=create_date%20desc&fq=user_id:"+userId;	
-		String urlTitle = "http://localhost:8983/solr/solrProject/query?q=title:"+encodeResult+"&q.op=OR&indent=true&sort=create_date%20desc&fq=user_id:"+userId;	
-		String urlContent = "http://localhost:8983/solr/solrProject/query?q=content:"+encodeResult+"&q.op=OR&indent=true&sort=create_date%20desc&fq=user_id:"+userId;	
+		String url = "http://localhost:8983/solr/solrProject/query?q=title:"+encodeResult+"%20content:"+encodeResult+"&q.op=OR&indent=true&rows=2&sort=create_date%20desc&fq=user_id:"+userId;	
+		String urlTitle = "http://localhost:8983/solr/solrProject/query?q=title:"+encodeResult+"&q.op=OR&indent=true&rows=2&sort=create_date%20desc&fq=user_id:"+userId;	
+		String urlContent = "http://localhost:8983/solr/solrProject/query?q=content:"+encodeResult+"&q.op=OR&indent=true&rows=2&sort=create_date%20desc&fq=user_id:"+userId;	
 		System.out.println("url : "+url);
 		
 		Map<String, Object> map = se.process(url);
@@ -72,7 +72,34 @@ public class SearchController {
 		return mav;
 	}
 	
-	@SuppressWarnings("unchecked")
+	@RequestMapping("/addSearchList.do")
+	@ResponseBody
+	public List<Object> AddSearchList(@RequestParam Map<String, String> params, HttpSession session, @RequestParam(required=false, defaultValue="*") String word) throws Exception {
+		
+		List<Object> searchList = new ArrayList<>();
+		int userId = (int)session.getAttribute("userId");		
+		String filter = params.get("filter");
+		String listCount = params.get("listCount");
+		String encodeResult = URLEncoder.encode(word, "UTF-8");
+		String url = null;
+		
+		SearchEngine se = new SearchEngine();
+
+		if(filter.equals("titleFilter")) {
+			url = "http://localhost:8983/solr/solrProject/query?q=title:"+encodeResult+"&q.op=OR&indent=true&rows="+listCount+"&sort=create_date%20desc&fq=user_id:"+userId;	
+		}else if(filter.equals("contentFilter")) {
+			url = "http://localhost:8983/solr/solrProject/query?q=content:"+encodeResult+"&q.op=OR&indent=true&rows="+listCount+"&sort=create_date%20desc&fq=user_id:"+userId;	
+		}else {
+			url = "http://localhost:8983/solr/solrProject/query?q=title:"+encodeResult+"%20content:"+encodeResult+"&q.op=OR&indent=true&rows="+listCount+"&sort=create_date%20desc&fq=user_id:"+userId;	
+		}
+		Map<String, Object> map = se.process(url);
+		searchList.add(map.get("searchList"));
+		
+		return searchList;
+	}
+	
+	
+	
 	private List<String> search(int userId, String keyword) {
 		List<DiaryEntity> diaryList = diaryService.autocomplete(userId, keyword);
 		List<String> resultList = new ArrayList<>();

@@ -47,6 +47,7 @@
             <ul class="cbp_tmtimeline">
             <c:choose>
             	<c:when test="${ diaryList ne null }">
+            	총 ${ totalContents } 건
 		            <c:forEach items="${diaryList}" var="diary" varStatus="status">
 		                <li>
 		                    <div class="cbp_tmtime">
@@ -79,38 +80,20 @@
     </div>
 </div>
 
-<div class="container">
-    <ul class="pagination-ef wow animated fadeInUp" data-wow-delay="0.20s">
-        <li>
-            <a href="#">
-                <i class="pe-7s-angle-left"></i>
-            </a>
-        </li>
-        <li><a href="/main.do?page=1">1</a></li>
-        <li><a href="/main.do?page=2">2</a></li>
-        <li><a href="/main.do?page=3">3</a></li>
-        <li><a href="/main.do?page=4">4</a></li>
-        <li><a href="/main.do?page=5">5</a></li>
-        <li>
-            <a href="#">
-                <i class="pe-7s-angle-right"></i>
-            </a>
-        </li>
-    </ul>
-</div>
+<c:if test="${sessionScope.nickname ne null}">
+	<div class="container">
+	<ul class="pagination-ef wow animated fadeInUp" data-wow-delay="0.20s">${ pageBar }</ul>
+	</div>
+</c:if>
 
 <script>
 $(document).ready(function () {
-	if('${page}' != ''){
-		const page = parseInt('${page}') + 1;
-		
-		if($('.pagination-ef').children('li:nth-child(n+'+page+'):nth-child(-n+'+page+')').text() == page-1){
+	if("${pageBar}" == ''){
+		/* if($('.pagination-ef').children('li:nth-child(n+'+page+'):nth-child(-n+'+page+')').text() == page-1){
 			$('.pagination-ef').children('li:nth-child(n+'+page+'):nth-child(-n+'+page+')').addClass('current');
-		}
-	} else {
+		} */
 		$('.pagination-ef').hide();
-	}
-	
+	} 
 });
 
 //controller 메시지

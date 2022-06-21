@@ -105,13 +105,45 @@ const $j112 = jQuery.noConflict();
                 </c:forEach>
             </div>
         </div>
-        <div class="load-more">
-            <a href="javascript:void(0)" id="load-more-2col"><i class="icon-refresh"></i></a>
-        </div>
+        <input type="hidden" id="listCount" value="2"/>
+        <c:if test="${fn:length(searchList) < totalCount}">
+	        <div class="load-more">
+	            <a href="javascript:void(0)"><i class="icon-refresh"></i></a>
+	        </div>
+        </c:if>
     </div>
 </div>
 
 <script>
+$(document).ready(function(){
+	$('.filter').click(function(){
+		$('#listCount').val(2);
+		$('.mix').children().eq(3).remove();
+		$('.titleFilter').children().eq(3).remove();
+		$('.contentFilter').children().eq(3).remove();
+		const filter = $(this).data('filter');
+		
+		if(filter.indexOf('mix')> -1){
+			$('.titleFilter').hide();
+			$('.contentFilter').hide();
+			$('.mix').show();
+		}
+		if(filter.indexOf('titleFilter')> -1){
+			$('.mix').hide();
+			$('.contentFilter').hide();
+			$('.titleFilter').show();
+			
+		}
+		if(filter.indexOf('contentFilter')> -1){
+			$('.mix').hide();
+			$('.titleFilter').hide();
+			$('.contentFilter').show();
+			
+		}
+		
+	});
+});
+
 // 키워드 검색
 $("#search__input-1").on("keydown",function(key){         
 	if(key.keyCode==13) {            
@@ -155,7 +187,49 @@ $j112(document).ready(function(){
       }
     });
     
-}); 
+});
+
+// 페이징
+$('.icon-refresh').click(function(){
+	let addListHtml = "";
+	const urlParams = new URL(location.href).searchParams;
+	const word = urlParams.get('word');
+	const filter = $(".active").data('filter');
+	const listCount = Number($('#listCount').val()) + 2;
+	$('#listCount').val(listCount);
+	const listContainer = $('.'+filter);
+	
+
+	$.ajax({
+		url : '/search/addSearchList.do',
+		type : 'POST',
+		dataType : 'json',
+		data : {
+			"word" : word,
+			"filter" : filter,
+			"listCount" : listCount
+		},
+		success : function(data){
+			listContainer.remove();
+			
+			for(let i = 0; i < data[0].length; i++){
+				addListHtml +='<div class="col-md-6 col-sm-6 col-xs-12 mix"><div class="img home-portfolio-image">';
+				if(data[0][i].path == undefined){
+					addListHtml +='<img src="${pageContext.request.contextPath}/images/diary/img_1.jpg" alt="Portfolio Item">';
+				}else {
+					addListHtml +='<img src="'+data[0][i].path+'" alt="Portfolio Item">';
+				}
+				addListHtml +='<div class="overlay-thumb"><a href="javascript:void(0)" class="like-product">';
+				addListHtml +='<i class="ion-ios-heart-outline"></i><span class="like-product">Liked</span><span class="output">250</span></a>';
+				addListHtml +='<div class="details"><span class="title">'+data[0][i].title+'</span>';
+				addListHtml +='<span class="info">'+data[0][i].content+'</span></div>';
+				addListHtml +='<span class="btnBefore"></span><span class="btnAfter"></span>';
+				addListHtml +='<a class="main-portfolio-link" href="/diary/detail.do"></a></div></div></div>';
+			}
+			$("#work-grid").prepend(addListHtml);
+		}	
+	});
+});
 </script>
 
 <jsp:include page="../common/footer.jsp"></jsp:include>
