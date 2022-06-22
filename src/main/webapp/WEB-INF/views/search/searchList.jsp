@@ -115,12 +115,16 @@ const $j112 = jQuery.noConflict();
 </div>
 
 <script>
+// 검색 결과 내용 노출
 $(document).ready(function(){
+	$('.titleFilter').hide();
+	$('.contentFilter').hide();
+	
 	$('.filter').click(function(){
 		$('#listCount').val(2);
-		$('.mix').children().eq(3).remove();
-		$('.titleFilter').children().eq(3).remove();
-		$('.contentFilter').children().eq(3).remove();
+		$('.mix').children().slice(2).remove();
+		$('.titleFilter').children().slice(2).remove();
+		$('.contentFilter').children().slice(2).remove();
 		const filter = $(this).data('filter');
 		
 		if(filter.indexOf('mix')> -1){
@@ -150,17 +154,6 @@ $("#search__input-1").on("keydown",function(key){         
 		const word = $('input[name=word]').val();   
 		$("#searchform").attr("action","/search/searchList.do?word="+word).submit();
 	}     
-});
-
-// 검색 결과 내용 노출
-$(document).ready(function(){
-	$('.titleFilter').hide();
-	$('.contentFilter').hide();
-	$('.filter').click(function(){
-		$('.titleFilter').show();
-		$('.contentFilter').show();
-	});
-	
 });
 
 // 자동완성
@@ -213,7 +206,7 @@ $('.icon-refresh').click(function(){
 			listContainer.remove();
 			
 			for(let i = 0; i < data[0].length; i++){
-				addListHtml +='<div class="col-md-6 col-sm-6 col-xs-12 mix"><div class="img home-portfolio-image">';
+				addListHtml +='<div class="col-md-6 col-sm-6 col-xs-12 '+filter+'"><div class="img home-portfolio-image">';
 				if(data[0][i].path == undefined){
 					addListHtml +='<img src="${pageContext.request.contextPath}/images/diary/img_1.jpg" alt="Portfolio Item">';
 				}else {
