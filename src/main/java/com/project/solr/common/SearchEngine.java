@@ -60,7 +60,8 @@ public class SearchEngine {
 		return resultMap;
 	}
 	
-	 public static Map<String, Object> getMapFromJsonObject( JsonObject jsonObj ) {
+	@SuppressWarnings("unchecked")
+	public static Map<String, Object> getMapFromJsonObject( JsonObject jsonObj ) {
 	        Map<String, Object> map = null;
 	        
 	        try {
