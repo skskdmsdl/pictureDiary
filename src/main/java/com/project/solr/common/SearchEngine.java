@@ -87,7 +87,7 @@ public class SearchEngine {
 			 		String title = o.get("title").toString();
 			 		String diaryDate = o.get("diary_date").toString();
 			 		
-			 		o.put("diary_id", diaryId.substring(1, diaryId.length()-1));
+			 		o.put("diary_id", diaryId);
 			 		o.put("user_id", userId.substring(1, userId.length()-1));
 			 		o.put("title", title.substring(1, title.length()-1));
 			 		o.put("diary_date", diaryDate.substring(1, diaryDate.length()-1));

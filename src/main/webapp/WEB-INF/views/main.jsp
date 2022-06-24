@@ -62,7 +62,7 @@
 		                            	</c:if>
 		                            </c:forEach>
 		                        </div>
-		                        <a href="diary/detail.do">
+		                        <a href="diary/detail.do?diaryId=${ diary.diaryId }">
 		                            <h1>${ diary.title }</h1>
 		                        </a>
 		

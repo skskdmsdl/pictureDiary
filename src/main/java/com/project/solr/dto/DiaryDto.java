@@ -1,5 +1,7 @@
 package com.project.solr.dto;
 
+import java.util.Date;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +15,7 @@ public class DiaryDto {
 	private String title;
 	private String content;
 	private String path;
+	private Date diaryDate;
 	
 	public String getTitle() {
 		return title;
@@ -32,5 +35,12 @@ public class DiaryDto {
 	public void setPath(String path) {
 		this.path = path;
 	}
+	public Date getDiaryDate() {
+		return diaryDate;
+	}
+	public void setDiaryDate(Date diaryDate) {
+		this.diaryDate = diaryDate;
+	}
+	
 	
 }

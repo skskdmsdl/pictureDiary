@@ -56,7 +56,7 @@ const $j112 = jQuery.noConflict();
                             </div>
                             <span class="btnBefore"></span>
                             <span class="btnAfter"></span>
-                            <a class="main-portfolio-link" href="/diary/detail.do"></a>
+                            <a class="main-portfolio-link" href="/diary/detail.do?diaryId=${ search.diary_id }"></a>
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@ const $j112 = jQuery.noConflict();
 	                            </div>
 	                            <span class="btnBefore"></span>
 	                            <span class="btnAfter"></span>
-	                            <a class="main-portfolio-link" href="/diary/detail.do"></a>
+	                            <a class="main-portfolio-link" href="/diary/detail.do?diaryId=${ search.diary_id }"></a>
 	                        </div>
 	                    </div>
 	                </div>
@@ -98,7 +98,7 @@ const $j112 = jQuery.noConflict();
 	                            </div>
 	                            <span class="btnBefore"></span>
 	                            <span class="btnAfter"></span>
-	                            <a class="main-portfolio-link" href="/diary/detail.do"></a>
+	                            <a class="main-portfolio-link" href="/diary/detail.do?diaryId=${ search.diary_id }"></a>
 	                        </div>
 	                    </div>
 	                </div>
@@ -217,7 +217,7 @@ $('.icon-refresh').click(function(){
 				addListHtml +='<div class="details"><span class="title">'+data[0][i].title+'</span>';
 				addListHtml +='<span class="info">'+data[0][i].content+'</span></div>';
 				addListHtml +='<span class="btnBefore"></span><span class="btnAfter"></span>';
-				addListHtml +='<a class="main-portfolio-link" href="/diary/detail.do"></a></div></div></div>';
+				addListHtml +='<a class="main-portfolio-link" href="/diary/detail.do?diaryId='+data[0][i].diary_id+'"></a></div></div></div>';
 			}
 			$("#work-grid").prepend(addListHtml);
 		}	

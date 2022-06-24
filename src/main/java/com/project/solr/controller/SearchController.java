@@ -68,6 +68,8 @@ public class SearchController {
 		mav.addObject("contentSearchList", contentMap.get("searchList"));
 
 		mav.setViewName("search/searchList");
+		
+		System.out.println("조회"+map.get("searchList").toString());
 
 		return mav;
 	}

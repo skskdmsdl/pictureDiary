@@ -12,4 +12,6 @@ import com.project.solr.entity.DiaryImageEntity;
 public interface DiaryImageRepository extends JpaRepository<DiaryImageEntity, String>{
 
 	List<DiaryImageEntity> findAll();
+	
+	DiaryImageEntity findByDiaryId(int diaryId);
 }
