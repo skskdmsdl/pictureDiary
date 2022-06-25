@@ -46,9 +46,11 @@ public class SearchController {
 
 			return mav;
 		}
-		
+		word = word.replaceAll(" ", "");
 		int userId = (int)session.getAttribute("userId");		
 		String encodeResult = URLEncoder.encode(word, "UTF-8");
+		
+		System.out.println(word);
 		
 		SearchEngine se = new SearchEngine();
 //		String url = "http://localhost:8983/solr/solrProject/select?fq=title:"+encodeResult+"&fq=content:"+encodeResult+"&q=user_id:"+userId+"&sort=diary_date%20desc,diary_id%20desc";	
