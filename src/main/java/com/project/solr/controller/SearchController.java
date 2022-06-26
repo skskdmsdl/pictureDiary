@@ -50,8 +50,6 @@ public class SearchController {
 		int userId = (int)session.getAttribute("userId");		
 		String encodeResult = URLEncoder.encode(word, "UTF-8");
 		
-		System.out.println(word);
-		
 		SearchEngine se = new SearchEngine();
 //		String url = "http://localhost:8983/solr/solrProject/select?fq=title:"+encodeResult+"&fq=content:"+encodeResult+"&q=user_id:"+userId+"&sort=diary_date%20desc,diary_id%20desc";	
 		String url = "http://localhost:8983/solr/solrProject/query?q=title:"+encodeResult+"%20content:"+encodeResult+"&q.op=OR&indent=true&rows=2&sort=create_date%20desc&fq=user_id:"+userId;	
@@ -71,8 +69,6 @@ public class SearchController {
 
 		mav.setViewName("search/searchList");
 		
-		System.out.println("조회"+map.get("searchList").toString());
-
 		return mav;
 	}
 	

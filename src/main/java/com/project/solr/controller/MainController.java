@@ -68,7 +68,6 @@ public class MainController {
 		//전체컨텐츠수 구하기
 		List<DiaryEntity> totalList = dr.findCountByUserId(userId); 
 		int totalContents = totalList.size(); 
-		System.out.println("총 합 : "+totalContents);
 		String url = request.getRequestURI() + "?";
 		String pageBar = Utils.getPageBarHtml(cPage, 5, totalContents, url);
 

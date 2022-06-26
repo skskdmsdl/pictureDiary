@@ -84,7 +84,6 @@ public class WriteController {
 			DiaryImageEntity diaryImage = new DiaryImageEntity(); 
 			
 			String path = request.getServletContext().getRealPath("/upload/diaryImage/");
-//			String path = "/upload/diaryImage/";
 			
 			// 원본 파일명
 			String originalFileName = diaryFile.getOriginalFilename();
