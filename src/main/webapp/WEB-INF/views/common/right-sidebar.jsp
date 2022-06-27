@@ -13,6 +13,7 @@
                     <li><a href="/">Diary</a></li>
                     <li><a href="#" onclick="pageLinkBtn('write','${sessionScope.userId}')">Write</a></li>
                     <li><a href="#" onclick="pageLinkBtn('search','${sessionScope.userId}')">Search</a></li>
+                    <li><a href="#" onclick="pageLinkBtn('like','${sessionScope.userId}')">Like</a></li>
                 </ul>
             </div>
         </nav>
@@ -42,6 +43,9 @@ function pageLinkBtn(pageInfo, sessionCheck){
 	};
 	if(pageInfo == 'search'){
 		location.href="/search/searchList.do"
+	};
+	if(pageInfo == 'like'){
+		location.href="/diary/likeList.do"
 	};
 }
 </script>

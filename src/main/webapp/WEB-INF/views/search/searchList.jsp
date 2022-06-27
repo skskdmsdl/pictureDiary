@@ -45,10 +45,9 @@ const $j112 = jQuery.noConflict();
                     <div class="img home-portfolio-image">
                         <img src="${search.path}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/images/diary/img_1.jpg'" alt="Portfolio Item">
                         <div class="overlay-thumb">
-                            <a href="javascript:void(0)" class="like-product">
+                            <a href="javascript:void(0)" class="like-product" data-diary="${search.diary_id}">
                                 <i class="ion-ios-heart-outline"></i>
                                 <span class="like-product">Liked</span>
-                                <span class="output">250</span>
                             </a>
                             <div class="details">
                                 <span class="title">${ search.title }</span>
@@ -66,10 +65,9 @@ const $j112 = jQuery.noConflict();
 	                    <div class="img home-portfolio-image">
 	                        <img src="${search.path}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/images/diary/img_1.jpg'" alt="Portfolio Item">
 	                        <div class="overlay-thumb">
-	                            <a href="javascript:void(0)" class="like-product">
+	                            <a href="javascript:void(0)" class="like-product" data-diary="${search.diary_id}">
 	                                <i class="ion-ios-heart-outline"></i>
 	                                <span class="like-product">Liked</span>
-	                                <span class="output">250</span>
 	                            </a>
 	                            <div class="details">
 	                                <span class="title">${ search.title }</span>
@@ -87,10 +85,9 @@ const $j112 = jQuery.noConflict();
 	                    <div class="img home-portfolio-image">
 	                        <img src="${search.path}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/images/diary/img_1.jpg'" alt="Portfolio Item">
 	                        <div class="overlay-thumb">
-	                            <a href="javascript:void(0)" class="like-product">
+	                            <a href="javascript:void(0)" class="like-product" data-diary="${search.diary_id}">
 	                                <i class="ion-ios-heart-outline"></i>
 	                                <span class="like-product">Liked</span>
-	                                <span class="output">250</span>
 	                            </a>
 	                            <div class="details">
 	                                <span class="title">${ search.title }</span>
@@ -212,8 +209,8 @@ $('.icon-refresh').click(function(){
 				}else {
 					addListHtml +='<img src="'+data[0][i].path+'" alt="Portfolio Item">';
 				}
-				addListHtml +='<div class="overlay-thumb"><a href="javascript:void(0)" class="like-product">';
-				addListHtml +='<i class="ion-ios-heart-outline"></i><span class="like-product">Liked</span><span class="output">250</span></a>';
+				addListHtml +='<div class="overlay-thumb"><a href="javascript:void(0)" class="like-product" data-diary="'+data[0][i].diary_id+'">';
+				addListHtml +='<i class="ion-ios-heart-outline"></i><span class="like-product">Liked</span></a>';
 				addListHtml +='<div class="details"><span class="title">'+data[0][i].title+'</span>';
 				addListHtml +='<span class="info">'+data[0][i].content+'</span></div>';
 				addListHtml +='<span class="btnBefore"></span><span class="btnAfter"></span>';
@@ -221,6 +218,24 @@ $('.icon-refresh').click(function(){
 			}
 			$("#work-grid").prepend(addListHtml);
 		}	
+	});
+});
+
+// like
+$(document).on('click', '.like-product', function(){
+	console.log(${sessionScope.userId});
+	console.log(this.dataset.diary)
+	$.ajax({
+		url : '${ pageContext.request.contextPath }/diary/likeUpdate.do',
+		type : 'POST',
+		dataType : 'text',
+		data : {
+			"userId" : ${sessionScope.userId},
+			"diaryId" : this.dataset.diary
+		},
+		success : function(data){
+			console.log(data);
+		}
 	});
 });
 </script>

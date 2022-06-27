@@ -1,15 +1,24 @@
 package com.project.solr.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.project.solr.dto.DiaryDto;
 import com.project.solr.entity.DiaryEntity;
 import com.project.solr.entity.DiaryImageEntity;
+import com.project.solr.entity.LikeEntity;
 import com.project.solr.repository.DiaryImageRepository;
 import com.project.solr.repository.DiaryRepository;
+import com.project.solr.repository.LikeRepository;
 import com.project.solr.repository.UserRepository;
 
 @Controller
@@ -21,6 +30,9 @@ public class DiaryController {
 	
 	@Autowired
 	private DiaryImageRepository dir;
+	
+	@Autowired
+	private LikeRepository lr;
 
 	@RequestMapping("/detail.do")
 	public String Detail(@RequestParam int diaryId, DiaryDto diary) throws Exception {
@@ -40,5 +52,41 @@ public class DiaryController {
 		
 		return "diary/detail";
 	}
+	
+	@RequestMapping("/likeList.do")
+	public ModelAndView LikeList(ModelAndView mav, HttpSession session) throws Exception {
+		
+		try {
+			
+			int userId = (int)session.getAttribute("userId");
+		}catch (Exception e){
+			mav.setViewName("redirect:/");
 
+			return mav;
+		}
+		
+		mav.setViewName("diary/like");
+
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/likeUpdate.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String LikeUpdate(ModelAndView mav, @RequestParam int diaryId) throws Exception {
+		
+		LikeEntity like = lr.findByDiaryId(diaryId);
+		
+		if(like == null) {
+			LikeEntity insertLike = new LikeEntity();
+			insertLike.setDiaryId(diaryId);
+			lr.save(insertLike);
+		}else {
+			lr.delete(like);
+		}
+		
+		return "dd";
+	}
+
+	
 }

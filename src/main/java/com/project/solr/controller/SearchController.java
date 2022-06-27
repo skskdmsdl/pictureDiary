@@ -37,7 +37,7 @@ public class SearchController {
     private DiaryService diaryService;
 	
 	@RequestMapping("/searchList.do")
-	public ModelAndView SearchList(ModelAndView mav,  HttpSession session, @RequestParam(required=false, defaultValue="*") String word) throws Exception {
+	public ModelAndView SearchList(ModelAndView mav, HttpSession session, @RequestParam(required=false, defaultValue="*") String word) throws Exception {
 		try {
 			
 			int userId = (int)session.getAttribute("userId");
