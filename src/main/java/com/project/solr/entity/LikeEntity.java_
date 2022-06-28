@@ -32,6 +32,8 @@ public class LikeEntity {
 	@Id
 	@Column(name="DIARY_ID")
 	int diaryId;
+	@Column(name="USER_ID")
+	int userId;
 	@Column(name="CREATE_DATE")
 	@CreationTimestamp
 	Date createDate;

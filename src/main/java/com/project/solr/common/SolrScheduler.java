@@ -12,17 +12,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class SolrScheduler {
 	
-	//@Scheduled(fixedDelay = 60000)
+	//@Scheduled(fixedDelay = 5000)
 	public void importSchedule() {
-		System.out.println("========================-1분마다 실행====================");
+//		System.out.println("========================-1분마다 실행====================");
 		try {
-			// full-import clean=true url
-			// delta-import 실행해야 하지만 솔라 버전의 문제인지 delta-import failed => 추후 보강
-			URL url = new URL("http://localhost:8983/solr/solrProject/dataimport?command=full-import&commit=true&clean=true");
+			// delta-import
+			URL url = new URL("http://localhost:8983/solr/solrProject/dataimport?command=delta-import&commit=true");
 			HttpURLConnection con = (HttpURLConnection) url.openConnection();
 
 			if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
-				System.out.println("-- solr data-import success --");
+				System.out.println("-- solr delta-import success --");
 			}
 			
 		} catch (IOException e) {

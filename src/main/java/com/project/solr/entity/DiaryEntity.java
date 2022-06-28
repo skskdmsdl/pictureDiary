@@ -14,11 +14,17 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Getter
+@Setter
+@ToString
 @Table(name="DIARY")
 @SequenceGenerator(
 		name="DEARY_SEQ_GEN",
@@ -45,48 +51,10 @@ public class DiaryEntity {
 	Date createDate;
 	@Column(name="DIARY_DATE")
 	Date diaryDate;
-	
-	public int getDiaryId() {
-		return diaryId;
-	}
-	public void setDiaryId(int diaryId) {
-		this.diaryId = diaryId;
-	}
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public Date getCreateDate() {
-		return createDate;
-	}
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-	public Date getDiaryDate() {
-		return diaryDate;
-	}
-	public void setDiaryDate(Date diaryDate) {
-		this.diaryDate = diaryDate;
-	}
-	
-	@Override
-	public String toString() {
-		return "DiaryEntity [diaryId=" + diaryId + ", userId=" + userId + ", title=" + title + ", content=" + content
-				+ ", createDate=" + createDate + ", diaryDate=" + diaryDate + "]";
-	}
-	
+	@Column(name="BOOKMARK")
+	String bookmark;
+	@Column(name="MODIFY_DATE", nullable = false)
+	@CreationTimestamp
+	Date modifyDate;
+
 }

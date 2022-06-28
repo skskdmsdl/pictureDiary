@@ -1,6 +1,7 @@
 package com.project.solr.controller;
 
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,11 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.project.solr.dto.DiaryDto;
 import com.project.solr.entity.DiaryEntity;
 import com.project.solr.entity.DiaryImageEntity;
-import com.project.solr.entity.LikeEntity;
 import com.project.solr.repository.DiaryImageRepository;
 import com.project.solr.repository.DiaryRepository;
-import com.project.solr.repository.LikeRepository;
-import com.project.solr.repository.UserRepository;
 
 @Controller
 @RequestMapping("/diary")
@@ -31,9 +29,6 @@ public class DiaryController {
 	@Autowired
 	private DiaryImageRepository dir;
 	
-	@Autowired
-	private LikeRepository lr;
-
 	@RequestMapping("/detail.do")
 	public String Detail(@RequestParam int diaryId, DiaryDto diary) throws Exception {
 		
@@ -73,20 +68,42 @@ public class DiaryController {
 	
 	@RequestMapping(value = "/likeUpdate.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String LikeUpdate(ModelAndView mav, @RequestParam int diaryId) throws Exception {
+	public String LikeUpdate(ModelAndView mav, @RequestParam int diaryId, @RequestParam int userId) throws Exception {
 		
-		LikeEntity like = lr.findByDiaryId(diaryId);
+		DiaryEntity bookmark = dr.findByDiaryId(diaryId);
+//		String current = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		Date current = new Date();	
 		
-		if(like == null) {
-			LikeEntity insertLike = new LikeEntity();
-			insertLike.setDiaryId(diaryId);
-			lr.save(insertLike);
+		if(bookmark.getBookmark() == null) {
+			bookmark.setBookmark("1");
+			bookmark.setModifyDate(current);
+			dr.save(bookmark);
 		}else {
-			lr.delete(like);
+			bookmark.setBookmark(null);
+			bookmark.setModifyDate(current);
+			dr.save(bookmark);
 		}
 		
 		return "dd";
 	}
+	
+//	@RequestMapping(value = "/likeUpdate.do", method = RequestMethod.POST)
+//	@ResponseBody
+//	public String LikeUpdate(ModelAndView mav, @RequestParam int diaryId, @RequestParam int userId) throws Exception {
+//		
+//		LikeEntity like = lr.findByDiaryId(diaryId);
+//		
+//		if(like == null) {
+//			LikeEntity insertLike = new LikeEntity();
+//			insertLike.setDiaryId(diaryId);
+//			insertLike.setUserId(userId);
+//			lr.save(insertLike);
+//		}else {
+//			lr.delete(like);
+//		}
+//		
+//		return "dd";
+//	}
 
 	
 }

@@ -35,6 +35,8 @@ CREATE TABLE DIARY (
 	content		VARCHAR(4000),
 	create_date	DATE			DEFAULT SYSDATE,
 	diary_date	DATE,
+	bookmark	CHAR(1),
+	modify_date	DATE
 	CONSTRAINT pk_diary PRIMARY KEY (diary_id),
 	CONSTRAINT fk_diary FOREIGN KEY (user_id) REFERENCES USERS (user_id)
 );
@@ -50,12 +52,14 @@ CREATE TABLE DIARY_IMAGE (
 	CONSTRAINT fk_diary_image FOREIGN KEY (diary_id) REFERENCES DIARY (diary_id)
 );
 
-CREATE TABLE LIKE_DIARY (
-	diary_id	NUMBER	NOT NULL,
-	create_date	DATE	DEFAULT SYSDATE,
-	CONSTRAINT pk_like_diary PRIMARY KEY (diary_id),
-	CONSTRAINT fk_like_diary FOREIGN KEY (diary_id) REFERENCES DIARY (diary_id)
-);
+--CREATE TABLE LIKE_DIARY (
+--	diary_id	NUMBER	NOT NULL,
+--	user_id		NUMBER	NOT NULL,
+--	create_date	DATE	DEFAULT SYSDATE,
+--	CONSTRAINT pk_like_diary PRIMARY KEY (diary_id),
+--	CONSTRAINT fk_like_diary FOREIGN KEY (diary_id) REFERENCES DIARY (diary_id),
+--	CONSTRAINT fk_like_diary_user FOREIGN KEY (user_id) REFERENCES USERS (user_id);
+--);
 
 COMMIT;
 
@@ -94,3 +98,7 @@ END;
 --alter table diary drop column cteate_date;
 --alter table diary_image drop column cteate_date;
 --alter table diary_image modify (create_date default sysdate);
+--alter table like_diary add user_id number not null;
+--alter table like_diary add constraint fk_like_diary_user foreign key (user_id) references users (user_id);
+--alter table diary add bookmark char(1);
+--alter table diary add modify_date date;

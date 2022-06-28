@@ -3,7 +3,6 @@ package com.project.solr.controller;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -17,16 +16,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
 import com.project.solr.common.SearchEngine;
 import com.project.solr.entity.DiaryEntity;
 import com.project.solr.service.DiaryService;
-import com.project.solr.service.UserService;
 
 @Controller
 @RequestMapping("/search")
@@ -66,7 +62,7 @@ public class SearchController {
 		mav.addObject("searchList", map.get("searchList"));
 		mav.addObject("titleSearchList", titleMap.get("searchList"));
 		mav.addObject("contentSearchList", contentMap.get("searchList"));
-
+		System.out.println(map.get("searchList"));
 		mav.setViewName("search/searchList");
 		
 		return mav;

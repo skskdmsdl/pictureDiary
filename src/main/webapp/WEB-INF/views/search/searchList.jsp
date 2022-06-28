@@ -45,12 +45,19 @@ const $j112 = jQuery.noConflict();
                     <div class="img home-portfolio-image">
                         <img src="${search.path}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/images/diary/img_1.jpg'" alt="Portfolio Item">
                         <div class="overlay-thumb">
-                            <a href="javascript:void(0)" class="like-product" data-diary="${search.diary_id}">
-                                <i class="ion-ios-heart-outline"></i>
+                            <a href="javascript:void(0)" class="like-product diaryList" data-diary="${search.diary_id}">
+                            	<c:choose>
+                            		<c:when test="${search.bookmark eq '1'}">
+		                                <i class="press ion-ios-heart"></i>
+                            		</c:when>
+                            		<c:otherwise>
+		                                <i class="ion-ios-heart-outline"></i>
+                            		</c:otherwise>
+                            	</c:choose>
                                 <span class="like-product">Liked</span>
                             </a>
                             <div class="details">
-                                <span class="title">${ search.title }</span>
+                                <span class="title">${ search.title}</span>
                                 <span class="info">${ search.content }</span>
                             </div>
                             <span class="btnBefore"></span>
@@ -60,12 +67,39 @@ const $j112 = jQuery.noConflict();
                     </div>
                 </div>
                 </c:forEach>
+<%--                 <c:forEach items="${searchList}" var="search" varStatus="status">
+                <div class="col-md-6 col-sm-6 col-xs-12 mix">
+                    <div class="img home-portfolio-image">
+                        <img src="${search.get('path')}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/images/diary/img_1.jpg'" alt="Portfolio Item">
+                        <div class="overlay-thumb">
+                            <a href="javascript:void(0)" class="like-product diaryList" data-diary="${search.get('diaryId')}">
+                            	<c:choose>
+                            		<c:when test="${search.get('bookmark') eq '1'}">
+		                                <i class="press ion-ios-heart"></i>
+                            		</c:when>
+                            		<c:otherwise>
+		                                <i class="ion-ios-heart-outline"></i>
+                            		</c:otherwise>
+                            	</c:choose>
+                                <span class="like-product">Liked</span>
+                            </a>
+                            <div class="details">
+                                <span class="title">${ search.get('title') }</span>
+                                <span class="info">${ search.get('content') }</span>
+                            </div>
+                            <span class="btnBefore"></span>
+                            <span class="btnAfter"></span>
+                            <a class="main-portfolio-link" href="/diary/detail.do?diaryId=${ search.get('diaryId') }"></a>
+                        </div>
+                    </div>
+                </div>
+                </c:forEach> --%>
                 <c:forEach items="${titleSearchList}" var="search" varStatus="status">
 	                <div class="col-md-6 col-sm-6 col-xs-12 titleFilter">
 	                    <div class="img home-portfolio-image">
 	                        <img src="${search.path}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/images/diary/img_1.jpg'" alt="Portfolio Item">
 	                        <div class="overlay-thumb">
-	                            <a href="javascript:void(0)" class="like-product" data-diary="${search.diary_id}">
+	                            <a href="javascript:void(0)" class="like-product diaryList" data-diary="${search.diary_id}">
 	                                <i class="ion-ios-heart-outline"></i>
 	                                <span class="like-product">Liked</span>
 	                            </a>
@@ -85,7 +119,7 @@ const $j112 = jQuery.noConflict();
 	                    <div class="img home-portfolio-image">
 	                        <img src="${search.path}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/images/diary/img_1.jpg'" alt="Portfolio Item">
 	                        <div class="overlay-thumb">
-	                            <a href="javascript:void(0)" class="like-product" data-diary="${search.diary_id}">
+	                            <a href="javascript:void(0)" class="like-product diaryList" data-diary="${search.diary_id}">
 	                                <i class="ion-ios-heart-outline"></i>
 	                                <span class="like-product">Liked</span>
 	                            </a>
@@ -209,8 +243,13 @@ $('.icon-refresh').click(function(){
 				}else {
 					addListHtml +='<img src="'+data[0][i].path+'" alt="Portfolio Item">';
 				}
-				addListHtml +='<div class="overlay-thumb"><a href="javascript:void(0)" class="like-product" data-diary="'+data[0][i].diary_id+'">';
-				addListHtml +='<i class="ion-ios-heart-outline"></i><span class="like-product">Liked</span></a>';
+				addListHtml +='<div class="overlay-thumb"><a href="javascript:void(0)" class="like-product diaryList" data-diary="'+data[0][i].diary_id+'">';
+				if(data[0][i].bookmark == '1'){
+					addListHtml +='<i class="press ion-ios-heart"></i>';
+				}else {
+					addListHtml +='<i class="ion-ios-heart-outline"></i>';
+				}
+				addListHtml +='<span class="like-product">Liked</span></a>';
 				addListHtml +='<div class="details"><span class="title">'+data[0][i].title+'</span>';
 				addListHtml +='<span class="info">'+data[0][i].content+'</span></div>';
 				addListHtml +='<span class="btnBefore"></span><span class="btnAfter"></span>';
@@ -223,8 +262,7 @@ $('.icon-refresh').click(function(){
 
 // like
 $(document).on('click', '.like-product', function(){
-	console.log(${sessionScope.userId});
-	console.log(this.dataset.diary)
+	
 	$.ajax({
 		url : '${ pageContext.request.contextPath }/diary/likeUpdate.do',
 		type : 'POST',
@@ -235,9 +273,42 @@ $(document).on('click', '.like-product', function(){
 		},
 		success : function(data){
 			console.log(data);
+			console.log($(this).children().first());
 		}
 	});
+	if($(this).children().first().hasClass('ion-ios-heart-outline')){
+		$(this).children().first().removeClass();
+		$(this).children().first().addClass('press ion-ios-heart');
+	}else {
+		$(this).children().first().removeClass();
+		$(this).children().first().addClass('ion-ios-heart-outline');
+	}
 });
+
+// heart color
+
+/* const likeList = ${ likeList };
+const items = $('.diaryList');
+const diaryIdArr = [];
+
+likeList.forEach(like => diaryIdArr.push(String(like))); */
+/* 
+for(let i=0; i<items.length; i++){
+	diaryIdArr.push(items[i].dataset.diary);
+}
+ */
+/* for(let i=0; i<items.length; i++){
+	for(let j=0; j<diaryIdArr.length; j++){
+		if(items[i].dataset.diary == diaryIdArr[j] == true){
+			
+			const heartClass = items[i].firstChild.nextSibling;
+			heartClass.removeClass('ion-ios-heart-outline');
+			console.log(heartClass);
+			
+		}
+	}
+}
+console.log(diaryIdArr); */
 </script>
 
 <jsp:include page="../common/footer.jsp"></jsp:include>

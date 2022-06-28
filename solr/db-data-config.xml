@@ -3,17 +3,21 @@
     <dataSource driver="oracle.jdbc.driver.OracleDriver" url="jdbc:oracle:thin:@localhost:1521:xe" user="PICTURE_DIARY" password="PICTURE_DIARY" />
 
 	<document>
-        <entity name="diary" pk="ID" 
+        <entity name="diary" pk="DIARY_ID"
                 query="select * from diary left outer join diary_image using (diary_id)"
-                deltaImportQuery="select * from diary left outer join diary_image using (diary_id) where diary_id = '${dataimporter.delta.ID}'"
-                deltaQuery="select diary_id as ID from diary where sys_extract_utc(to_timestamp (to_char(create_date, 'YYYY-MM-DD HH24:MI:SS'))) > '${dataimporter.last_index_time}'"
+                deltaImportQuery="select * from diary left outer join diary_image using (diary_id) where diary_id = '${dih.delta.DIARY_ID}'"
+                deltaQuery="select diary_id as DIARY_ID from diary where sys_extract_utc(to_timestamp (to_char(modify_date, 'YYYY-MM-DD HH24:MI:SS'))) > '${dih.last_index_time}'"
+                preImportDeleteQuery="select diary_id as DIARY_ID from diary where sys_extract_utc(to_timestamp (to_char(modify_date, 'YYYY-MM-DD HH24:MI:SS')))d > '${dih.last_index_time}'"
                 >
-            <field column="diary_id" name="diary_id" />                
+                
+            <field column="DIARY_ID" name="id" />                
             <field column="user_id" name="user_id" />                
             <field column="title" name="title" />
             <field column="content" name="content" />
             <field column="create_date" name="create_date" />
             <field column="diary_date" name="diary_date" />                
+            <field column="bookmark" name="bookmark" />                
+            <field column="modify_date" name="modify_date" />                
             <field column="path" name="path" />                
         </entity>
     </document>

@@ -1,5 +1,7 @@
 package com.project.solr.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,5 +11,7 @@ import com.project.solr.entity.LikeEntity;
 public interface LikeRepository extends JpaRepository<LikeEntity, String>{
 
 	LikeEntity findByDiaryId(int diaryId);
+
+	List<LikeEntity> findByUserId(int userId);
 	
 }
