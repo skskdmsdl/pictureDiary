@@ -264,7 +264,7 @@ $('.icon-refresh').click(function(){
 $(document).on('click', '.like-product', function(){
 	
 	$.ajax({
-		url : '${ pageContext.request.contextPath }/diary/likeUpdate.do',
+		url : '${ pageContext.request.contextPath }/diary/bookmarkUpdate.do',
 		type : 'POST',
 		dataType : 'text',
 		data : {
@@ -276,6 +276,7 @@ $(document).on('click', '.like-product', function(){
 			console.log($(this).children().first());
 		}
 	});
+	// heart color
 	if($(this).children().first().hasClass('ion-ios-heart-outline')){
 		$(this).children().first().removeClass();
 		$(this).children().first().addClass('press ion-ios-heart');
@@ -285,30 +286,6 @@ $(document).on('click', '.like-product', function(){
 	}
 });
 
-// heart color
-
-/* const likeList = ${ likeList };
-const items = $('.diaryList');
-const diaryIdArr = [];
-
-likeList.forEach(like => diaryIdArr.push(String(like))); */
-/* 
-for(let i=0; i<items.length; i++){
-	diaryIdArr.push(items[i].dataset.diary);
-}
- */
-/* for(let i=0; i<items.length; i++){
-	for(let j=0; j<diaryIdArr.length; j++){
-		if(items[i].dataset.diary == diaryIdArr[j] == true){
-			
-			const heartClass = items[i].firstChild.nextSibling;
-			heartClass.removeClass('ion-ios-heart-outline');
-			console.log(heartClass);
-			
-		}
-	}
-}
-console.log(diaryIdArr); */
 </script>
 
 <jsp:include page="../common/footer.jsp"></jsp:include>

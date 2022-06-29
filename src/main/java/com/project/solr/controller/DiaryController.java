@@ -1,7 +1,9 @@
 package com.project.solr.controller;
 
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -33,13 +35,9 @@ public class DiaryController {
 	public String Detail(@RequestParam int diaryId, DiaryDto diary) throws Exception {
 		
 		DiaryEntity diaryInfo = dr.findByDiaryId(diaryId);
-		DiaryImageEntity diaryImageInfo = new DiaryImageEntity();
-		try {
-			diaryImageInfo = dir.findByDiaryId(diaryId);
-			diary.setPath(diaryImageInfo.getPath());
-		}catch(Exception e) {
-			System.out.println(e);
-		}
+		Optional<DiaryImageEntity> diaryImageInfo = dir.findByDiaryId(diaryId);
+		if(diaryImageInfo.isPresent())
+			diary.setPath(diaryImageInfo.get().getPath());
 		
 		diary.setTitle(diaryInfo.getTitle());
 		diary.setContent(diaryInfo.getContent());
@@ -48,27 +46,47 @@ public class DiaryController {
 		return "diary/detail";
 	}
 	
-	@RequestMapping("/likeList.do")
-	public ModelAndView LikeList(ModelAndView mav, HttpSession session) throws Exception {
+	@RequestMapping("/bookmarkList.do")
+	public ModelAndView BookmarkList(ModelAndView mav, HttpSession session) throws Exception {
 		
 		try {
 			
 			int userId = (int)session.getAttribute("userId");
 		}catch (Exception e){
 			mav.setViewName("redirect:/");
-
 			return mav;
 		}
-		
-		mav.setViewName("diary/like");
+		int userId = (int)session.getAttribute("userId");
+		List<DiaryEntity> diaryList = dr.findByUserIdAndBookmark(userId, "1");
 
+		List<DiaryDto> bookmarkList = new ArrayList<>();
+		for(DiaryEntity diary : diaryList) {
+			Optional<DiaryImageEntity> diaryImage = dir.findByDiaryId(diary.getDiaryId());
+			
+			DiaryDto diaryDto = new DiaryDto();
+			diaryDto.setDiaryId(diary.getDiaryId());
+			diaryDto.setUserId(userId);
+			diaryDto.setTitle(diary.getTitle());
+			diaryDto.setContent(diary.getContent());
+			diaryDto.setCreateDate(diary.getCreateDate());
+			diaryDto.setDiaryDate(diary.getDiaryDate());
+			diaryDto.setBookmark(diary.getBookmark());
+			if(diaryImage.isPresent()) 
+				diaryDto.setPath(diaryImage.get().getPath());
+			
+			bookmarkList.add(diaryDto);
+		}
+		
+		bookmarkList.forEach(System.out::println);
+		mav.addObject("bookmarkList", bookmarkList);
+		mav.setViewName("diary/bookmark");
 		
 		return mav;
 	}
 	
-	@RequestMapping(value = "/likeUpdate.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/bookmarkUpdate.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String LikeUpdate(ModelAndView mav, @RequestParam int diaryId, @RequestParam int userId) throws Exception {
+	public String BookmarkUpdate(ModelAndView mav, @RequestParam int diaryId, @RequestParam int userId) throws Exception {
 		
 		DiaryEntity bookmark = dr.findByDiaryId(diaryId);
 //		String current = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
