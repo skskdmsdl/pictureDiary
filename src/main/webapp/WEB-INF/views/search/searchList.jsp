@@ -54,7 +54,7 @@ const $j112 = jQuery.noConflict();
 		                                <i class="ion-ios-heart-outline"></i>
                             		</c:otherwise>
                             	</c:choose>
-                                <span class="like-product">Liked</span>
+                                <span class="like-product">Bookmark</span>
                             </a>
                             <div class="details">
                                 <span class="title">${ search.title}</span>
@@ -81,7 +81,7 @@ const $j112 = jQuery.noConflict();
 		                                <i class="ion-ios-heart-outline"></i>
                             		</c:otherwise>
                             	</c:choose>
-                                <span class="like-product">Liked</span>
+                                <span class="like-product">Bookmark</span>
                             </a>
                             <div class="details">
                                 <span class="title">${ search.get('title') }</span>
@@ -101,7 +101,7 @@ const $j112 = jQuery.noConflict();
 	                        <div class="overlay-thumb">
 	                            <a href="javascript:void(0)" class="like-product diaryList" data-diary="${search.diary_id}">
 	                                <i class="ion-ios-heart-outline"></i>
-	                                <span class="like-product">Liked</span>
+	                                <span class="like-product">Bookmark</span>
 	                            </a>
 	                            <div class="details">
 	                                <span class="title">${ search.title }</span>
@@ -121,7 +121,7 @@ const $j112 = jQuery.noConflict();
 	                        <div class="overlay-thumb">
 	                            <a href="javascript:void(0)" class="like-product diaryList" data-diary="${search.diary_id}">
 	                                <i class="ion-ios-heart-outline"></i>
-	                                <span class="like-product">Liked</span>
+	                                <span class="like-product">Bookmark</span>
 	                            </a>
 	                            <div class="details">
 	                                <span class="title">${ search.title }</span>
@@ -249,7 +249,7 @@ $('.icon-refresh').click(function(){
 				}else {
 					addListHtml +='<i class="ion-ios-heart-outline"></i>';
 				}
-				addListHtml +='<span class="like-product">Liked</span></a>';
+				addListHtml +='<span class="like-product">Bookmark</span></a>';
 				addListHtml +='<div class="details"><span class="title">'+data[0][i].title+'</span>';
 				addListHtml +='<span class="info">'+data[0][i].content+'</span></div>';
 				addListHtml +='<span class="btnBefore"></span><span class="btnAfter"></span>';

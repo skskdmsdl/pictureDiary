@@ -12,7 +12,7 @@
 			                <div class="img">
 			                    <img src="${bookmark.path}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/images/diary/img_2.jpg'" alt="Portfolio Item">
 			                    <div class="overlay-thumb">
-			                        <a href="javascript:void(0)" class="like-product">
+			                        <a href="javascript:void(0)" class="like-product" data-diary="${bookmark.diaryId}">
 			                        	<c:choose>
 		                            		<c:when test="${bookmark.bookmark eq '1'}">
 				                                <i class="press ion-ios-heart"></i>
@@ -21,8 +21,7 @@
 				                                <i class="ion-ios-heart-outline"></i>
 		                            		</c:otherwise>
 		                            	</c:choose>
-			                            <i class="ion-ios-heart-outline"></i>
-			                            <span class="like-product">Liked</span>
+			                            <span class="like-product">Bookmark</span>
 			                        </a>
 			                        <div class="details">
 			                            <span class="title">${ bookmark.title }</span>
@@ -30,17 +29,45 @@
 			                        </div>
 			                        <span class="btnBefore"></span>
 			                        <span class="btnAfter"></span>
-			                        <a class="main-portfolio-link" href="single-project.html"></a>
+			                        <a class="main-portfolio-link" href="/diary/detail.do?diaryId=${ bookmark.diaryId }""></a>
 			                    </div>
 			                </div>
 			            </div>
 		        	</c:forEach>
         		</c:when>
         		<c:otherwise>
+        			<p>북마크 된 일기가 없습니다.</p>
         		</c:otherwise>
         	</c:choose>
         </div>
     </div>
 </div>
 
+<script>
+//like
+$(document).on('click', '.like-product', function(){
+	
+	$.ajax({
+		url : '${ pageContext.request.contextPath }/diary/bookmarkUpdate.do',
+		type : 'POST',
+		dataType : 'text',
+		data : {
+			"userId" : ${sessionScope.userId},
+			"diaryId" : this.dataset.diary
+		},
+		success : function(data){
+			console.log(data);
+			console.log($(this).children().first());
+		}
+	});
+	// heart color
+	if($(this).children().first().hasClass('ion-ios-heart-outline')){
+		$(this).children().first().removeClass();
+		$(this).children().first().addClass('press ion-ios-heart');
+	}else {
+		$(this).children().first().removeClass();
+		$(this).children().first().addClass('ion-ios-heart-outline');
+	}
+});
+</script>
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
