@@ -2416,11 +2416,13 @@ ul.social-buttons li {
 /*Similar Project*/
 .similar-project {
     clear: both;
+    margin-bottom: 50px;
 }
 .similar-project h4 {
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 50px;
+    font-size: x-large;
 }
 
 /* Buttons home, back, next */

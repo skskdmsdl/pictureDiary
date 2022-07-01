@@ -6,7 +6,7 @@
         <h4>BOOKMARK</h4>
         <div class="row">
         	<c:choose>
-        		<c:when test="${ bookmarkList ne null }" >
+        		<c:when test="${ bookmarkList ne '[]' }" >
 		        	<c:forEach items="${ bookmarkList }" var="bookmark">
 			            <div class="col-md-4 col-sm-4 col-xs-12">
 			                <div class="img">
@@ -36,12 +36,21 @@
 		        	</c:forEach>
         		</c:when>
         		<c:otherwise>
-        			<p>북마크 된 일기가 없습니다.</p>
+		            <div class="col-md-4 col-sm-4 col-xs-12">
+        				<p>북마크 된 일기가 없습니다.</p>
+        			</div>
         		</c:otherwise>
         	</c:choose>
         </div>
     </div>
 </div>
+
+<c:if test="${sessionScope.nickname ne null}">
+	<div class="container">
+	<ul class="pagination-ef wow animated fadeInUp" data-wow-delay="0.20s">${ pageBar }</ul>
+	</div>
+</c:if>
+
 
 <script>
 //like

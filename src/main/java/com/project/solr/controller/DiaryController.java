@@ -5,9 +5,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.solr.common.Utils;
 import com.project.solr.dto.DiaryDto;
 import com.project.solr.entity.DiaryEntity;
 import com.project.solr.entity.DiaryImageEntity;
@@ -47,7 +51,7 @@ public class DiaryController {
 	}
 	
 	@RequestMapping("/bookmarkList.do")
-	public ModelAndView BookmarkList(ModelAndView mav, HttpSession session) throws Exception {
+	public ModelAndView BookmarkList(ModelAndView mav, HttpServletRequest request, HttpSession session, @RequestParam(required = false, defaultValue="1") int cPage) throws Exception {
 		
 		try {
 			
@@ -57,12 +61,12 @@ public class DiaryController {
 			return mav;
 		}
 		int userId = (int)session.getAttribute("userId");
-		List<DiaryEntity> diaryList = dr.findByUserIdAndBookmark(userId, "1");
+		List<DiaryEntity> diaryList = dr.findByUserIdAndBookmark(userId, "1",  PageRequest.of(cPage-1, 6, Sort.by("diaryDate").descending().and(Sort.by("diaryId").descending())));
 
 		List<DiaryDto> bookmarkList = new ArrayList<>();
 		for(DiaryEntity diary : diaryList) {
 			Optional<DiaryImageEntity> diaryImage = dir.findByDiaryId(diary.getDiaryId());
-			
+//			DiaryImageEntity diaryImage = dir.findByDiaryId(diary.getDiaryId()).orElseThrow(DiaryImageEntityNotFoundException::new);			
 			DiaryDto diaryDto = new DiaryDto();
 			diaryDto.setDiaryId(diary.getDiaryId());
 			diaryDto.setUserId(userId);
@@ -77,8 +81,15 @@ public class DiaryController {
 			bookmarkList.add(diaryDto);
 		}
 		
+		//전체컨텐츠수 구하기
+		List<DiaryEntity> totalList = dr.findCountByUserIdAndBookmark(userId, "1"); 
+		int totalContents = totalList.size(); 
+		String url = request.getRequestURI() + "?";
+		String pageBar = Utils.getPageBarHtml(cPage, 6, totalContents, url);
+		
 		bookmarkList.forEach(System.out::println);
 		mav.addObject("bookmarkList", bookmarkList);
+		mav.addObject("pageBar", pageBar);
 		mav.setViewName("diary/bookmark");
 		
 		return mav;
