@@ -94,8 +94,6 @@ public class SearchController {
 		return searchList;
 	}
 	
-	
-	
 	private List<String> search(int userId, String keyword) {
 		List<DiaryEntity> diaryList = diaryService.autocomplete(userId, keyword);
 		List<String> resultList = new ArrayList<>();
