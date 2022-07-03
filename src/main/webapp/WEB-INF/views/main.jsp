@@ -6,7 +6,7 @@
    		<c:when test="${ diaryList ne null }">
 	   		<c:forEach items="${ diaryImageList }" var="diaryImage" >
 				<c:if test="${diaryImage.diaryId eq diaryList[0].diaryId}" >
-		   			<div class="header-page ef-parallax-bg" style="background-image:url('${diaryImage.path}'), url(images/blog-header.jpg); ">
+		   			<div class="header-page ef-parallax-bg" style="background-image:url('${diaryImage.path}');background-size: 100%;background-repeat: no-repeat;">
 				        <div class="col-md-6 col-md-offset-6">
 				            <div class="row">
 				                <div class="inner-content">
@@ -23,7 +23,7 @@
 			</c:forEach>
    		</c:when>
    		<c:otherwise>
-   			<div class="header-page ef-parallax-bg" style="background-image:url(images/blog-header.jpg)">
+   			<div class="header-page ef-parallax-bg" style="background-image:url(images/defaultImg.jpg);background-size: 100%;background-repeat: no-repeat;">
 		        <div class="col-md-6 col-md-offset-6">
 		            <div class="row">
 		                <div class="inner-content">
@@ -109,7 +109,7 @@ if(message != ""){
 // 배너 이미지 없는 경우 동적 html 추가
 if($('#header-content').hasClass('header-content') == ''){
 	const container = $('#bannerContainer');
-	$(container).prepend('<div class="header-page ef-parallax-bg" style="background-image:url(images/blog-header.jpg); ">'
+	$(container).prepend('<div class="header-page ef-parallax-bg" style="background-image:url(images/defaultImg.jpg);background-size: 100%;background-repeat: no-repeat;">'
 		+'<div class="col-md-6 col-md-offset-6">'
 		+'<div class="row">'
 		+'<div class="inner-content">'

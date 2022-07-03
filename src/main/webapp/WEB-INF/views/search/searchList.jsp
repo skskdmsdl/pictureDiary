@@ -43,7 +43,7 @@ const $j112 = jQuery.noConflict();
                 <c:forEach items="${searchList}" var="search" varStatus="status">
                 <div class="col-md-6 col-sm-6 col-xs-12 mix">
                     <div class="img home-portfolio-image">
-                        <img src="${search.path}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/images/diary/img_1.jpg'" alt="Portfolio Item">
+                        <img src="${search.path}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/images/defaultImg.jpg'" alt="Portfolio Item">
                         <div class="overlay-thumb">
                             <a href="javascript:void(0)" class="like-product diaryList" data-diary="${search.diary_id}">
                             	<c:choose>
@@ -67,37 +67,10 @@ const $j112 = jQuery.noConflict();
                     </div>
                 </div>
                 </c:forEach>
-<%--                 <c:forEach items="${searchList}" var="search" varStatus="status">
-                <div class="col-md-6 col-sm-6 col-xs-12 mix">
-                    <div class="img home-portfolio-image">
-                        <img src="${search.get('path')}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/images/diary/img_1.jpg'" alt="Portfolio Item">
-                        <div class="overlay-thumb">
-                            <a href="javascript:void(0)" class="like-product diaryList" data-diary="${search.get('diaryId')}">
-                            	<c:choose>
-                            		<c:when test="${search.get('bookmark') eq '1'}">
-		                                <i class="press ion-ios-heart"></i>
-                            		</c:when>
-                            		<c:otherwise>
-		                                <i class="ion-ios-heart-outline"></i>
-                            		</c:otherwise>
-                            	</c:choose>
-                                <span class="like-product">Bookmark</span>
-                            </a>
-                            <div class="details">
-                                <span class="title">${ search.get('title') }</span>
-                                <span class="info">${ search.get('content') }</span>
-                            </div>
-                            <span class="btnBefore"></span>
-                            <span class="btnAfter"></span>
-                            <a class="main-portfolio-link" href="/diary/detail.do?diaryId=${ search.get('diaryId') }"></a>
-                        </div>
-                    </div>
-                </div>
-                </c:forEach> --%>
                 <c:forEach items="${titleSearchList}" var="search" varStatus="status">
 	                <div class="col-md-6 col-sm-6 col-xs-12 titleFilter">
 	                    <div class="img home-portfolio-image">
-	                        <img src="${search.path}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/images/diary/img_1.jpg'" alt="Portfolio Item">
+	                        <img src="${search.path}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/images/defaultImg.jpg'" alt="Portfolio Item">
 	                        <div class="overlay-thumb">
 	                            <a href="javascript:void(0)" class="like-product diaryList" data-diary="${search.diary_id}">
 	                                <i class="ion-ios-heart-outline"></i>
@@ -117,7 +90,7 @@ const $j112 = jQuery.noConflict();
                 <c:forEach items="${contentSearchList}" var="search" varStatus="status">
 	                <div class="col-md-6 col-sm-6 col-xs-12 contentFilter">
 	                    <div class="img home-portfolio-image">
-	                        <img src="${search.path}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/images/diary/img_1.jpg'" alt="Portfolio Item">
+	                        <img src="${search.path}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/images/defaultImg.jpg'" alt="Portfolio Item">
 	                        <div class="overlay-thumb">
 	                            <a href="javascript:void(0)" class="like-product diaryList" data-diary="${search.diary_id}">
 	                                <i class="ion-ios-heart-outline"></i>
@@ -136,7 +109,7 @@ const $j112 = jQuery.noConflict();
                 </c:forEach>
             </div>
         </div>
-        <input type="hidden" id="listCount" value="2"/>
+        <input type="hidden" id="listCount" value="4"/>
         <c:if test="${fn:length(searchList) < totalCount}">
 	        <div class="load-more">
 	            <a href="javascript:void(0)"><i class="icon-refresh"></i></a>
@@ -152,10 +125,10 @@ $(document).ready(function(){
 	$('.contentFilter').hide();
 	
 	$('.filter').click(function(){
-		$('#listCount').val(2);
+		$('#listCount').val(4);
 		$('.mix').children().slice(2).remove();
-		$('.titleFilter').children().slice(2).remove();
-		$('.contentFilter').children().slice(2).remove();
+		$('.titleFilter').children().slice(4).remove();
+		$('.contentFilter').children().slice(4).remove();
 		const filter = $(this).data('filter');
 		
 		if(filter.indexOf('mix')> -1){
@@ -219,7 +192,7 @@ $('.icon-refresh').click(function(){
 	const urlParams = new URL(location.href).searchParams;
 	const word = urlParams.get('word');
 	const filter = $(".active").data('filter');
-	const listCount = Number($('#listCount').val()) + 2;
+	const listCount = Number($('#listCount').val()) + 4;
 	$('#listCount').val(listCount);
 	const listContainer = $('.'+filter);
 	
@@ -239,7 +212,7 @@ $('.icon-refresh').click(function(){
 			for(let i = 0; i < data[0].length; i++){
 				addListHtml +='<div class="col-md-6 col-sm-6 col-xs-12 '+filter+'"><div class="img home-portfolio-image">';
 				if(data[0][i].path == undefined){
-					addListHtml +='<img src="${pageContext.request.contextPath}/images/diary/img_1.jpg" alt="Portfolio Item">';
+					addListHtml +='<img src="${pageContext.request.contextPath}/images/defaultImg.jpg" alt="Portfolio Item">';
 				}else {
 					addListHtml +='<img src="'+data[0][i].path+'" alt="Portfolio Item">';
 				}

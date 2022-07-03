@@ -1965,9 +1965,9 @@ ul.client-thumb-2 li a img:hover{
     margin-bottom: 30px;
 }
 .img img {
+	min-width: 555px;
     display: block;
     margin-bottom: 10px;
-    min-width: 360px;
     height: 355px;
     transition: opacity 0.35s, -webkit-transform 0.35s;
     transition: opacity 0.35s, transform 0.35s;

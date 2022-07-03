@@ -10,7 +10,7 @@
 		        	<c:forEach items="${ bookmarkList }" var="bookmark">
 			            <div class="col-md-4 col-sm-4 col-xs-12">
 			                <div class="img">
-			                    <img src="${bookmark.path}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/images/diary/img_2.jpg'" alt="Portfolio Item">
+			                    <img src="${bookmark.path}" onerror="this.onerror=null;this.src='${pageContext.request.contextPath}/images/defaultImg.jpg'" alt="Portfolio Item">
 			                    <div class="overlay-thumb">
 			                        <a href="javascript:void(0)" class="like-product" data-diary="${bookmark.diaryId}">
 			                        	<c:choose>

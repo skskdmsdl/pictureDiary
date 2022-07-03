@@ -48,9 +48,9 @@ public class SearchController {
 		
 		SearchEngine se = new SearchEngine();
 //		String url = "http://localhost:8983/solr/solrProject/select?fq=title:"+encodeResult+"&fq=content:"+encodeResult+"&q=user_id:"+userId+"&sort=diary_date%20desc,diary_id%20desc";	
-		String url = "http://localhost:8983/solr/solrProject/query?q=title:"+encodeResult+"%20content:"+encodeResult+"&q.op=OR&indent=true&rows=2&sort=create_date%20desc&fq=user_id:"+userId;	
-		String urlTitle = "http://localhost:8983/solr/solrProject/query?q=title:"+encodeResult+"&q.op=OR&indent=true&rows=2&sort=create_date%20desc&fq=user_id:"+userId;	
-		String urlContent = "http://localhost:8983/solr/solrProject/query?q=content:"+encodeResult+"&q.op=OR&indent=true&rows=2&sort=create_date%20desc&fq=user_id:"+userId;	
+		String url = "http://localhost:8983/solr/solrProject/query?q=title:"+encodeResult+"%20content:"+encodeResult+"&q.op=OR&indent=true&rows=4&sort=create_date%20desc&fq=user_id:"+userId;	
+		String urlTitle = "http://localhost:8983/solr/solrProject/query?q=title:"+encodeResult+"&q.op=OR&indent=true&rows=4&sort=create_date%20desc&fq=user_id:"+userId;	
+		String urlContent = "http://localhost:8983/solr/solrProject/query?q=content:"+encodeResult+"&q.op=OR&indent=true&rows=4&sort=create_date%20desc&fq=user_id:"+userId;	
 		System.out.println("url : "+url);
 		
 		Map<String, Object> map = se.process(url);

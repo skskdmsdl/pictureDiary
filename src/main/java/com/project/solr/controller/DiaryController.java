@@ -46,6 +46,7 @@ public class DiaryController {
 		diary.setTitle(diaryInfo.getTitle());
 		diary.setContent(diaryInfo.getContent());
 		diary.setDiaryDate(diaryInfo.getDiaryDate());
+		diary.setBookmark(diaryInfo.getBookmark());
 		
 		return "diary/detail";
 	}
