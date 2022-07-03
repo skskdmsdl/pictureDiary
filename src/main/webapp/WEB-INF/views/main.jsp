@@ -65,6 +65,16 @@
 		                        <a href="diary/detail.do?diaryId=${ diary.diaryId }">
 		                            <h1>${ diary.title }</h1>
 		                        </a>
+		                        <a href="javascript:void(0)" class="like-product" data-diary="${diary.diaryId}">
+						       		<c:choose>
+				                  		<c:when test="${diary.bookmark eq '1'}">
+				                        	<i class="press ion-ios-heart"></i>
+				                  		</c:when>
+				                  		<c:otherwise>
+				                        	<i class="ion-ios-heart-outline"></i>
+				                  		</c:otherwise>
+				                  	</c:choose>
+								</a>
 		
 		                        <p>${ diary.content }</p>
 		                    </div>
@@ -118,7 +128,32 @@ if($('#header-content').hasClass('header-content') == ''){
 		+'<p>${ diaryList[0].content }</p>'
 		+'</div></div></div></div></div>');
 } 
-   
+
+//like
+$(document).on('click', '.like-product', function(){
+	
+	$.ajax({
+		url : '${ pageContext.request.contextPath }/diary/bookmarkUpdate.do',
+		type : 'POST',
+		dataType : 'text',
+		data : {
+			"userId" : ${sessionScope.userId},
+			"diaryId" : this.dataset.diary
+		},
+		success : function(data){
+			console.log(data);
+			console.log($(this).children().first());
+		}
+	});
+	// heart color
+	if($(this).children().first().hasClass('ion-ios-heart-outline')){
+		$(this).children().first().removeClass();
+		$(this).children().first().addClass('press ion-ios-heart');
+	}else {
+		$(this).children().first().removeClass();
+		$(this).children().first().addClass('ion-ios-heart-outline');
+	}
+});
 </script>
 
 <jsp:include page="common/footer.jsp"></jsp:include>

@@ -4,3 +4,9 @@
     font-size: 30px;
     margin: 20px;
 }
+
+@media (min-width: 1200px){
+	.ion-ios-heart-outline, .ion-ios-heart  {
+    	margin-left: 120px !important;
+	}
+}
