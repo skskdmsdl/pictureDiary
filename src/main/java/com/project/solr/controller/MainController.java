@@ -40,7 +40,7 @@ public class MainController {
 			int userId = (int)session.getAttribute("userId");
 		}catch(Exception e){
 
-			mav.setViewName("/main");
+			mav.setViewName("/index");
 			return mav;
 		}
 		int userId = (int)session.getAttribute("userId");
@@ -65,7 +65,7 @@ public class MainController {
 		mav.addObject("cPage", cPage);
 		mav.addObject("totalContents", totalContents);
 		mav.addObject("pageBar", pageBar);
-		mav.setViewName("/main");
+		mav.setViewName("/index");
 		return mav;
 	}
 
