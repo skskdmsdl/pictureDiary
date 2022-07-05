@@ -2,7 +2,7 @@
 Spring_Solr_Project
 
 # Overview
-검색이 쉬운 그림 일기 사이트
+검색이 쉬운 그림 일기 사이트 <br />
 개발 기간 : 2022.04.20~2022.07.03
 
 # Skills
