@@ -6,7 +6,7 @@
         <entity name="diary" pk="DIARY_ID"
                 query="select * from diary left outer join diary_image using (diary_id)"
                 deltaImportQuery="select * from diary left outer join diary_image using (diary_id) where diary_id = '${dih.delta.DIARY_ID}'"
-                deltaQuery="select diary_id as DIARY_ID from diary where sys_extract_utc(to_timestamp (to_char(modify_date, 'YYYY-MM-DD HH24:MI:SS'))) > '${dih.last_index_time}'"
+                deltaQuery="select diary_id11 as DIARY_ID from diary where sys_extract_utc(to_timestamp (to_char(modify_date, 'YYYY-MM-DD HH24:MI:SS'))) > '${dih.last_index_time}'"
                 preImportDeleteQuery="select diary_id as DIARY_ID from diary where sys_extract_utc(to_timestamp (to_char(modify_date, 'YYYY-MM-DD HH24:MI:SS'))) > '${dih.last_index_time}'"
                 >
                 
