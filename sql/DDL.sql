@@ -52,15 +52,6 @@ CREATE TABLE DIARY_IMAGE (
 	CONSTRAINT fk_diary_image FOREIGN KEY (diary_id) REFERENCES DIARY (diary_id)
 );
 
---CREATE TABLE LIKE_DIARY (
---	diary_id	NUMBER	NOT NULL,
---	user_id		NUMBER	NOT NULL,
---	create_date	DATE	DEFAULT SYSDATE,
---	CONSTRAINT pk_like_diary PRIMARY KEY (diary_id),
---	CONSTRAINT fk_like_diary FOREIGN KEY (diary_id) REFERENCES DIARY (diary_id),
---	CONSTRAINT fk_like_diary_user FOREIGN KEY (user_id) REFERENCES USERS (user_id);
---);
-
 COMMIT;
 
 -- 시퀀스 생성
@@ -91,6 +82,15 @@ BEGIN
       INSERT INTO diary VALUES(diary_seq.NEXTVAL, :NEW.USER_ID, '환영합니다', '당신의 오늘을 기록해주세요', DEFAULT, SYSDATE ); 
       INSERT INTO diary_image VALUES(diary_seq.CURRVAL, DEFAULT, NULL, '환영합니다.jpg', 'D:\pictureDiary' );
 END;
+
+--CREATE TABLE LIKE_DIARY (
+--	diary_id	NUMBER	NOT NULL,
+--	user_id		NUMBER	NOT NULL,
+--	create_date	DATE	DEFAULT SYSDATE,
+--	CONSTRAINT pk_like_diary PRIMARY KEY (diary_id),
+--	CONSTRAINT fk_like_diary FOREIGN KEY (diary_id) REFERENCES DIARY (diary_id),
+--	CONSTRAINT fk_like_diary_user FOREIGN KEY (user_id) REFERENCES USERS (user_id);
+--);
 
 --alter table users modify (password varchar2(2000)) ;
 --alter table diary_image drop primary key;
