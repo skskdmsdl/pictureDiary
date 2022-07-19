@@ -19,3 +19,4 @@ Spring_Solr_Project
 * 스케줄러를 통한 Solr 자동 색인
 * 구글 로그인
 * 검색어 자동 완성 (autoComplete)
+* 북마크
